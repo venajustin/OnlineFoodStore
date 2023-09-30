@@ -4,5 +4,9 @@ CMPE 131 Original Food Store Project
 - Matthew Tran
 - Justin G
 - Kerwin
+- Fiona
+- Dorian
 
 Changing some stuff
+
+Justin writing some stuff

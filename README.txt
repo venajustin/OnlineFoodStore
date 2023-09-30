@@ -4,3 +4,5 @@ CMPE 131 Original Food Store Project
 - Matthew Tran
 - Justin G
 - Kerwin
+
+Changing some stuff

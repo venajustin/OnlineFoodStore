@@ -5,6 +5,7 @@ CMPE 131 Original Food Store Project
 - Justin G
 - Kerwin
 - Fiona
+- Dorian
 
 
 Justin writing some stuff

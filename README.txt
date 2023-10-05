@@ -1,12 +1,6 @@
 CMPE 131 Original Food Store Project
 
-- An Nguyen
-- Matthew Tran
-- Justin G
-- Kerwin
-- Fiona
-- Dorian
+index.php contains the main page of the site
 
-Changing some stuff
-
-Justin writing some stuff
+right now this is just a basic test to make sure that everyone's
+xampp is set up correctly and the folder is properly cloned

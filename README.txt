@@ -6,6 +6,7 @@ CMPE 131 Original Food Store Project
 - Kerwin
 - Fiona
 - Dorian
+- Jacob
 
 Changing some stuff
 

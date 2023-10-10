@@ -1,6 +1,16 @@
+:root {
+	--dark: #1c3144;
+	--secondary: #4392f1;
+	--light-secondary: #59d2fe;
+	--light-primary: #88d498;
+	--primary: #1a936f;
+}
+
+
+
 html {
 	font-family: "Lucida Sans", sans-serif;
-	background-color: #AAAAAA;
+	background-color: white;
 }
 
 * {
@@ -59,7 +69,12 @@ html {
 
 
 
+img {
 
+	width: auto;
+	height: auto;
+
+}
 
 
 
@@ -71,16 +86,12 @@ html {
 
 
 
-#search {
-	background-color:red;
-
-}
-
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: var(--dark);
   padding: 20px 10px;
 }
+	
 
 .header a {
 
@@ -88,9 +99,11 @@ html {
   text-align: center;
   padding: 12px;
   text-decoration: none;
+  color: var(--light-primary);
   font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
+  float: left;
 }
 
 .header a.logo {
@@ -99,64 +112,77 @@ html {
 }
 
 .header a:hover {
-  background-color: #ddd;
-  color: black;
+  color: var(--primary);
+  
 }
 
-
-
-
-
-
+.search-container {
+	float: left;
+	width: 60%;
+}
 
 .header input[type=text] {
-	padding: 6px;
-	margin-top: 8px;
+	padding: 10px;
 	font-size: 17px;
-	border: none;
+	border: 1px solid #aaaaaa;
+	float: left;
+	width: 80%;
+	
+	background: #f1f1f1;
 }
 
-.header .search-container button {
 
-	padding: 6px 10px;
-	margin-top: 8px;
-	margin-right: 16px;
-	background: #ddd;
+
+.header .search-container button {
+	margin: 0px;
+	float: left;
+	width: 50px;
+	margin-left: 10px;
 	font-size: 17px;
-	border: none;
+	border-left: none;
 	cursor: pointer;
+	border: none;
+	
+	height: 40px;
+	
+	background: none;
+	color: var(--light-primary);
 }
 
 .header .search-container button:hover {
-	background: #ccc;
+	
+	color: var(--primary);
 }
 
+.header a.cart {
+	margin: 0px;
+	padding: 0px;
+	float: right;
+	
+	width: auto;
+	height: 50px;
+}
+
+.header a.cart svg {
+	margin: none;
+	padding: none;
+	height: 100%;
+}
 
 
 
 @media screen and (max-width: 500px) {
-  .header a, .header .search-container button{
+  	.header a, .header {
  
-    display: block;
-    text-align: left;
-	width: 100%;
-	margin: 0;
-	padding: 14px;
-  }	
-
-
-  .header .search-container button {
-
 		display: block;
-		
-	}
-  
-  .header input[type=text] {
-	 
-		display: block;
-		text-align left;
-		width: auto;
-		margin 0;
+		text-align: left;
+		width: 100%;
+		margin: 0;
 		padding: 14px;
-	  border: 1px solid #ccc;
+	}	
 }
+
+ 
+
+
+

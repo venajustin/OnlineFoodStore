@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OFS Login</title>
+
+        <!-- Styling of this page -->
+        <style>
+            /* Moving down body from top of page by 5% */
+            .reg_body {
+                margin: 5%; 
+            }
+
+            /* Center Header */
+            .header {
+                text-align: center;
+            }
+
+            /* Center Body */
+            body {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <a href="#default" class="logo">CompanyLogo</a>
+        </div>
+
+        <div class="reg_body">
+            <h2>Account Login</h2>
+
+            <br> 
+
+            <form method="post" action="process_login.php">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+                
+                <br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                
+                <br><br>
+
+                <input type="submit" name="register" value="Register">
+            </form>
+        </div>
+    </body>
+</html>

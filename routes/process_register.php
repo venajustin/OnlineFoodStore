@@ -1,16 +1,20 @@
-<!-- My (An) Code from HW2, just a tmp placement for now since we're using AWS idk if this still applies-->
-
-<!-- This code registers the user/pass in a database -->
 
 <?php
+
+
+	
     if ((isset($_POST["username"])) && isset($_POST["password"])) {
         if($_POST["username"] && $_POST["password"]) {
             $username = $_POST["username"];
             $password = $_POST["password"];
+			
+			$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+			$dbuser = 'server';
+			$dbpass = 'Kiifne9283';
+			$dbname = 'user';
 
             // create connection 
-            $conn = mysqli_connect("localhost", "root", "", "users");
-
+            $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
             // check connection 
             if (!$conn) { 
                 die("Connection failed: " . mysqli_connect_error());
@@ -18,8 +22,8 @@
 
             // try-catch to avoid fatal error message of duplicate inptus
             try {
-                // register user (must create user database beforehand)
-                $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+                // register user
+                $sql = "INSERT INTO accounts (id, username, password, is_e) VALUES (null, '$username', '$password', 0)";
                 
                 $results = mysqli_query($conn, $sql);
 
@@ -42,4 +46,5 @@
     } else {
         echo "Form was not submitted.";
     }
+	
 ?>

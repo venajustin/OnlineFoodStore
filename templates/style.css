@@ -169,6 +169,28 @@ img {
 	height: 100%;
 }
 
+.card {
+	background-color: white;
+	width: max(450px); 
+	height: auto; 
+	margin: auto;  
+	padding-top: 2px;
+	padding-bottom: 20px;
+	border-radius: 25px;
+	top: 0%;
+}
+.background {
+	width: 100%;
+	height: 100%;
+	background-color: blue;
+}
+.inputField {
+	width: 400px;
+	height: 50px;
+	font-size: larger;
+	border: 1px solid black;
+}
+
 
 
 @media screen and (max-width: 500px) {

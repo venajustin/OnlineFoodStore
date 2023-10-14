@@ -1,54 +1,51 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>OFS Login</title>
+<html lang="en" dir="ltr">
 
-        <!-- Styling of this page -->
-        <style>
-            /* Moving down body from top of page by 5% */
-            .reg_body {
-                margin: 5%;
-            }
+  <link rel="stylesheet" href="style.css">
 
-            /* Center Header */
-            .header {
-                text-align: center;
-            }
+  <style>
+    body {
+      color: var(--light-primary);
+    }
+    html {
+        background-color: white;
+      height:100%;
 
-            /* Center Body */
-            body {
-                text-align: center;
-            }
-        </style>
-    </head>
+    }
+  </style>
 
-    <body>
-        <div class="header">
-            <a href="./home.html" class="logo">CompanyLogo</a>
-        </div>
+  <head>
+      <meta charset="utf-8">
+      <title>Login</title>
+  </head>
 
-        <div class="reg_body">
-            <h2>Account Login</h2>
+  <body>
 
-            <br>
+          <div class = "card" style="text-align: center">
+              <h1 style= "text-align: center">
+                  Login</h1>
+              <br>
+              <br>
 
-        <div class="reg_body">
-            <form method="post" action="process_login.php">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" required>
+              <form name="myForm">
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Username" type="text" name="username" required>
+                    <br>
+                    <br>
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Password" type="password" id="pwd" name="newpassword" required>
+                    <br>
+                    <br>
 
-                <br><br>
+                <div style="text-align: center">
+                    <input type="submit" class="inputField" value="Submit" style="background-color: var(--dark); color: var(--light-primary); border-radius: 5px">
+                    <br>
+                    <br>
+                    <a style="color: var(--light-primary)"href="changepassword.html">Forgot Password</a>
+                    <br>
+                    <br>
+                    <a style="color: var(--light-primary)"href="register.html">Register</a>
+                </div>
+              </form>
+          </div>
 
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required>
-
-                <br><br>
-
-                <input type="submit" name="register" value="Register">
-                <br>
-                <br>
-                <a href="changepassword.html">Forgot password?</a>
-            </form>
-        </div>
     </body>
 </html>

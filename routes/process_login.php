@@ -1,6 +1,3 @@
-<!-- My (An) Code from HW2, just a tmp placement for now since we're using AWS idk if this still applies-->
-
-<!-- This code checks the database based on the entry of user/pass submission for login -->
 
 <?php
 
@@ -11,8 +8,14 @@
             $username = $_POST["username"];
             $password = $_POST["password"];
 
+			$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+			$dbuser = 'server';
+			$dbpass = 'Kiifne9283';
+			$dbname = 'user';
+			
+
             // create connection 
-            $conn = mysqli_connect("localhost", "root", "", "users");
+            $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
             // check connection 
             if (!$conn) { 
@@ -20,23 +23,29 @@
             }
 
             // select user (must create user database beforehand)
-            $sql = "SELECT password FROM users WHERE username = '$username'";
+            $sql = "SELECT password FROM accounts WHERE username = '$username'";
 
             $results = mysqli_query($conn, $sql);
 
             if ($results) {
 
                 $row = mysqli_fetch_assoc($results);
-                if ($row["password"] === $password) { 
-                    $logged_in = true;
-                    $sql = "SELECT * FROM users";
-                    $results = mysqli_query($conn, $sql);
-                    echo "SUCCESS: You have logged in!";
-                } else {
-                    echo "FAILED: Password is incorrect!";
-                }
+				if ($row) {
+					
+					if ($row["password"] === $password) { 
+						$logged_in = true;
+						$sql = "SELECT * FROM accounts";
+						$results = mysqli_query($conn, $sql);
+						echo "SUCCESS: You have logged in!";
+					} else {
+						echo "FAILED: Password is incorrect!";
+					}
+				} else {
+					echo "username could not be found, please <a href='../templates/Register.html'>REGISTER</a>!";
+				}
 
             } else {
+				
                 echo mysqli_error($conn);
             }
 

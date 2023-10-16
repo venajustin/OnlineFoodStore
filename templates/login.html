@@ -8,7 +8,7 @@
       color: var(--light-primary);
     }
     html {
-        background-color: white;
+        background-color: #88D498;
       height:100%;
 
     }
@@ -20,32 +20,34 @@
   </head>
 
   <body>
+    <div class = "center-screen">
+      <div class = "card" style="text-align: center">
+        <h1 style= "text-align: center">
+            Login</h1>
+        <br>
+        <br>
 
-          <div class = "card" style="text-align: center">
-              <h1 style= "text-align: center">
-                  Login</h1>
+        <form method="post" action="../routes/process_login.php" name="myForm">
+              <input class= "inputField" style="text-indent: 10px" placeholder="Username" type="text" name="username" required>
+              <br>
+              <br>
+              <input class= "inputField" style="text-indent: 10px" placeholder="Password" type="password" id="pwd" name="newpassword" required>
               <br>
               <br>
 
-              <form method="post" action="../routes/process_login.php" name="myForm">
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Username" type="text" name="username" required>
-                    <br>
-                    <br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Password" type="password" id="pwd" name="newpassword" required>
-                    <br>
-                    <br>
-
-                <div style="text-align: center">
-                    <input type="submit" class="inputField" value="Submit" style="background-color: var(--dark); color: var(--light-primary); border-radius: 5px">
-                    <br>
-                    <br>
-                    <a style="color: var(--light-primary)"href="changepassword.html">Forgot Password</a>
-                    <br>
-                    <br>
-                    <a style="color: var(--light-primary)"href="register.html">Register</a>
-                </div>
-              </form>
+          <div style="text-align: center">
+              <input type="submit" class="inputField" value="Login" style="background-color: var(--dark); color: var(--light-primary); border-radius: 5px">
+              <br>
+              <br>
+              <a style="color: var(--light-primary)"href="changepassword.html">Forgot Password</a>
+              <br>
+              <br>
+              <a style="color: var(--light-primary)"href="register.html">Register</a>
           </div>
+        </form>
+    </div>
+    </div>
+         
 
     </body>
 </html>

@@ -18,6 +18,14 @@ html {
 
 	
 }
+a{
+	color: var(--light-primary); 
+	text-decoration: none;
+}
+a:hover{
+	color: var(--dark);
+	text-decoration: underline;
+}
 
 
 
@@ -198,7 +206,15 @@ img {
 	text-align: center;
 	min-height: 100vh;
   }
-
+  #submitButton {
+	background-color: var(--dark); 
+	color: var(--light-primary); 
+	border-radius: 5px;
+  }
+  #submitButton:hover{
+	background-color: rgb(34, 61, 85);
+  }
+  
 
 
 @media screen and (max-width: 500px) {

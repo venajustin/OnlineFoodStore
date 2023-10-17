@@ -98,8 +98,12 @@ img {
 
 .header {
   overflow: hidden;
+  position: fixed;
+  padding-top: 20px;
+  padding-bottom: 10px;
   background-color: var(--dark);
-  padding: 20px 10px;
+  top: 0;
+  width: 100%;
 }
 	
 

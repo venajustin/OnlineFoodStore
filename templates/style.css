@@ -208,7 +208,7 @@ img {
   }
   #submitButton {
 	background-color: var(--dark); 
-	color: var(--light-primary); 
+	color: #46b35e; 
 	border-radius: 5px;
   }
   #submitButton:hover{

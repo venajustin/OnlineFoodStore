@@ -184,7 +184,6 @@ img {
 }
 
 .card {
-	background-color: white;
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
 	width: max(450px); 
 	height: auto; 
@@ -233,7 +232,23 @@ img {
 		padding: 14px;
 	}	
 }
-
+.card p{
+	animation-duration: 3s;
+	animation-delay: 0s;
+	animation-name: slidein;
+	animation-iteration-count: infinite;
+}
+@keyframes slidein {
+	from {
+	  margin-left: 100%;
+	  width: 300%;
+	}
+  
+	to {
+	  margin-left: 0%;
+	  width: 100%;
+	}
+  }
  
 
 

@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <script type="text/javascript">
+        function addBox(){
+            if (document.getElementById('Employee?').checked) {
+                document.getElementById('area').style.display = 'block';
+             } else {
+                document.getElementById('area').style.display = 'none';
+         }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
    <style>
         body {
@@ -39,7 +48,18 @@
 
                 <input class= "inputField" style="text-indent: 10px" placeholder="Confirm Password" type="password" id="pwd2" name="password2" required>
                 <br><br>
-
+                <div style="text-align: left; text-indent: 30px;">
+                    <label class="container">
+                        <input type="checkbox" id="Employee?" onclick="addBox();">
+                        <span class="checkmark"></span>
+                        New Employee?
+                      </label>
+                </div>
+                <br>
+                <div id="area" style="display: none;">
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Enter Masterkey" type="text" name="Masterkey" required>
+                    <br><br>
+                </div>
                 <div style="text-align: center">
                     <input type="submit" class="inputField" value="Create Account" id = "submitButton">
                     <br>

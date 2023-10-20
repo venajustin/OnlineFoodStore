@@ -20,6 +20,8 @@
             // check connection 
             if (!$conn) { 
                 die ("Connection failed: " . mysqli_connect_error());
+            } else {
+                echo "connection sucess";
             }
 
             // select user (must create user database beforehand)
@@ -36,7 +38,7 @@
 						$logged_in = true;
 						$sql = "SELECT * FROM users";
 						$results = mysqli_query($conn, $sql);
-						echo "SUCCESS: You have logged in!";
+						echo "<br>SUCCESS: You have logged in!";
 					} else {
 						echo "FAILED: Password is incorrect!";
 					}
@@ -54,6 +56,10 @@
         } else {
             echo "Username or Password is empty.";
         }
+    } else {
+        header("Location: ../templates/login.html");
+        exit();
     }
+
 
 ?>

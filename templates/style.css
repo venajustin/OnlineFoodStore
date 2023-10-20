@@ -111,6 +111,7 @@ img {
 }
 	
 
+
 .header a {
 
   height: 100px;
@@ -215,12 +216,20 @@ img {
 	font-size: larger;
 	border: 1px solid black;
 }
+
+.top-screen {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	max-height: 10vh; 
+}
 .center-screen {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	min-height: 100vh;
+	min-height: 90vh;
   }
   #submitButton {
 	background-color: var(--dark); 

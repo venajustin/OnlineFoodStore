@@ -7,31 +7,42 @@
     body {
       color: var(--light-primary);
     }
-    html {
-        background-color: white;
-      height:100%;
 
-    }
   </style>
+
+  <!--ANIMATION-->
 
   <head>
       <meta charset="utf-8">
       <title>Login</title>
   </head>
+    <div class="area" >
+        <ul class="anim">
+            <li>
+                <img src="icons/leftTruck.png" style="scale: 17%; position: absolute; bottom: -380px; left: -500px">
+            </li>
+            <li>
+                <img src="icons/truck.png" style="scale: 17.3%; position: absolute; bottom: -380px; left: -500px">
+            </li>
+            
+        </ul>
+        <div style="z-index: 0;position: absolute; bottom: 8%; width: 100%; height: 70px; background-color: #403f3c"></div>
+        <div style="z-index: 0;position: absolute; bottom: 8%; width: 100%; height: 35px; background-color: #403f3c; border-top: dashed white 3px;"></div>
+    </div >
 
   <body>
-
           <div class = "card" style="text-align: center">
               <h1 style= "text-align: center">
                   Login</h1>
               <br>
               <br>
+              <br>
 
               <form method="post" action="../routes/process_login.php" name="myForm">
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Username" type="text" name="username" required>
+                    <input class= "inputField" placeholder="Username" type="text" name="username" required>
                     <br>
                     <br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Password" type="password" id="pwd" name="newpassword" required>
+                    <input class= "inputField" placeholder="Password" type="password" id="pwd" name="newpassword" required>
                     <br>
                     <br>
 

@@ -23,6 +23,7 @@ html {
 a{
 	color: #46b35e; 
 	text-decoration: none;
+	z-index:1000;
 }
 a:hover{
 	color: var(--dark);

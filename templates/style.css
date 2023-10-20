@@ -15,8 +15,18 @@ html {
 
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 
 	
+}
+a{
+	color: #46b35e; 
+	text-decoration: none;
+}
+a:hover{
+	color: var(--dark);
+	text-decoration: underline;
 }
 
 
@@ -72,10 +82,14 @@ html {
 img {
 
 	width: auto;
-	height: auto;
+	height: 100%;
 
 }
 
+.header a img{
+	height: 100%;
+	width: auto;
+}
 
 
 .whitebox {
@@ -88,13 +102,19 @@ img {
 
 .header {
   overflow: hidden;
+  position: fixed;
+  padding-top: 20px;
+  padding-bottom: 10px;
   background-color: var(--dark);
-  padding: 20px 10px;
+  top: 0;
+  width: 100%;
 }
 	
 
+
 .header a {
 
+  height: 100px;
   color: black;
   text-align: center;
   padding: 12px;
@@ -106,10 +126,6 @@ img {
   float: left;
 }
 
-.header a.logo {
-  font-size: 25px;
-  font-weight: bold;
-}
 
 .header a:hover {
   color: var(--primary);
@@ -167,6 +183,16 @@ img {
 	height: 50px;
 }
 
+.header a.logo {
+	margin: 0px;
+	padding: 0px;
+	
+	float: left;
+	
+	width: 100px;
+	height: 50px;
+}
+
 .header a.cart svg {
 	margin: none;
 	padding: none;
@@ -174,7 +200,9 @@ img {
 }
 
 .card {
+
 	width: max(450px);   
+
 	padding-top: 2px;
 	padding-bottom: 20px;
 	border-radius: 25px;
@@ -192,6 +220,29 @@ img {
 	text-indent: 10px;
 }
 
+.top-screen {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	max-height: 10vh; 
+}
+.center-screen {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	min-height: 90vh;
+  }
+  #submitButton {
+	background-color: var(--dark); 
+	color: #46b35e; 
+	border-radius: 5px;
+  }
+  #submitButton:hover{
+	background-color: rgb(34, 61, 85);
+  }
+  
 
 
 @media screen and (max-width: 500px) {
@@ -204,6 +255,7 @@ img {
 		padding: 14px;
 	}	
 }
+
 
 /*ANIMATION TESTING*/
 
@@ -296,6 +348,7 @@ img {
         opacity: 1;
     }
 }
+
  
 
 

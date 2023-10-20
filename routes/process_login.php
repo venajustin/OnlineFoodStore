@@ -11,7 +11,7 @@
 			$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
 			$dbuser = 'server';
 			$dbpass = 'Kiifne9283';
-			$dbname = 'onlinefoodstore';
+			$dbname = 'user';
 			
 
             // create connection 
@@ -20,12 +20,10 @@
             // check connection 
             if (!$conn) { 
                 die ("Connection failed: " . mysqli_connect_error());
-            } else {
-                echo "connection sucess";
             }
 
             // select user (must create user database beforehand)
-            $sql = "SELECT password FROM users WHERE username = '$username'";
+            $sql = "SELECT password FROM accounts WHERE username = '$username'";
 
             $results = mysqli_query($conn, $sql);
 
@@ -36,9 +34,9 @@
 					
 					if ($row["password"] === $password) { 
 						$logged_in = true;
-						$sql = "SELECT * FROM users";
+						$sql = "SELECT * FROM accounts";
 						$results = mysqli_query($conn, $sql);
-						echo "<br>SUCCESS: You have logged in!";
+						echo "SUCCESS: You have logged in!";
 					} else {
 						echo "FAILED: Password is incorrect!";
 					}
@@ -56,10 +54,6 @@
         } else {
             echo "Username or Password is empty.";
         }
-    } else {
-        header("Location: ../templates/login.html");
-        exit();
     }
-
 
 ?>

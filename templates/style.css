@@ -271,7 +271,19 @@ img {
     height: 0px;
 	animation-duration: 12s;
     animation-delay: 6s;
-	animation: leftRight 12s ease-in infinite;
+	animation: leftRight 12s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+.anim li:nth-child(3){
+    left: 0%;
+	bottom: 12%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 12s;
+    animation-delay: 8s;
+	animation: leftRight 12s 8s ease-out infinite;
 	background-color: none;
 	border-radius: 48%;
 	z-index: 2;

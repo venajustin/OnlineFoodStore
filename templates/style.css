@@ -15,18 +15,8 @@ html {
 
 * {
 	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
 
 	
-}
-a{
-	color: #46b35e; 
-	text-decoration: none;
-}
-a:hover{
-	color: var(--dark);
-	text-decoration: underline;
 }
 
 
@@ -82,14 +72,10 @@ a:hover{
 img {
 
 	width: auto;
-	height: 100%;
+	height: auto;
 
 }
 
-.header a img{
-	height: 100%;
-	width: auto;
-}
 
 
 .whitebox {
@@ -102,19 +88,13 @@ img {
 
 .header {
   overflow: hidden;
-  position: fixed;
-  padding-top: 20px;
-  padding-bottom: 10px;
   background-color: var(--dark);
-  top: 0;
-  width: 100%;
+  padding: 20px 10px;
 }
 	
 
-
 .header a {
 
-  height: 100px;
   color: black;
   text-align: center;
   padding: 12px;
@@ -126,10 +106,18 @@ img {
   float: left;
 }
 
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
 
 .header a:hover {
   color: var(--primary);
   
+}
+/* General Hover Attribute */
+.hover:hover {
+	color: var(--primary);
 }
 
 .search-container {
@@ -179,16 +167,6 @@ img {
 	height: 50px;
 }
 
-.header a.logo {
-	margin: 0px;
-	padding: 0px;
-	
-	float: left;
-	
-	width: 100px;
-	height: 50px;
-}
-
 .header a.cart svg {
 	margin: none;
 	padding: none;
@@ -196,50 +174,24 @@ img {
 }
 
 .card {
-	background: linear-gradient(180deg, #1c3144 20%, white 20%);
-	width: max(450px); 
-	height: auto; 
-	margin: auto;  
+	width: max(450px);   
 	padding-top: 2px;
 	padding-bottom: 20px;
 	border-radius: 25px;
-	top: 0%;
-}
-.background {
-	width: 100%;
-	height: 100%;
-	background-color: blue;
+	top: 180px;
+	position:absolute;
+	left: 35%;
+	z-index: 5;
 }
 .inputField {
 	width: 400px;
 	height: 50px;
 	font-size: larger;
 	border: 1px solid black;
+	z-index: 5;
+	text-indent: 10px;
 }
 
-.top-screen {
-	display:flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	max-height: 10vh; 
-}
-.center-screen {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	min-height: 90vh;
-  }
-  #submitButton {
-	background-color: var(--dark); 
-	color: #46b35e; 
-	border-radius: 5px;
-  }
-  #submitButton:hover{
-	background-color: rgb(34, 61, 85);
-  }
-  
 
 
 @media screen and (max-width: 500px) {
@@ -252,23 +204,110 @@ img {
 		padding: 14px;
 	}	
 }
-.card p{
-	animation-duration: 3s;
-	animation-delay: 0s;
-	animation-name: slidein;
-	animation-iteration-count: infinite;
+
+/*ANIMATION TESTING*/
+
+*{
+    margin: 0px;
+    padding: 0px;
 }
-@keyframes slidein {
-	from {
-	  margin-left: 100%;
-	  width: 300%;
-	}
-  
-	to {
-	  margin-left: 0%;
-	  width: 100%;
-	}
-  }
+
+.context {
+    width: 100%;
+    position: absolute;
+    top:50vh;
+	z-index: -1;
+}
+
+.context h1{
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+	z-index: -1;
+}
+.area{
+    background: none;  
+    background-color: #328749;  
+    width: 100%;
+    height:100vh;
+	z-index: -1;
+}
+.anim{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+	z-index: 1;
+}
+.anim li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    bottom: -150px;
+	z-index: 1;
+    
+}
+.anim li:nth-child(1){
+    left: 120%;
+	bottom: 16%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 10s;
+    animation-delay: 0s;
+	animation: rightLeft 10s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+.anim li:nth-child(2){
+    left: 0%;
+	bottom: 12%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 12s;
+    animation-delay: 6s;
+	animation: leftRight 12s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+.anim li:nth-child(3){
+    left: 0%;
+	bottom: 12%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 12s;
+    animation-delay: 8s;
+	animation: leftRight 12s 8s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+@keyframes rightLeft {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;        
+    }
+    100%{
+        transform: translatex(-2000px) rotate(0deg);
+        opacity: 1;
+    }
+}
+@keyframes leftRight {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;        
+    }
+    100%{
+        transform: translatex(2000px) rotate(0deg);
+        opacity: 1;
+    }
+}
  
 
 

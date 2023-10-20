@@ -4,7 +4,7 @@
 
 	
     if ((isset($_POST["username"])) && isset($_POST["password"])) {
-        if($_POST["username"] && $_POST["password"] && $_POST["password2"] && $_POST["password"] === $_POST["password2"]) {
+        if($_POST["username"] && $_POST["password"]) {
             $username = $_POST["username"];
             $password = $_POST["password"];
 			
@@ -44,8 +44,7 @@
             echo "Username or Password is empty.";
         }
     } else {
-        header("Location: ../templates/login.html");
-        exit();
+        echo "Form was not submitted.";
     }
 	
 ?>

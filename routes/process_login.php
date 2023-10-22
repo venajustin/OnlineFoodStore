@@ -21,7 +21,7 @@
             if (!$conn) { 
                 die ("Connection failed: " . mysqli_connect_error());
             } else {
-                echo "connection sucess";
+                echo "connection success";
             }
 
             // select user (must create user database beforehand)

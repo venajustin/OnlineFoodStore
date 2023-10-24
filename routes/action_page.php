@@ -16,4 +16,7 @@
     }
     
 
+    //search call (see if the exact word is contained in the database)
+    
+
 ?>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -35,7 +39,7 @@
 
   <body>
     <div class= "top-screen">
-        <a style = "margin: auto; color: blue;" href="./home.html" class="logo">
+        <a style = "margin: auto; color: blue;" href="./home.php" class="logo">
             <img style = "z-index: 1000; height: 10vh" src="../icons/food-dark.png">
         </a>
     </div>
@@ -46,7 +50,14 @@
       </h1>
     <br>
     <br>
+    <h3 style="color: red;"> <?php
+    if (isset($_SESSION["login_error"])) {
+        echo $_SESSION["login_error"] . ", please try again.";
+    } 
+
+    ?></h3>
     <br>
+
 
     <form method="post" action="../routes/process_login.php" name="myForm">
           <input class= "inputField" style="text-indent: 10px" placeholder="Username" type="text" name="username" required>
@@ -56,7 +67,7 @@
           <br>
           <br>
           <div style="text-align: left; text-indent: 30px;">
-            <a href="changepassword.html">Forgot Password?</a>
+            <a href="changepassword.php">Forgot Password?</a>
           </div>
           
           <br>
@@ -66,7 +77,7 @@
           <br>
           <br>
           New here? 
-          <a href="register.html">Create an account!</a>
+          <a href="register.php">Create an account!</a>
       </div>
     </form>
 </div>

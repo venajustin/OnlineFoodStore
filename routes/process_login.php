@@ -1,7 +1,10 @@
 
 <?php
+    session_start();
+   
+    unset($_SESSION["signup_error"]);
+    unset($_SESSION["login_error"]);
 
-    $logged_in = false; 
 
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         if ($_POST["username"] && $_POST["password"]) {
@@ -35,19 +38,32 @@
 				if ($row) {
 					
 					if ($row["password"] === $password) { 
-						$logged_in = true;
+                        $_SESSION["username"] = $username;
+                        
+                        if ($row["is_employee"] === "1"){
+                            $_SESSION["is_employee"] = "true";
+                        }else {
+                            $_SESSION["is_employee"] = "false";
+                        }
+
+                        
+                        
 						$sql = "SELECT * FROM users";
 						$results = mysqli_query($conn, $sql);
 						echo "<br>SUCCESS: You have logged in!";
+                        header("Location: ../templates/home.php");
+                        exit();
 					} else {
 						echo "FAILED: Password is incorrect!";
+                        $_SESSION["login_error"] = "Password incorrect";
 					}
 				} else {
-					echo "username could not be found, please <a href='../templates/Register.html'>REGISTER</a>!";
+					echo "username could not be found, please <a href='../templates/register.php'>REGISTER</a>!";
+                    $_SESSION["login_error"] = "Username could not be found";
 				}
 
             } else {
-				
+				$_SESSION["login_error"] = "Username could not be found";
                 echo mysqli_error($conn);
             }
 
@@ -55,11 +71,14 @@
 
         } else {
             echo "Username or Password is empty.";
+            $_SESSION["login_error"] = "Username or password empty";
         }
     } else {
-        header("Location: ../templates/login.html");
-        exit();
+        $_SESSION["login_error"] = "Username or password empty";
+        
     }
+    header("Location: ../templates/login.php");
+        exit();
 
 
 ?>

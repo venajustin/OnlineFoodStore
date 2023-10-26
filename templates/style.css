@@ -191,6 +191,14 @@ a:hover{
 	height: 100%;
 }
 
+.itemTile {
+	width: 180px;
+	height: 240px;
+	background-color: white;
+	border: 1px solid grey;
+	border-radius: 5%;
+}
+
 .card {
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
 	width: max(450px); 

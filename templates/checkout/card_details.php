@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="header">
-            <a href="home.html" class="logo">
+            <a href="home.php" class="logo">
 				<img src="../icons/food.png">
 			</a>
 			<div class="search-container">
@@ -42,19 +42,35 @@
         <div class="center-screen" style="float: left; padding-left: 13%; padding-top: 7%;">
             <div class="card" style="width: max(700px); text-align: center;">
                 <br>
-                <h1 style="color: #46b35e;">Enter Shipping Address</h1>
+                <h1 style="color: #46b35e;">Card Details</h1>
                 <br><br><br><br>
-                <!--change action to check validity of address... or just temp store for completion of transaction print-->
-                <form method = "post" action= "../checkout/card_details.html" name="locationDetails">
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Address 1" type="text" name="address1" required>
+                <!--Change action to check card info.... or temp store card info for recipt in next html page-->
+                <form method = "post" action= "checkout_review.html" name="locationDetails">
+                
+                <!--Prolly can use the API to check if cards are valid, these radio buttons will matter to check for which API
+                    OR there is prolly one API that checks all card types... either way good to know which card-->
+                <div class="radio-buttons">
+                        <label>
+                            <input type="radio" name="cardType" value="Visa" required> <img src="../checkout/card_logos/visa-logo.jpeg" width = "100px", height = "56px">
+                        </label>
+                        <label>
+                            <input type="radio" name="cardType" value="Mastercard" required> <img src="../checkout/card_logos/Mastercard-Logo.webp" width = "100px", height = "56px">
+                        </label>
+                        <label>
+                            <input type="radio" name="cardType" value="American Express" required> <img src="../checkout/card_logos/American-Express.png" width = "100px", height = "56px">
+                        </label>
+                        <label>
+                            <input type="radio" name="cardType" value="Discover" required> <img src="../checkout/card_logos/Discover-Logo.png" width = "100px", height = "56px">
+                        </label>
+                    </div>
+
+
                     <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Address 2" type="text" name="address2" optional>
+                    <input class="inputField" style="text-indent: 10px" placeholder="Card Number" type="text" name="cardNumber" required>
                     <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="City" type="text" name="city" required>
+                    <input class="inputField" style="text-indent: 10px" placeholder="Card Expiry Date (MM/YY)" type="text" name="cardExpiry" required>
                     <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Zip Code" type="text" name="zipCode" required>
-                    <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Phone Number" type="text" name="phoneNumber" required>    
+                    <input class="inputField" style="text-indent: 10px" placeholder="CVV" type="text" name="cardCVV" required>
                     <br><br>
                     <input type="submit" class="inputField" value="Continue" id = "submitButton">
 

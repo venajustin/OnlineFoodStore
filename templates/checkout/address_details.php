@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="header">
-            <a href="home.html" class="logo">
+            <a href="home.php" class="logo">
 				<img src="../icons/food.png">
 			</a>
 			<div class="search-container">
@@ -42,10 +42,18 @@
         <div class="center-screen" style="float: left; padding-left: 13%; padding-top: 7%;">
             <div class="card" style="width: max(700px); text-align: center;">
                 <br>
-                <h1 style="color: #46b35e;">Card Details</h1>
+                <h1 style="color: #46b35e;">Enter Shipping Address</h1>
                 <br><br><br><br>
-                <!--Change action to check card info.... or temp store card info for recipt in next html page-->
-                <form method = "post" action= "checkout_review.html" name="locationDetails">
+                <!--change action to check validity of address... or just temp store for completion of transaction print-->
+                <form method = "post" action= "../checkout/card_details.php" name="locationDetails">
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Address 1" type="text" name="address1" required>
+                    <br><br>
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Address 2" type="text" name="address2" optional>
+                    <br><br>
+                    <input class= "inputField" style="text-indent: 10px" placeholder="City" type="text" name="city" required>
+                    <br><br>
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Zip Code" type="text" name="zipCode" required>
+                    <br><br>
                     <input class= "inputField" style="text-indent: 10px" placeholder="Phone Number" type="text" name="phoneNumber" required>    
                     <br><br>
                     <input type="submit" class="inputField" value="Continue" id = "submitButton">

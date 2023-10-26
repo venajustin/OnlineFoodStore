@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="header">
-            <a href="home.php" class="logo">
+            <a href="../home.php" class="logo">
 				<img src="../icons/food.png">
 			</a>
 			<div class="search-container">
@@ -45,7 +45,7 @@
                 <h1 style="color: #46b35e;">Card Details</h1>
                 <br><br><br><br>
                 <!--Change action to check card info.... or temp store card info for recipt in next html page-->
-                <form method = "post" action= "checkout_review.html" name="locationDetails">
+                <form method = "post" action= "review.php" name="locationDetails">
                 
                 <!--Prolly can use the API to check if cards are valid, these radio buttons will matter to check for which API
                     OR there is prolly one API that checks all card types... either way good to know which card-->

@@ -5,7 +5,7 @@
 		$uri = 'https://';
 	}
 	$uri .= $_SERVER['HTTP_HOST'];
-	header('Location: '.$uri.'/OnlineFoodStore/templates/home.html');
+	header('Location: '.$uri.'/OnlineFoodStore/templates/home.php');
 	exit;
 ?>
 Something is wrong with XAMPP Instalation :(

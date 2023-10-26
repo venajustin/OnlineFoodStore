@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <script type="text/javascript">
@@ -45,7 +49,7 @@
     <body>
         
 		<div class= "top-screen">
-			<a style = "margin: auto;" color: blue;" href="./home.html" class="logo">
+			<a style = "margin: auto; color: blue;" href="./home.php" class="logo">
 				<img style = "height: 10vh" src="../icons/food-dark.png">
 			</a>
 		</div>
@@ -55,7 +59,13 @@
                   Create an Account
                 </h1>
              
-      
+                <h3 style="color: red;"> <?php
+                if (isset($_SESSION["signup_error"])) {
+                    echo $_SESSION["signup_error"] . " please try again.";
+                } 
+
+                ?></h3> <br>
+
               <form method="post" action="../routes/process_register.php" name="myForm">
                 <input class= "inputField" style="text-indent: 10px" placeholder="Create Username" type="text" name="username" required>
                 
@@ -84,7 +94,7 @@
                     <br>
                     <br>
                     Already have an account? 
-                    <a href="login.html">Login here!</a>
+                    <a href="login.php">Login here!</a>
             </form>
           </div>
           </div>

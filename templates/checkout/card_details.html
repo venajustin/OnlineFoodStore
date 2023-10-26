@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	
+   
+	<style>
+        /* IMPORTANT: This page is only accessible after login!
+         WHEN BOOTING UP PAGE MAKE SURE USER IS LOGGED IN PHP CHECK REQUIRED
+        */
+        h3{
+            float: left; 
+            padding-left: 10px;
+        }
+    </style>
 	<head>
         <meta charset="utf-8">
-        <title>Online Food Store</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <title>Checkout: Enter Address</title> 
+        <!--if account saves address skip this page-->
+		<meta name="viewport">
+        <link rel="stylesheet" href="../style.css">
     </head>
     <body>
         <div class="header">
@@ -29,36 +39,45 @@
 				</a>
             	<a style = "float: right;"  class="cart" href="./login.html">Login /<br>Register</a>
         </div>
+        <div class="center-screen" style="float: left; padding-left: 13%; padding-top: 7%;">
+            <div class="card" style="width: max(700px); text-align: center;">
+                <br>
+                <h1 style="color: #46b35e;">Card Details</h1>
+                <br><br><br><br>
+                <!--Change action to check card info.... or temp store card info for recipt in next html page-->
+                <form method = "post" action= "checkout_review.html" name="locationDetails">
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Phone Number" type="text" name="phoneNumber" required>    
+                    <br><br>
+                    <input type="submit" class="inputField" value="Continue" id = "submitButton">
 
-		<div class="panelOne" style="width: 80%; height: 40%; background-color: white; position: absolute; top: 88px; margin-left: 10%">
-			<h2>Ad here</h2>
-		</div>
+                </form>
+               
 
-		<div class="listPanel" style="width: 80%; height: 30%; background-color: none; position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between">
-			<div class="itemTile">
-				<h2>Banana</h2>
-			</div>
-			<div class="itemTile">
-				<h2>Apple</h2>
-			</div>
-			<div class="itemTile">
-				<h2>Orange</h2>
-			</div>
-			<div class="itemTile">
-				<h2>Lemon</h2>
-			</div>
-			<div class="itemTile">
-				<h2>Lime</h2>
-			</div>
-			<div class="itemTile">
-				<h2>Mango</h2>
-			</div>
-		</div>
+            </div>
+            <div class="card" style="margin-left: 40px; width: max(300px);">
+                <br>
+                <h1 style="color: #46b35e;">Cart Summary</h1>
+                <br><br><br>
+                <h3>Number of Items: </h3>
+                <!--Pull item count from cart and place here-->
+                <br><br><br>
+                <h3>Total Weight: </h3>
+                <!--Pull total weight from cart and place here-->
+                <br><br><br>
+                <h3>Items: </h3>
+                <!--Insert total item cost here-->
+                <br><br><br>
+                <h3>Shipping: </h3>
+                <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
+                <br><br><br>
+                <h3>Sales Tax: </h3>
+                <!--total item cost * 9.38% omg why is our taxes so high here-->
+                <br><br><br>
+                <h3>Total: </h3>
+                <!--calculate and show total here-->
 
-		<div class="panelTwo" style="width: 80%; height: 40%; background-color: white; position: absolute; top: 820px; margin-left: 10%">
-			<h2>Ad here</h2>
-		</div>
-
-		
+            </div>
+        </div>
+        
     </body>
 </html>

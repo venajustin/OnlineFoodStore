@@ -68,7 +68,7 @@
             if ($itemS) {
 
                 /* fetch associative array */
-                echo "Showing results for $search:";
+                echo "Showing results for '$search':";
                 echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
                     $field1name = $row["item_id"];

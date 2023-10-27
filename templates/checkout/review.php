@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <?php
     session_start();
-    if (!isset($_SESSION["username"]) {
+    if (!isset($_SESSION["username"])) {
         header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
         exit;
-        }  
+    }  
 
+    $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+    $dbuser = 'server';
+    $dbpass = 'Kiifne9283';
+    $dbname = 'onlinefoodstore';
+
+
+    $uid = $_SESSION["user_id"];
+    $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+
+    if (!$conn) { 
+        die ("Connection failed: " . mysqli_connect_error());
+    } else {
+        echo "connection success";
+    }
+
+    // address info
+    $sql = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
+    $address_results = mysqli_query($conn, $sql);
+    $sql = "SELECT card_number, card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
+    $card_results = mysqli_query($conn, $sql);
 
 ?>
 <html lang="en" dir="ltr">
@@ -55,21 +75,71 @@
             <br><br><br><br>
 
             <!-- Address Details -->
-			<div style = "float: left; margin-left: 10px">
-				<h3>Address Details</h3>
-				<a style = "margin-left: 10px" href="address_details.php">Edit</a> 
-			</div>
+            <div style="display:flex; justify-content:space-between; ">
+                <div>
+                    <h3>Address Details</h3>
+                    <a style = "margin-left: 10px" href="address_details.php">Edit</a> 
+
+                </div>
+                <div> 
+                    <?php
+                        if (!$address_results) {
+                            echo "No information set";
+                        } else {
+                            $row = mysqli_fetch_assoc($address_results);
+                            if (!$row) {
+                                echo "No information set";
+                            } else {
+                                foreach ($row as &$value) {
+                                    echo $value . "<br>";
+                                }
+
+                                unset($value);
+                            }
+                            
+                        }
+                        
+                    
+                    ?>
+                </div>
+            </div>
             
             <!-- Add address fields here -->
             
             <br><br><br>
 
             <!-- Card Details -->
-			<div style = "float: left; margin-left: 10px">
-			<h3>Card Details</h3>
-			<a style = "margin-left: 45px" href="card_details.php">Edit</a> 
-			</div>
+			
            
+            <div style="display:flex; justify-content:space-between; ">
+                
+                <div style = "float: left; margin-left: 10px">
+                    <h3>Card Details</h3>
+                    <a style = "margin-left: 45px" href="card_details.php">Edit</a> 
+                </div>
+                
+                <div> 
+                    <?php
+                        if (!$card_results) {
+                            echo "No information set";
+                        } else {
+                            $row = mysqli_fetch_assoc($card_results);
+                            if (!$row) {
+                                echo "No information set";
+                            } else {
+                                foreach ($row as &$value) {
+                                    echo $value . "<br>";
+                                }
+                            }
+                            unset($value);
+                            
+                        }
+                        
+                    
+                    ?>
+                </div>
+            </div>
+
             <!-- Add card details fields here -->
 
             <br><br><br>

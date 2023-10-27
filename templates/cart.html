@@ -11,7 +11,9 @@
     <body>
 
         <div class="header">
-            <a href="home.php" class="logo">OnlineFoodStore</a>
+            <a href="home.php" class="logo">
+				<img src="../icons/food.png">
+			</a>
 			<div class="search-container">
 				<form action="/action_page.php">
 					<input type="text" placeholder="Search.." name="search">
@@ -79,12 +81,19 @@
 		<ul class="checkoutColumn" id="checkoutColumn" style="position:fixed; background-color: none; right: 2%; top: 20%; width: fit-content; height: fit-content;">
 			<li style="list-style-type: none">
 				<div class="reciept" style="padding: 20px; position: relative; background-color: white; right: 2%; top: 20%; width: 380px; height: 500px">
-					<div style="position: relative; height: 50px; border-top: 1px solid grey; top: 90%"></div>
+					<div style="position: relative; height: 50px; border-top: 1px solid grey; top: 76%">
+						
+					</div>
+					<div style="position: relative; border-top: 1px solid grey; top: 76%; padding-top: 2%;">
+						<button href=".../checkout/address_details.php" style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
+							Checkout</button>
+					</div>
+					
 				</div>
 			</li>
 			<li style="list-style-type: none;">
 				<br>
-				<button class="checkout" style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 100px; width: 380px; border-radius:50px ;position: relative; right: 2%; ">Checkout</button>
+				
 			</li>
 		</ul>
     </body>

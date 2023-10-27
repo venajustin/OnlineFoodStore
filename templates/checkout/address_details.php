@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+    session_start();
+    
+
+
+?>
 <html lang="en" dir="ltr">
    
 	<style>
@@ -66,21 +72,27 @@
                 <br>
                 <h1 style="color: #46b35e;">Cart Summary</h1>
                 <br><br><br>
-                <h3>Number of Items: </h3>
-                <!--Pull item count from cart and place here-->
-                <br><br><br>
-                <h3>Total Weight: </h3>
-                <!--Pull total weight from cart and place here-->
-                <br><br><br>
-                <h3>Items: </h3>
-                <!--Insert total item cost here-->
-                <br><br><br>
-                <h3>Shipping: </h3>
-                <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
-                <br><br><br>
-                <h3>Sales Tax: </h3>
-                <!--total item cost * 9.38% omg why is our taxes so high here-->
-                <br><br><br>
+                <div style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
+                    <h3>Number of Items: </h3>
+                    <!--Pull item count from cart and place here-->
+                    <br><br><br>
+                    <h3>Total Weight: </h3>
+                    <!--Pull total weight from cart and place here-->
+                    <br><br>
+                </div>
+                <br>
+                <div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
+                    <h3>Subtotal: </h3>
+                    <!--Insert total item cost here-->
+                    <br><br><br>
+                    <h3>Shipping: </h3>
+                    <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
+                    <br><br><br>
+                    <h3>Sales Tax: </h3>
+                    <!--total item cost * 9.38% omg why is our taxes so high here-->
+                    <br><br>
+                </div>
+                <br>
                 <h3>Total: </h3>
                 <!--calculate and show total here-->
 

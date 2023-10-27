@@ -47,25 +47,30 @@ unset($_SESSION["login_error"]);
 			<h2>Ad here</h2>
 		</div>
 
-		<div class="listPanel" style="width: 80%; height: 30%; background-color: none; position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between">
-			<div class="itemTile">
-				<h2>Banana</h2>
-			</div>
+		<div class="listPanel" style="width: 80%; height: 30%; background-color: none; position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between;">
+    		<div class="itemTile">
+        		<h2>Banana</h2>
+        		<img src="food/freshproduce/banana.png">
+    		</div>
 			<div class="itemTile">
 				<h2>Apple</h2>
-				<img src="food/freshproduce/apple.png" style="width: 125px;">
+				<img src="food/freshproduce/apple.png">
 			</div>
 			<div class="itemTile">
 				<h2>Orange</h2>
+				<img src="food/freshproduce/orange.png">
 			</div>
 			<div class="itemTile">
 				<h2>Lemon</h2>
+				<img src="food/freshproduce/lemon.png">
 			</div>
 			<div class="itemTile">
 				<h2>Lime</h2>
+				<img src="food/freshproduce/lime.png">
 			</div>
 			<div class="itemTile">
 				<h2>Mango</h2>
+				<img src="food/freshproduce/mango.png">
 			</div>
 		</div>
 

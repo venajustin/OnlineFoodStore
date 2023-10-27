@@ -1,6 +1,9 @@
 
 <?php
 
+    session_start();
+    unset($_SESSION["signup_error"]);
+    unset($_SESSION["login_error"]);
 
 	
     if ((isset($_POST["username"])) && isset($_POST["password"])) {
@@ -38,7 +41,9 @@
                         } else {
                             echo "FAILED: Manager key is incorrect!";
                             
-                            header("Location: ../templates/login.html");
+                            $_SESSION["signup_error"] = "Manager key is incorrect,";
+
+                            header("Location: ../templates/register.php");
                             exit();
                         
                         }
@@ -62,10 +67,14 @@
                 // check result and connection
                 if ($results) { 
                     echo "The user has been added successfully.";
+                    header("Location: ../templates/login.php");
+                    exit();
                 } else {
+                    $_SESSION["signup_error"] = "Username already taken, ";
                     echo mysqli_error($conn);
                 }
             } catch(Exception $error) {
+                $_SESSION["signup_error"] = "Username already taken, ";
                 echo 'Error: ' . $error->getMessage();
             }
             
@@ -74,10 +83,12 @@
 
         } else {
             echo "Username or Password is empty.";
+            $_SESSION["signup_error"] = "Passwords must match,";
         }
     } else {
-        header("Location: ../templates/login.html");
-        exit();
+        $_SESSION["signup_error"] = "Username or Password feild empty,";
     }
 	
+    header("Location: ../templates/register.php");
+    exit();
 ?>

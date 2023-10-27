@@ -1,7 +1,11 @@
 
 <?php
+    session_start();
 
-    $logged_in = false; 
+
+    unset($_SESSION["signup_error"]);
+    unset($_SESSION["login_error"]);
+
 
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         if ($_POST["username"] && $_POST["password"]) {
@@ -35,19 +39,40 @@
 				if ($row) {
 					
 					if ($row["password"] === $password) { 
-						$logged_in = true;
+                        $_SESSION["username"] = $username;
+                        
+                        $sql = "SELECT is_employee FROM users WHERE username = '$username'";
+
+                        $results = mysqli_query($conn, $sql);
+                        
+                        $row = mysqli_fetch_assoc($results);
+
+                        if ($row['is_employee'] != 0){
+                            $_SESSION["is_employee"] = true;
+                            
+                            header("Location: ../templates/managerpage.php");
+                            exit();
+
+                        } else {
+                            $_SESSION["is_employee"] = false;
+                        }         
+                        
 						$sql = "SELECT * FROM users";
 						$results = mysqli_query($conn, $sql);
 						echo "<br>SUCCESS: You have logged in!";
+                        header("Location: ../templates/home.php");
+                        exit();
 					} else {
 						echo "FAILED: Password is incorrect!";
+                        $_SESSION["login_error"] = "Password incorrect";
 					}
 				} else {
-					echo "username could not be found, please <a href='../templates/Register.html'>REGISTER</a>!";
+					echo "username could not be found, please <a href='../templates/register.php'>REGISTER</a>!";
+                    $_SESSION["login_error"] = "Username could not be found";
 				}
 
             } else {
-				
+				$_SESSION["login_error"] = "Username could not be found";
                 echo mysqli_error($conn);
             }
 
@@ -55,11 +80,14 @@
 
         } else {
             echo "Username or Password is empty.";
+            $_SESSION["login_error"] = "Username or password empty";
         }
     } else {
-        header("Location: ../templates/login.html");
-        exit();
+        $_SESSION["login_error"] = "Username or password empty";
+        
     }
+    header("Location: ../templates/login.php");
+        exit();
 
 
 ?>

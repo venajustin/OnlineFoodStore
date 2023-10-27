@@ -76,7 +76,18 @@
                     $field3name = $row["item_description"];
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
-                    echo "$field1name  $field2name  $field3name  $field4name $field5name";
+                    echo "
+                    <div class='cartTile'>
+                    <div style='position: absolute; height:150px; width: 120px; background-color: blue
+                    '></div>
+                    <div style='padding-left: 150px'>
+                    <h3>$field2name</h3>
+                    <h3>$field3name</h3>
+                    <h3>$field4name</h3>
+                    <h3>$field5name</h3>
+                    </div>
+                    </div>
+                    ";
                     echo "<br>";
                 }
             
@@ -129,7 +140,7 @@
                     $field3name = $row["item_description"];
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
-                    echo "$field1name  $field2name  $field3name  $field4name $field5name";
+                    echo "$field1name $field2name  $field3name  $field4name $field5name";
                     echo "<br>";
                 }
             

@@ -29,7 +29,7 @@
             }
 
             // select user (must create user database beforehand)
-            $sql = "SELECT password FROM users WHERE username = '$username'";
+            $sql = "SELECT password, user_id, is_employee FROM users WHERE username = '$username'";
 
             $results = mysqli_query($conn, $sql);
 
@@ -40,12 +40,9 @@
 					
 					if ($row["password"] === $password) { 
                         $_SESSION["username"] = $username;
-                        
-                        $sql = "SELECT is_employee FROM users WHERE username = '$username'";
 
-                        $results = mysqli_query($conn, $sql);
-                        
-                        $row = mysqli_fetch_assoc($results);
+                        $_SESSION["user_id"] = $row["user_id"];
+
 
                         if ($row['is_employee'] != 0){
                             $_SESSION["is_employee"] = true;

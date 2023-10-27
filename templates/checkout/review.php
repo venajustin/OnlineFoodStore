@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="header">
-            <a href="home.html" class="logo">
+            <a href="../home.php" class="logo">
 				<img src="../icons/food.png">
 			</a>
 			<div class="search-container">
@@ -39,53 +39,39 @@
 				</a>
             	<a style = "float: right;"  class="cart" href="./login.html">Login /<br>Register</a>
         </div>
-        <div class="center-screen" style="float: left; padding-left: 13%; padding-top: 7%;">
-            <div class="card" style="width: max(700px); text-align: center;">
-                <br>
-                <h1 style="color: #46b35e;">Enter Shipping Address</h1>
-                <br><br><br><br>
-                <!--change action to check validity of address... or just temp store for completion of transaction print-->
-                <form method = "post" action= "../checkout/card_details.html" name="locationDetails">
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Address 1" type="text" name="address1" required>
-                    <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Address 2" type="text" name="address2" optional>
-                    <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="City" type="text" name="city" required>
-                    <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Zip Code" type="text" name="zipCode" required>
-                    <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Phone Number" type="text" name="phoneNumber" required>    
-                    <br><br>
-                    <input type="submit" class="inputField" value="Continue" id = "submitButton">
+		<div class="center-screen" style="padding-top: 7%;">
+        <div class="card" style="width: max(700px); text-align: center;">
+            <br>
+            <h1 style="color: #46b35e;">Checkout</h1>
+            <br><br><br><br>
 
-                </form>
-               
+            <!-- Address Details -->
+			<div style = "float: left; margin-left: 10px">
+				<h3>Address Details</h3>
+				<a style = "margin-left: 10px" href="address_details.php">Edit</a> 
+			</div>
+            
+            <!-- Add address fields here -->
+            
+            <br><br><br>
 
-            </div>
-            <div class="card" style="margin-left: 40px; width: max(300px);">
-                <br>
-                <h1 style="color: #46b35e;">Cart Summary</h1>
-                <br><br><br>
-                <h3>Number of Items: </h3>
-                <!--Pull item count from cart and place here-->
-                <br><br><br>
-                <h3>Total Weight: </h3>
-                <!--Pull total weight from cart and place here-->
-                <br><br><br>
-                <h3>Items: </h3>
-                <!--Insert total item cost here-->
-                <br><br><br>
-                <h3>Shipping: </h3>
-                <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
-                <br><br><br>
-                <h3>Sales Tax: </h3>
-                <!--total item cost * 9.38% omg why is our taxes so high here-->
-                <br><br><br>
-                <h3>Total: </h3>
-                <!--calculate and show total here-->
+            <!-- Card Details -->
+			<div style = "float: left; margin-left: 10px">
+			<h3>Card Details</h3>
+			<a style = "margin-left: 45px" href="card_details.php">Edit</a> 
+			</div>
+           
+            <!-- Add card details fields here -->
 
-            </div>
+            <br><br><br>
+
+            <!-- Total Price -->
+            <h3>Total Price: $XXX.XX</h3>
+
+            <!-- Submit Button -->
+            <input type="submit" class="inputField" value="Confirm Shipment" id="submitButton">
         </div>
+    </div>
         
     </body>
 </html>

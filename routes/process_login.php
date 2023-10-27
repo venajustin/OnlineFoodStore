@@ -1,7 +1,8 @@
 
 <?php
     session_start();
-   
+
+
     unset($_SESSION["signup_error"]);
     unset($_SESSION["login_error"]);
 
@@ -40,13 +41,21 @@
 					if ($row["password"] === $password) { 
                         $_SESSION["username"] = $username;
                         
-                        if ($row["is_employee"] === "1"){
-                            $_SESSION["is_employee"] = "true";
-                        }else {
-                            $_SESSION["is_employee"] = "false";
-                        }
+                        $sql = "SELECT is_employee FROM users WHERE username = '$username'";
 
+                        $results = mysqli_query($conn, $sql);
                         
+                        $row = mysqli_fetch_assoc($results);
+
+                        if ($row['is_employee'] != 0){
+                            $_SESSION["is_employee"] = true;
+                            
+                            header("Location: ../templates/managerpage.php");
+                            exit();
+
+                        } else {
+                            $_SESSION["is_employee"] = false;
+                        }         
                         
 						$sql = "SELECT * FROM users";
 						$results = mysqli_query($conn, $sql);

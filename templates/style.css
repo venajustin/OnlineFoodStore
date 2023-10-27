@@ -176,6 +176,15 @@ a:hover{
 	height: 50px;
 }
 
+.header a.account {
+	margin: 0px;
+	padding: 0px;
+	float: right;
+	
+	width: auto;
+	
+}
+
 .header a.logo {
 	margin: 0px;
 	padding: 0px;

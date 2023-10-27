@@ -8,8 +8,9 @@ session_start();
 
 echo "Signed in as: " . $_SESSION["username"] ;
 
-if ($_SESSION["is_employee"] === "1") {
+if ($_SESSION["is_employee"]) {
     echo "<br>You are a manager of online food store!!!";
+    echo "<br><a href='./managerpage.php'>MANAGER PAGE</a>";
 }
 
     

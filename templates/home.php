@@ -53,6 +53,7 @@ unset($_SESSION["login_error"]);
 			</div>
 			<div class="itemTile">
 				<h2>Apple</h2>
+				<img src="food/freshproduce/apple.png" style="width: 125px;">
 			</div>
 			<div class="itemTile">
 				<h2>Orange</h2>

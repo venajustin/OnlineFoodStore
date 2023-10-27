@@ -16,21 +16,21 @@
         die ("Connection failed: " . mysqli_connect_error());
     } 
     else {
-        if ($result = $mysqli->query($query)) {
+        if ($itemS) {
 
             /* fetch associative array */
-            while ($row = $result->fetch_assoc()) {
-                $field1name = $row["col1"];
-                $field2name = $row["col2"];
-                $field3name = $row["col3"];
-                $field4name = $row["col4"];
-                $field5name = $row["col5"];
-                echo $field2name;
+            while ($row = $itemS->fetch_assoc()) {
+                $field1name = $row["item_id"];
+                $field2name = $row["item_name"];
+                $field3name = $row["item_description"];
+                $field4name = $row["item_weight"];
+                $field5name = $row["item_price"];
+                echo "$field1name  $field2name  $field3name  $field4name $field5name";
                 echo "<br>";
             }
         
             /* free result set */
-            $result->free();
+            $itemS->free();
         }
         exit();
     

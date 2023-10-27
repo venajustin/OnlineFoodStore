@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-		<?php
-			if (isset($_SESSION["username"])) {
-				echo $_SESSION["username"] . "<br>User Settings";
-			} else {
-				header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
-			}
-		?>
+	<?php
+		session_start();
+		unset($_SESSION["signup_error"]);
+		unset($_SESSION["login_error"]);
+
+		if (!isset($_SESSION["username"])) {
+			header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
+		}
+	?>
     <head>
         <meta charset="utf-8">
         <title>Online Food Store</title>
@@ -36,7 +38,7 @@
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" x="0px" y="0px"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M18.2001 21.9854C18.2001 20.3285 19.5432 18.9854 21.2001 18.9854H28.0777C29.4325 18.9854 30.6192 19.8934 30.9733 21.2011L33.6329 31.0212H78.7999C79.7022 31.0212 80.5565 31.4273 81.1262 32.1269C81.6959 32.8266 81.9205 33.7455 81.7377 34.629L76.5795 59.5604C76.3193 60.8178 75.2879 61.7702 74.0138 61.9295L39.6259 66.228C38.1424 66.4134 36.7489 65.4784 36.3581 64.0354L25.7821 24.9854H21.2001C19.5432 24.9854 18.2001 23.6422 18.2001 21.9854ZM35.2579 37.0212L41.468 59.951L71.139 56.2421L75.1157 37.0212H35.2579ZM45.5 73.0073C44.6716 73.0073 44 73.6789 44 74.5073C44 75.3357 44.6716 76.0073 45.5 76.0073C46.3284 76.0073 47 75.3357 47 74.5073C47 73.6789 46.3284 73.0073 45.5 73.0073ZM38 74.5073C38 70.3652 41.3579 67.0073 45.5 67.0073C49.6421 67.0073 53 70.3652 53 74.5073C53 78.6495 49.6421 82.0073 45.5 82.0073C41.3579 82.0073 38 78.6495 38 74.5073ZM69.4999 73.0073C68.6715 73.0073 67.9999 73.6789 67.9999 74.5073C67.9999 75.3357 68.6715 76.0073 69.4999 76.0073C70.3284 76.0073 70.9999 75.3357 70.9999 74.5073C70.9999 73.6789 70.3284 73.0073 69.4999 73.0073ZM62 74.5073C62 70.3652 65.3578 67.0073 69.4999 67.0073C73.6421 67.0073 76.9999 70.3652 76.9999 74.5073C76.9999 78.6495 73.6421 82.0073 69.4999 82.0073C65.3578 82.0073 62 78.6495 62 74.5073Z" fill="black"/></svg>
 				</a>
 
-            	<a style = "float: right;"  class="cart" href="https://localhost/OriginalFoodStore/OFSXammp/OnlineFoodStore/routes/account_link.php"><?php
+            	<a style = "float: right;"  class="cart" href="../routes/account_link.php"><?php
 					if (isset($_SESSION["username"])) {
 						echo $_SESSION["username"] . "<br>User Settings";
 					} else {
@@ -45,18 +47,27 @@
 				?></a>
         </div>
 		
-		<div name="cartContainer" style="z-index:-1; height: fit-content; position: absolute; left: 3%; top: 20%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
+		<div name="cartContainer" style="z-index:-1; min-height: 160px; height: fit-content; position: absolute; left: 3%; top: 14%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
 			<div style="padding: 10px; width: 900px; border: none; background-color: white; border-bottom: 1px solid grey;">
 				<h1>Shopping Cart</h1>
 			</div>
-			
-			<ul class="cart" id="cart">
+			<div style="position: absolute; z-index: -100">				
 				<?php
 					if (isset($_SESSION["username"])) {
-						echo $_SESSION["username"] . "<br>User Settings";
-					} else {
-						echo "<h2>No items in cart</h2>";
+						echo "<h2>Your cart is empty</h2>";
 					}
+				?>
+			</div>
+			<ul class="cart" id="cart">
+				<?php
+					//foreach ($array as $name ) {
+						echo "
+							<li>
+								<button class='cartTile'>
+								ItemName<br>Price<br>Picture<br>quantity
+								</button>
+							</li>";
+					//}
 				?>
 				<li>
 					<button class="cartTile">
@@ -83,31 +94,60 @@
 						
 					</button>
 				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
+
 			</ul>
 		</div>
 
 		</div>
-		<ul class="checkoutColumn" id="checkoutColumn" style="position:fixed; background-color: none; right: 2%; top: 20%; width: fit-content; height: fit-content;">
-			<li style="list-style-type: none">
-				<div class="reciept" style="padding: 20px; position: relative; background-color: white; right: 2%; top: 20%; width: 380px; height: 500px">
-					<div style="padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey; top: 76%">
+				<div class="reciept" style="padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: fit-content">
+					<ul style="list-style-type: none; width: 340px; height:fit-content; position: fixed; text-align: right">
+						<?php
+							//foreach ($array as $price ) {
+								echo "
+									<li>
+										<br>
+										$00.00
+									</li>";
+							//}
+						?>
+						<li>
+							<br>
+							$00.00
+						</li>
+						<li>
+							<br>
+							$00.00
+						</li>
+					</ul>
+					<ul style="list-style-type: none;width: 340px; height:fit-content; position: relative; text-align: left">
+						<?php
+							//foreach ($array as $name ) {
+								echo "
+									<li>
+										<br>
+										Name
+									</li>";
+							//}
+						?>
+						<li>
+							<br>
+							Name
+						</li>
+						<li>
+							<br>
+							Name
+						</li>							
+					</ul>
+					<br>
+					<div style="padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;">
 						<h2>Subtotal:</h2>
 					</div>
-					<div style="position: relative; border-top: 1px solid grey; top: 76%; padding-top: 2%;">
-						<button href=".../checkout/address_details.php" style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
+					<div style="position: relative; border-top: 1px solid grey; padding-top: 2%;">
+						<a href="checkout/address_details.php">
+						<button style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
 							Checkout</button>
+						</a>
 					</div>
-					
 				</div>
 			</li>
 			<li style="list-style-type: none;">

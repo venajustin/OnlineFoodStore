@@ -146,7 +146,7 @@ a:hover{
 
 
 
-.header .search-container button {
+ .search-container button {
 	margin: 0px;
 	float: left;
 	width: 50px;
@@ -162,7 +162,7 @@ a:hover{
 	color: var(--light-primary);
 }
 
-.header .search-container button:hover {
+.search-container button:hover {
 	
 	color: var(--primary);
 }
@@ -176,14 +176,6 @@ a:hover{
 	height: 50px;
 }
 
-.header a.account {
-	margin: 0px;
-	padding: 0px;
-	float: right;
-	
-	width: auto;
-	
-}
 
 .header a.logo {
 	margin: 0px;
@@ -241,6 +233,9 @@ a:hover{
 }
 
 #cart li {
+	list-style-type: none;
+}
+#checkoutColumn li {
 	list-style-type: none;
 }
 

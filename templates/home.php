@@ -19,8 +19,8 @@ unset($_SESSION["login_error"]);
 				<img src="../icons/food.png">
 			</a>
 			<div class="search-container">
-				<form action="../routes/action_page.php">
-					<input type="text" placeholder="Search.." name="search" method="post">
+				<form action="../templates/search.php" method="post">
+					<input type="text" placeholder="Search.." name="search" >
 					
 
 					<button type="submit">

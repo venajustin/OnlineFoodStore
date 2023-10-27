@@ -221,6 +221,9 @@ a:hover{
 #cart li {
 	list-style-type: none;
 }
+#checkoutColumn li {
+	list-style-type: none;
+}
 
 .inputField {
 	width: 400px;

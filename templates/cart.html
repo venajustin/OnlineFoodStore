@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
     </head>
+	<style>
+	</style>
     <body>
 
         <div class="header">
@@ -30,7 +32,7 @@
             
         </div>
 		
-		<div name="cartContainer" style="z-index:-1; height: fit-content; position: absolute; left: 3%; top: 20%; background-color: white; padding-left: 2%; padding-right: 2%">
+		<div name="cartContainer" style="z-index:-1; height: fit-content; position: absolute; left: 3%; top: 20%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
 			<div style="padding: 10px; width: 900px; border: none; background-color: white; border-bottom: 1px solid grey;">
 				<h1>Shopping Cart</h1>
 			</div>
@@ -71,12 +73,20 @@
 						
 					</button>
 				</li>
-
 			</ul>
 		</div>
-		<div class="reciept" style="position:fixed; background-color: white; right: 2%; top: 20%; width: 380px; height: 500px">
-			
-		</div>
 
+		</div>
+		<ul class="checkoutColumn" id="checkoutColumn" style="position:fixed; background-color: none; right: 2%; top: 20%; width: fit-content; height: fit-content;">
+			<li style="list-style-type: none">
+				<div class="reciept" style="padding: 20px; position: relative; background-color: white; right: 2%; top: 20%; width: 380px; height: 500px">
+					<div style="position: relative; height: 50px; border-top: 1px solid grey; top: 90%"></div>
+				</div>
+			</li>
+			<li style="list-style-type: none;">
+				<br>
+				<button class="checkout" style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 100px; width: 380px; border-radius:50px ;position: relative; right: 2%; ">Checkout</button>
+			</li>
+		</ul>
     </body>
 </html>

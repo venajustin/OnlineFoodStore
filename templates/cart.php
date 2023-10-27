@@ -118,6 +118,11 @@
 							<br>
 							$00.00
 						</li>
+						<br>
+						<li style='font-weight: bold;'>
+							<br>
+							$00.00
+						</li>
 					</ul>
 					<ul style="list-style-type: none;width: 340px; height:fit-content; position: relative; text-align: left">
 						<?php

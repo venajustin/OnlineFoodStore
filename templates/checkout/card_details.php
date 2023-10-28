@@ -4,6 +4,26 @@
     if (!isset($_SESSION["username"])) {
         header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
         exit;
+        $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+        $dbuser = 'server';
+        $dbpass = 'Kiifne9283';
+        $dbname = 'onlinefoodstore';
+    
+    
+        $uid = $_SESSION["user_id"];
+        $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+    
+        if (!$conn) { 
+            die ("Connection failed: " . mysqli_connect_error());
+        } else {
+            echo "connection success";
+        }
+    
+        // address info
+       
+        $sql = "SELECT card_number, card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
+        $card_results = mysqli_query($conn, $sql);
+    
         }
 
 

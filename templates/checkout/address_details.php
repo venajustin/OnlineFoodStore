@@ -3,7 +3,27 @@
     session_start();
     if (!isset($_SESSION["username"])) {
         header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
-        exit;
+        exit; $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+        $dbuser = 'server';
+        $dbpass = 'Kiifne9283';
+        $dbname = 'onlinefoodstore';
+    
+    
+        $uid = $_SESSION["user_id"];
+        $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+    
+        if (!$conn) { 
+            die ("Connection failed: " . mysqli_connect_error());
+        } else {
+            echo "connection success";
+        }
+    
+        // address info
+        $sql = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
+        $address_results = mysqli_query($conn, $sql);
+       
+    
+
         }
 
 
@@ -62,8 +82,6 @@
                     <input class= "inputField" style="text-indent: 10px" placeholder="City" type="text" name="city" required>
                     <br><br>
                     <input class= "inputField" style="text-indent: 10px" placeholder="Zip Code" type="text" name="zipCode" required>
-                    <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Phone Number" type="text" name="phoneNumber" required>    
                     <br><br>
                     <input type="submit" class="inputField" value="Continue" id = "submitButton">
 

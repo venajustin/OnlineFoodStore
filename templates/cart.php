@@ -148,7 +148,7 @@
 						<h2>Subtotal:</h2>
 					</div>
 					<div style="position: relative; border-top: 1px solid grey; padding-top: 2%;">
-						<a href="checkout/address_details.php">
+						<a href="checkout/review.php">
 						<button style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
 							Checkout</button>
 						</a>

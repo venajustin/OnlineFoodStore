@@ -32,7 +32,7 @@ unset($_SESSION["login_error"]);
 				<h1 style="color:#88d498;"> Management </h1>
 			</div>
 
-			<a class="cart" style = "float: right; margin-right: 1.5%; padding-top: 8px" href="managerpage.php"> 
+			<a class="cart" style = "float: right; margin-right: 1.5%; padding-top: 8px" href="../routes/account_link.php"> 
 				<?php
 					if (isset($_SESSION["username"])) {
 						echo $_SESSION["username"];
@@ -65,6 +65,7 @@ unset($_SESSION["login_error"]);
 			<!-- </div> -->
 
 			<!-- fix this later ^^-->
+			<!-- also need a logout button, maybe a drop down menu -->
 			<br><br><br><br><br> 
 
 			<h3> 

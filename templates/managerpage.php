@@ -27,18 +27,20 @@ unset($_SESSION["login_error"]);
             <a href="home.php" class="logo">
 				<img src="../icons/food.png">
 			</a>
+
 			<div class="search-container">
-			<h1 style="color:#88d498;"> Management </h1>
+				<h1 style="color:#88d498;"> Management </h1>
 			</div>
-            	<a style = "float: right;"  class="cart" href="../routes/account_link.php">
-					<?php
-						if (isset($_SESSION["username"])) {
-							echo $_SESSION["username"] . "<br>User Settings";
-						} else {
-							echo "Login /<br>Register";
-						}
-					?>
-				</a>
+
+			<a class="cart" style = "float: right; margin-right: 1.5%;" href="../routes/account_link.php"> 
+				<?php
+					if (isset($_SESSION["username"])) {
+						echo $_SESSION["username"] . "<br> User Settings";
+					} else {
+						echo "Login /<br>Register";
+					}
+				?>
+			</a>
         </div>
 
 		<div class = "center-screen">

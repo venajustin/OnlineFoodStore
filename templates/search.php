@@ -70,6 +70,7 @@
                 /* fetch associative array */
                 echo "Showing results for '$search':";
                 echo "<br>";
+                echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
                     $field1name = $row["item_id"];
                     $field2name = $row["item_name"];
@@ -77,18 +78,18 @@
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
                     echo "
-                    <div class='cartTile'>
+                    <div class='cartTile' style='background-color: white; padding-top: 5px;'>
                     <div style='position: absolute; height:150px; width: 120px; background-color: blue
                     '></div>
-                    <div style='padding-left: 150px'>
+                    <div style='padding-left: 130px; padding-top: 5px;'>
                     <h3>$field2name</h3>
-                    <h3>$field3name</h3>
-                    <h3>$field4name</h3>
-                    <h3>$field5name</h3>
+                    <h4>$field3name</h4>
+                    <h6>$field4name</h6>
+                    <h6>$field5name</h6>
                     </div>
                     </div>
                     ";
-                    echo "<br>";
+                    echo "";
                 }
             
                 /* free result set */

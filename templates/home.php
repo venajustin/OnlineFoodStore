@@ -61,7 +61,7 @@ unset($_SESSION["login_error"]);
 				</button>
 
 				<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; left: 240%; border: none">
-					<h2>Ad here</h2>
+					<h2>First Ad</h2>
 				</button>
 		</div>
 			

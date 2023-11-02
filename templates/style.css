@@ -6,12 +6,12 @@
 	--primary: #1a936f;
 }
 
-
-
 html {
+	overflow-x: hidden;
 	font-family: "Lucida Sans", sans-serif;
 	background-color: var(--light-primary);
 }
+
 
 * {
 	box-sizing: border-box;
@@ -20,16 +20,18 @@ html {
 
 	
 }
-a{
+
+
+a {
 	color: #46b35e; 
 	text-decoration: none;
 	z-index:1000;
 }
+
 a:hover{
 	color: var(--dark);
 	text-decoration: underline;
 }
-
 
 
 .row::after {
@@ -43,7 +45,6 @@ a:hover{
   width:100%;
 
 }
-
 
 
 @media only screen and (min-width: 500px) {
@@ -79,21 +80,16 @@ a:hover{
 }
 
 
-
-
-
 .header a img{
 	height: 100%;
 	width: auto;
 }
-
 
 .whitebox {
 	background-color: white;
 	margin: 5px;
 	padding: 10px;
 }
-
 
 
 .header {
@@ -107,11 +103,8 @@ a:hover{
   box-shadow: 0px 0px 10px grey;
   z-index: 100;
 }
-	
-
 
 .header a {
-
   height: 100px;
   color: black;
   text-align: center;
@@ -145,8 +138,7 @@ a:hover{
 }
 
 
-
- .search-container button {
+.search-container button {
 	margin: 0px;
 	float: left;
 	width: 50px;
@@ -155,15 +147,12 @@ a:hover{
 	border-left: none;
 	cursor: pointer;
 	border: none;
-	
 	height: 40px;
-	
 	background: none;
 	color: var(--light-primary);
 }
 
 .search-container button:hover {
-	
 	color: var(--primary);
 }
 
@@ -175,7 +164,6 @@ a:hover{
 	width: auto;
 	height: 50px;
 }
-
 
 .header a.logo {
 	margin: 0px;
@@ -205,6 +193,10 @@ a:hover{
     align-items: center;
 }
 
+ul {
+	list-style-type: none;
+}
+
 .itemTile img {
 	width: 100px;
 	height: auto;
@@ -212,7 +204,8 @@ a:hover{
 }
 
 .itemTile:hover {
-	box-shadow: 0px 0px 5px black ;
+	/* box-shadow: 0px 0px 10px var(--light-secondary); */
+	transform: scale(1.0314);
 }
 
 .card {
@@ -226,11 +219,13 @@ a:hover{
 	top: 0%;
 	z-index: 100;
 }
+
 .background {
 	width: 100%;
 	height: 100%;
 	background-color: blue;
 }
+
 .cartTile {
 	height: 160px;
 	width: 900px;
@@ -239,11 +234,46 @@ a:hover{
 	border-bottom: 1px solid grey;
 	padding-left:1%;
 	
+
+}
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 25px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+.prev {
+	left: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+	background-color: rgba(0,0,0,0.8);
+}
+
+.mySlides {
+	display: none;
 }
 
 #cart li {
 	list-style-type: none;
 }
+
 #checkoutColumn li {
 	list-style-type: none;
 }
@@ -262,23 +292,25 @@ a:hover{
 	text-align: center;
 	max-height: 10vh; 
 }
+
 .center-screen {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
 	min-height: 90vh;
-  }
-  #submitButton {
+}
+
+#submitButton {
 	background-color: var(--dark); 
 	color: #46b35e; 
 	border-radius: 5px;
-  }
-  #submitButton:hover{
-	background-color: rgb(34, 61, 85);
-  }
-  
+}
 
+#submitButton:hover{
+	background-color: rgb(34, 61, 85);
+}
+  
 
 @media screen and (max-width: 500px) {
   	.header a, .header {
@@ -290,12 +322,20 @@ a:hover{
 		padding: 14px;
 	}	
 }
+
+
 .card p{
 	animation-duration: 3s;
 	animation-delay: 0s;
 	animation-name: slidein;
 	animation-iteration-count: infinite;
 }
+
+.panelOne {
+	animation: panelSlide 24s  ease-in-out infinite;
+}
+
+
 @keyframes slidein {
 	from {
 	  margin-left: 100%;
@@ -307,7 +347,6 @@ a:hover{
 	  width: 100%;
 	}
 }
-
 
 
 *{
@@ -325,6 +364,7 @@ a:hover{
     overflow: hidden;
 	z-index: 1;
 }
+
 .anim li{
     position: absolute;
     display: block;
@@ -335,6 +375,7 @@ a:hover{
 	z-index: 1;
     
 }
+
 .anim li:nth-child(1){
     left: 120%;
 	bottom: 16%;
@@ -347,6 +388,7 @@ a:hover{
 	border-radius: 48%;
 	z-index: 2;
 }
+
 .anim li:nth-child(2){
     left: 0%;
 	bottom: 12%;
@@ -359,6 +401,7 @@ a:hover{
 	border-radius: 48%;
 	z-index: 2;
 }
+
 .anim li:nth-child(3){
     left: 0%;
 	bottom: 12%;
@@ -371,6 +414,8 @@ a:hover{
 	border-radius: 48%;
 	z-index: 2;
 }
+
+
 @keyframes rightLeft {
     0%{
         transform: translateY(0) rotate(0deg);
@@ -381,6 +426,7 @@ a:hover{
         opacity: 1;
     }
 }
+
 @keyframes leftRight {
     0%{
         transform: translateY(0) rotate(0deg);
@@ -392,4 +438,27 @@ a:hover{
     }
 }
 
+@keyframes panelSlide {
+	0%{
+	}
+	16.6%{
+		transform: translateX(0);
+	}
+	33.3%{
+		transform: translateX(-100%);
+	}
+	50%{
+		transform: translateX(-100%);
+	}
+	66.6%{
+		transform: translateX(-200%);
+	}
+	83.3%{
+		transform: translateX(-200%);
+	}
+	100%{
+		transform: translateX(-300%);
+	}
+
+}
 

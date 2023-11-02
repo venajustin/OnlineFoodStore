@@ -43,40 +43,62 @@ unset($_SESSION["login_error"]);
 				?></a>
         </div>
 
-		<div class="panelOne" style="width: 80%; height: 40%; background-color: white; position: absolute; top: 88px; margin-left: 10%">
-			<h2>Ad here</h2>
-		</div>
+		<div style="position: absolute; left: 0px; height: 200%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
-		<div class="listPanel" style="width: 80%; height: 30%; background-color: none; position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between;">
-    		<div class="itemTile">
-        		<h2>Banana</h2>
-        		<img src="food/freshproduce/banana.png">
-    		</div>
-			<div class="itemTile">
-				<h2>Apple</h2>
-				<img src="food/freshproduce/apple.png">
-			</div>
-			<div class="itemTile">
-				<h2>Orange</h2>
-				<img src="food/freshproduce/orange.png">
-			</div>
-			<div class="itemTile">
-				<h2>Lemon</h2>
-				<img src="food/freshproduce/lemon.png">
-			</div>
-			<div class="itemTile">
-				<h2>Lime</h2>
-				<img src="food/freshproduce/lime.png">
-			</div>
-			<div class="itemTile">
-				<h2>Mango</h2>
-				<img src="food/freshproduce/mango.png">
-			</div>
-		</div>
+		<div style="position: absolute; right: 0px; height: 200%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
-		<div class="panelTwo" style="width: 80%; height: 40%; background-color: white; position: absolute; top: 820px; margin-left: 10%">
-			<h2>Ad here</h2>
+		<div style="height: fit-content; width: 80%">
+				<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; border: none">
+					<h2>First Ad</h2>
+				</button>
+
+				<button class="panelOne" style="width: 80%; height: 40%; background-color: blue; position: absolute; top: 96px; margin-left: 10%; left: 80%; border: none">
+					<h2>Second Ad</h2>
+				</button>
+
+				<button class="panelOne" style="width: 80%; height: 40%; background-color: red; position: absolute; top: 96px; margin-left: 10%; left: 160%; border: none">
+					<h2>Third Ad</h2>
+				</button>
+
+				<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; left: 240%; border: none">
+					<h2>Ad here</h2>
+				</button>
 		</div>
+			
+		<div style="width: 80%; height: 15%; background-color: none; position: absolute; top: 395px; margin-left: 10%; border: none">
+				<div style="text-align: center; padding-top: 4.5%">
+					<h2 style="color:var(--dark)">Featured Items</h2>
+				</div>
+		</div>
+	
+		<div class="slideshow-container" style="width: 80%; height: 40%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px">
+			<?php
+				$int = 5;
+				while ($int > 0) {
+					$int = $int - 1;
+					echo 
+					"<ul class='itemTileList'>
+						<li class='item'>
+							<button type='submit' class='itemTile'>						
+								<h2>Fruit</h2>
+								<img src='food/freshproduce/apple.png' style='width: 125px;'>				
+							</button>
+						</li>
+					</ul>";
+				}
+	
+				if(isset($_POST["submit"])) { 
+					header('Location: '.$uri.'/OnlineFoodStore/templates/account.php');
+				}
+			?>
+
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		
+		<button class="panelTwo" style="width: 80%; height: 40%; background-color: white; position: absolute; top: 820px; margin-left: 10%; border: none">
+			<h2>Ad here</h2>
+		</button>
 
 		
     </body>

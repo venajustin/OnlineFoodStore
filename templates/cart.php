@@ -60,41 +60,59 @@
 			</div>
 			<ul class="cart" id="cart">
 				<?php
-					//foreach ($array as $name ) {
-						echo "
-							<li>
-								<button class='cartTile'>
-								ItemName<br>Price<br>Picture<br>quantity
-								</button>
-							</li>";
-					//}
+					session_start();
+					unset($_SESSION["signup_error"]);
+						unset($_SESSION["login_error"]);
+						$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+						$dbuser = 'server';
+						$dbpass = 'Kiifne9283';
+						$dbname = 'onlinefoodstore';					
+						
+				
+				
+						// create connection 
+						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+											// check connection 
+						$search = $_POST["search"];
+						$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+						$itemS = mysqli_query($conn,$searchq);
+										
+				
+						if (!$conn ) { 
+							die ("Connection failed: " . mysqli_connect_error());
+						} 
+							else {
+							if ($itemS) {
+				
+								
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
+									<div class='searchTile' style='background-color: white; padding-top: 5px;'>
+									<div style='position: absolute; height:150px; width: 120px; background-color: grey;
+									'></div>
+									<div style='padding-left: 130px; padding-top: 5px;'>
+									<h3>$field2name</h3>
+									<h4>$field3name</h4>
+									<h6>$field5name$</h6>
+									<h6>$field4name lbs</h6>
+									</div>
+									</div>
+									";
+									echo "";
+								}
+							
+								/* free result set */
+								$itemS->free();
+							}
+							
+						
+						} 
 				?>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-
 			</ul>
 		</div>
 
@@ -102,13 +120,43 @@
 				<div class="reciept" style="padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: fit-content">
 					<ul style="list-style-type: none; width: 340px; height:fit-content; position: fixed; text-align: right">
 						<?php
-							//foreach ($array as $price ) {
-								echo "
-									<li>
-										<br>
-										$00.00
-									</li>";
-							//}
+								// create connection 
+						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+						// check connection 
+	$search = $_POST["search"];
+	$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+	$itemS = mysqli_query($conn,$searchq);
+					
+
+	if (!$conn ) { 
+		die ("Connection failed: " . mysqli_connect_error());
+	} 
+		else {
+		if ($itemS) {
+
+			
+			while ($row = $itemS->fetch_assoc()) {
+				$field1name = $row["item_id"];
+				$field2name = $row["item_name"];
+				$field3name = $row["item_description"];
+				$field4name = $row["item_weight"];
+				$field5name = $row["item_price"];
+				echo "
+				<li>
+				<br>
+				$$field5name
+				</li>
+
+				";
+				echo "";
+			}
+		
+			/* free result set */
+			$itemS->free();
+		}
+		
+	
+	} 
 						?>
 						<li>
 							<br>

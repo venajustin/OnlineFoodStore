@@ -82,12 +82,17 @@ unset($_SESSION["login_error"]);
 					echo 
 					"<ul class='itemTileList'>
 						<li class='item'>
-							<button type='submit' class='itemTile'>
+							<button type='submit' class='itemTile' onclick='openform()'>
 								<h2>Fruit</h2>
 								<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
 							</button>
 						</li>
-					</ul>";
+					</ul>
+					
+					<div class='formPopup' id=popupForm>
+						<h1>Test</h1>
+						<button onclick='closeform()'>Close</button>
+					</div>";
 					
 				}
 	
@@ -96,8 +101,8 @@ unset($_SESSION["login_error"]);
 				}
 			?>
 		
-			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+			<a class="prev" onclick="plusSlides(-1)" style="z-index: 80">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)" style="z-index: 80">&#10095;</a>
 		</div>
 		
 		<div style="width: 80%; height: 10%; background-color: none; position: absolute; top: 790px; margin-left: 10%; border: none">

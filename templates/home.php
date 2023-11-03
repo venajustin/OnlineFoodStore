@@ -6,8 +6,10 @@ unset($_SESSION["login_error"]);
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 	
 	<head>
+		<link rel="shortcut icon" href="icons/grocery.ico"/>
         <meta charset="utf-8">
         <title>Online Food Store</title>
 		<meta name="viewport">

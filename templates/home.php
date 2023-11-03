@@ -6,8 +6,10 @@ unset($_SESSION["login_error"]);
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 	
 	<head>
+		<link rel="shortcut icon" href="icons/grocery.ico"/>
         <meta charset="utf-8">
         <title>Online Food Store</title>
 		<meta name="viewport">
@@ -43,13 +45,13 @@ unset($_SESSION["login_error"]);
 				?></a>
         </div>
 
-		<div style="position: absolute; left: 0px; height: 200%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
+		<div style="position: absolute; left: 0px; height: 80%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
-		<div style="position: absolute; right: 0px; height: 200%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
+		<div style="position: absolute; right: 0px; height: 80%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
 		<div style="height: fit-content; width: 80%">
-				<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; border: none">
-					<h2>First Ad</h2>
+				<button class="panelOne" style="width: 80%; height: 40%; background-color: none; position: absolute; top: 96px; margin-left: 10%; border: none">
+					<img src="./pictures/ad_one.png" style="width: 100%; height: 100%">
 				</button>
 
 				<button class="panelOne" style="width: 80%; height: 40%; background-color: blue; position: absolute; top: 96px; margin-left: 10%; left: 80%; border: none">
@@ -61,7 +63,7 @@ unset($_SESSION["login_error"]);
 				</button>
 
 				<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; left: 240%; border: none">
-					<h2>First Ad</h2>
+					<img src="./pictures/ad_one.png" style="width: 100%; height: 100%">
 				</button>
 		</div>
 			
@@ -113,6 +115,13 @@ unset($_SESSION["login_error"]);
 			<img src="./pictures/about_us_pic.jpeg" style="width: 100%; height: 100%">
 		</div>
 
+		<div style="width: 20%; height: 20%; background-color: none; position: absolute; top: 1420px; margin-left: 40%; border: none">
+			<img src="../icons/food-dark.png" style="width: 15%; margin-left: auto; margin-right: auto; display: block">
+		</div>
+
+		<div style="width: 20%; height: 20%; background-color: none; position: absolute; top: 1400px; margin-left: 40%; border: none">
+			<img src="../icons/city.png" style="width: 15%; margin-left: 40%; margin-right: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
+		</div>
 		
     </body>
 </html>

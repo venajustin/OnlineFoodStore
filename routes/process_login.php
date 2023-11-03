@@ -2,6 +2,13 @@
 <?php
     session_start();
 
+    
+    function test_data($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
     unset($_SESSION["signup_error"]);
     unset($_SESSION["login_error"]);
@@ -9,8 +16,7 @@
 
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         if ($_POST["username"] && $_POST["password"]) {
-            $username = $_POST["username"];
-            $password = $_POST["password"];
+           
 
 			$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
 			$dbuser = 'server';
@@ -20,6 +26,11 @@
 
             // create connection 
             $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+            $username = test_data($_POST["username"]);
+            $password = test_data($_POST["password"]);
+
+            
+
 
             // check connection 
             if (!$conn) { 

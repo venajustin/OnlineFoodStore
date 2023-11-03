@@ -5,11 +5,18 @@
     unset($_SESSION["signup_error"]);
     unset($_SESSION["login_error"]);
 
+
+    
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 	
     if ((isset($_POST["username"])) && isset($_POST["password"])) {
         if($_POST["username"] && $_POST["password"] && $_POST["password2"] && $_POST["password"] === $_POST["password2"]) {
-            $username = $_POST["username"];
-            $password = $_POST["password"];
+            
             
             $isManager = 0;
 			
@@ -20,13 +27,19 @@
 
             // create connection 
             $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+
+            $username = test_input($_POST["username"]);
+            $password = test_input($_POST["password"]);
+
+            
+
             // check connection 
             if (!$conn) { 
                 die("Connection failed: " . mysqli_connect_error());
             }
             
             if (isset($_POST["Masterkey"]) && strlen($_POST["Masterkey"]) > 1) {
-                $key = $_POST["Masterkey"];
+                $key = test_input($_POST["Masterkey"]);
                 $sql = "SELECT value FROM global_variables WHERE name = 'masterkey'";
 
                 $results = mysqli_query($conn, $sql);

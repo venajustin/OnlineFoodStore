@@ -11,6 +11,10 @@ html {
 	font-family: "Lucida Sans", sans-serif;
 	background-color: var(--light-primary);
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 
 * {
@@ -229,6 +233,17 @@ ul {
 .cartTile {
 	height: 160px;
 	width: 900px;
+	border: none;
+	background-color: white;
+	border-bottom: 1px solid grey;
+	padding-left:1%;
+	
+
+}
+
+.searchTile {
+	height: 160px;
+	width: 100%;
 	border: none;
 	background-color: white;
 	border-bottom: 1px solid grey;
@@ -461,4 +476,9 @@ ul {
 	}
 
 }
+
+
+
+
+
 

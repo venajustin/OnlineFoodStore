@@ -17,9 +17,7 @@
 
     if (!$conn) { 
         die ("Connection failed: " . mysqli_connect_error());
-    } else {
-        echo "connection success";
-    }
+    } 
 
     // address info
     $sql = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
@@ -66,22 +64,28 @@
                 <a style = "float: right"  class="cart" href="../cart.php">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" x="0px" y="0px"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M18.2001 21.9854C18.2001 20.3285 19.5432 18.9854 21.2001 18.9854H28.0777C29.4325 18.9854 30.6192 19.8934 30.9733 21.2011L33.6329 31.0212H78.7999C79.7022 31.0212 80.5565 31.4273 81.1262 32.1269C81.6959 32.8266 81.9205 33.7455 81.7377 34.629L76.5795 59.5604C76.3193 60.8178 75.2879 61.7702 74.0138 61.9295L39.6259 66.228C38.1424 66.4134 36.7489 65.4784 36.3581 64.0354L25.7821 24.9854H21.2001C19.5432 24.9854 18.2001 23.6422 18.2001 21.9854ZM35.2579 37.0212L41.468 59.951L71.139 56.2421L75.1157 37.0212H35.2579ZM45.5 73.0073C44.6716 73.0073 44 73.6789 44 74.5073C44 75.3357 44.6716 76.0073 45.5 76.0073C46.3284 76.0073 47 75.3357 47 74.5073C47 73.6789 46.3284 73.0073 45.5 73.0073ZM38 74.5073C38 70.3652 41.3579 67.0073 45.5 67.0073C49.6421 67.0073 53 70.3652 53 74.5073C53 78.6495 49.6421 82.0073 45.5 82.0073C41.3579 82.0073 38 78.6495 38 74.5073ZM69.4999 73.0073C68.6715 73.0073 67.9999 73.6789 67.9999 74.5073C67.9999 75.3357 68.6715 76.0073 69.4999 76.0073C70.3284 76.0073 70.9999 75.3357 70.9999 74.5073C70.9999 73.6789 70.3284 73.0073 69.4999 73.0073ZM62 74.5073C62 70.3652 65.3578 67.0073 69.4999 67.0073C73.6421 67.0073 76.9999 70.3652 76.9999 74.5073C76.9999 78.6495 73.6421 82.0073 69.4999 82.0073C65.3578 82.0073 62 78.6495 62 74.5073Z" fill="black"/></svg>
 				</a>
-            	<a style = "float: right;"  class="cart" href="../login.php">Login /<br>Register</a>
+            	<a style = "float: right;"  class="cart" href="../../routes/account_link.php"><?php
+					if (isset($_SESSION["username"])) {
+						echo $_SESSION["username"] . "<br>User Settings";
+					} else {
+						echo "Login /<br>Register";
+					}
+				?></a>
         </div>
 		<div class="center-screen" style="padding-top: 7%;">
-        <div class="card" style="width: max(700px); text-align: center;">
+        <div class="card" style="width: max(800px); text-align: center;">
             <br>
             <h1 style="color: #46b35e;">Checkout</h1>
             <br><br><br><br>
 
             <!-- Address Details -->
-            <div style="display:flex; justify-content:space-between; ">
+            <div style="display:flex; justify-content:space-between; text-align:center;">
                 <div>
                     <h3>Address Details</h3>
                     <a style = "margin-left: 10px" href="address_details.php">Edit</a> 
 
                 </div>
-                <div> 
+                <div style="flex-grow: 5"> 
                     <?php
                         if (!$address_results) {
                             echo "No information set";
@@ -111,14 +115,15 @@
             <!-- Card Details -->
 			
            
-            <div style="display:flex; justify-content:space-between; ">
+            <div style="display:flex; justify-content:space-between; text-align:center;">
+                
                 
                 <div style = "float: left; margin-left: 10px">
                     <h3>Card Details</h3>
                     <a style = "margin-left: 45px" href="card_details.php">Edit</a> 
                 </div>
                 
-                <div> 
+                <div style="flex-grow: 5"> 
                     <?php
                         if (!$card_results) {
                             echo "No information set";
@@ -150,7 +155,39 @@
             <!-- Submit Button -->
             <input type="submit" class="inputField" value="Confirm Shipment" id="submitButton">
         </div>
+
+
+        <div class="card" style="margin-left: 40px; width: max(300px);">
+                <br>
+                <h1 style="color: #46b35e;">Cart Summary</h1>
+                <br><br><br>
+                <div style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
+                    <h3>Number of Items: </h3>
+                    <!--Pull item count from cart and place here-->
+                    <br><br><br>
+                    <h3>Total Weight: </h3>
+                    <!--Pull total weight from cart and place here-->
+                    <br><br>
+                </div>
+                <br>
+                <div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
+                    <h3>Subtotal: </h3>
+                    <!--Insert total item cost here-->
+                    <br><br><br>
+                    <h3>Shipping: </h3>
+                    <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
+                    <br><br><br>
+                    <h3>Sales Tax: </h3>
+                    <!--total item cost * 9.38% omg why is our taxes so high here-->
+                    <br><br>
+                </div>
+                <br>
+                <h3>Total: </h3>
+                <!--calculate and show total here-->
+
+            </div>
     </div>
+   
         
     </body>
 </html>

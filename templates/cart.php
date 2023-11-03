@@ -18,6 +18,9 @@
 	<style>
 	</style>
     <body>
+
+		<!--Page Header-->
+
         <div class="header">
             <a href="home.php" class="logo">
 				<img src="../icons/food.png">
@@ -46,7 +49,10 @@
 					}
 				?></a>
         </div>
+
 		
+		<!--List Containing Items from Shopping Cart-->
+
 		<div name="cartContainer" style="z-index:-1; min-height: 160px; height: fit-content; position: absolute; left: 3%; top: 14%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
 			<div style="padding: 10px; width: 900px; border: none; background-color: white; border-bottom: 1px solid grey;">
 				<h1>Shopping Cart</h1>
@@ -84,7 +90,8 @@
 							else {
 							if ($itemS) {
 				
-								
+								//Display Items in SHopping Cart
+
 								while ($row = $itemS->fetch_assoc()) {
 									$field1name = $row["item_id"];
 									$field2name = $row["item_name"];
@@ -123,84 +130,97 @@
 								// create connection 
 						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 						// check connection 
-	$search = $_POST["search"];
-	$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
-	$itemS = mysqli_query($conn,$searchq);
-					
+						$search = $_POST["search"];
+						$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+						$itemS = mysqli_query($conn,$searchq);
+										
 
-	if (!$conn ) { 
-		die ("Connection failed: " . mysqli_connect_error());
-	} 
-		else {
-		if ($itemS) {
+						if (!$conn ) { 
+							die ("Connection failed: " . mysqli_connect_error());
+						} 
+							else {
+							if ($itemS) {
 
-			
-			while ($row = $itemS->fetch_assoc()) {
-				$field1name = $row["item_id"];
-				$field2name = $row["item_name"];
-				$field3name = $row["item_description"];
-				$field4name = $row["item_weight"];
-				$field5name = $row["item_price"];
-				echo "
-				<li>
-				<br>
-				$$field5name
-				</li>
-
-				";
-				echo "";
-			}
-		
-			/* free result set */
-			$itemS->free();
-		}
-		
-	
-	} 
-						?>
-						<li>
-							<br>
-							$00.00
-						</li>
-						<li>
-							<br>
-							$00.00
-						</li>
-						<br>
-						<li style='font-weight: bold;'>
-							<br>
-							$00.00
-						</li>
-					</ul>
-					<ul style="list-style-type: none;width: 340px; height:fit-content; position: relative; text-align: left">
-						<?php
-							//foreach ($array as $name ) {
-								echo "
+								//Print Prices
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
 									<li>
-										<br>
-										Name
-									</li>";
-							//}
+									<br>
+									$$field5name
+									</li>
+
+									";
+									echo "";
+								}
+							
+								/* free result set */
+								$itemS->free();
+							}
+						} 
 						?>
-						<li>
-							<br>
-							Name
-						</li>
-						<li>
-							<br>
-							Name
-						</li>							
-					</ul>
+					<ul style="list-style-type: none;width: fit-content; height:fit-content; position: relative; text-align: left">
+					<?php
+								// create connection 
+						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+						// check connection 
+							$search = $_POST["search"];
+							$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+							$itemS = mysqli_query($conn,$searchq);
+										
+
+							if (!$conn ) { 
+								die ("Connection failed: " . mysqli_connect_error());
+							} 
+								else {
+								if ($itemS) {
+
+								//Print Names
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
+									<li>
+									<br>
+									$field2name
+									</li>
+
+									";
+									echo "";
+								}
+							
+								/* free result set */
+								$itemS->free();
+							}
+							
+						
+						} 
+					?>
+				
+				<!--Subtotal-->
+
 					<br>
 					<div style="padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;">
 						<h2>Subtotal:</h2>
 					</div>
+
+				<!--Checkout Button-->
+
 					<div style="position: relative; border-top: 1px solid grey; padding-top: 2%;">
 						<a href="checkout/review.php">
 						<button style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
 							Checkout</button>
 						</a>
 					</div>
+
+
 				</div>
 			</li>
 			<li style="list-style-type: none;">

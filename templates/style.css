@@ -241,6 +241,17 @@ ul {
 
 }
 
+.searchTile {
+	height: 160px;
+	width: 100%;
+	border: none;
+	background-color: white;
+	border-bottom: 1px solid grey;
+	padding-left:1%;
+	
+
+}
+
 .prev, .next {
 	cursor: pointer;
 	position: absolute;

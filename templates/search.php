@@ -78,8 +78,8 @@
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
                     echo "
-                    <div class='cartTile' style='background-color: white; padding-top: 5px;'>
-                    <div style='position: absolute; height:150px; width: 120px; background-color: blue
+                    <div class='searchTile' style='background-color: white; padding-top: 5px;'>
+                    <div style='position: absolute; height:150px; width: 120px; background-color: grey;
                     '></div>
                     <div style='padding-left: 130px; padding-top: 5px;'>
                     <h3>$field2name</h3>

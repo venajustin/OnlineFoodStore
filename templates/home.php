@@ -73,7 +73,7 @@ unset($_SESSION["login_error"]);
 				</div>
 		</div>
 	
-		
+
 		<div class="slideshow-container" style="width: 80%; height: 40%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
 			<?php
 				$int = 5;
@@ -106,11 +106,14 @@ unset($_SESSION["login_error"]);
 			</div>
 		</div>
 		
-
 		<div class="panelTwo" style="width: 50%; height: 40%; background-color: white; position: absolute; top: 900px; margin-left: 10%; border: none">
-			<div style="padding: 5%">
-				<p style="font-family: 'Gill Sans', sans-serif; font-size: 110%">Welcome to OnlineFoodStore! We are passionate food enthusiasts dedicated to bringing you the finest culinary experiences right to your doorstep. Our journey began with a simple goal: to make exceptional food accessible to everyone, no matter where they are. With a curated selection of delectable delights, sourced from local artisans and global epicurean destinations, we aim to delight your taste buds and inspire your kitchen adventures. At OnlineFoodStore, we prioritize quality, freshness, and variety, offering a diverse range of products that cater to all tastes, dietary preferences, and cooking styles. Whether you're a seasoned chef or an aspiring home cook, we are here to be your trusted partner on your gastronomic journey. Join us in savoring the flavors of the world, one delectable bite at a time.</p>
-			</div>
+			<div style="height: 100%; overflow: hidden;">
+       			<div style="padding: 5%; overflow-y: auto; height: 100%;">
+					<p style="font-family: 'Gill Sans', sans-serif; font-size: 110%;">
+						Welcome to OnlineFoodStore! We are passionate food enthusiasts dedicated to bringing you the finest culinary experiences right to your doorstep. Our journey began with a simple goal: to make exceptional food accessible to everyone, no matter where they are. With a curated selection of delectable delights, sourced from local artisans and global epicurean destinations, we aim to delight your taste buds and inspire your kitchen adventures. At OnlineFoodStore, we prioritize quality, freshness, and variety, offering a diverse range of products that cater to all tastes, dietary preferences, and cooking styles. Whether you're a seasoned chef or an aspiring home cook, we are here to be your trusted partner on your gastronomic journey. Join us in savoring the flavors of the world, one delectable bite at a time.
+					</p>
+        		</div>
+    		</div>
 		</div>
 
 		<div style="width: 30%; height: 40%; background-color: maroon; position: absolute; top: 900px; margin-left: 60%; border: none">

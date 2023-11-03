@@ -22,7 +22,7 @@ unset($_SESSION["login_error"]);
 			</a>
 			<div class="search-container">
 				<form action="../templates/search.php" method="post">
-					<input type="text" placeholder="Search.." name="search" >
+					<input type="text" placeholder="Search.." name="search">
 					
 
 					<button type="submit">

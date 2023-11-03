@@ -56,7 +56,7 @@
 
         // check connection 
         $search = $_POST["search"];
-        $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'";
+        $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
         $itemS = mysqli_query($conn,$searchq);
 
     

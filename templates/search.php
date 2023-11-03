@@ -84,8 +84,8 @@
                     <div style='padding-left: 130px; padding-top: 5px;'>
                     <h3>$field2name</h3>
                     <h4>$field3name</h4>
-                    <h6>$field4name</h6>
-                    <h6>$field5name</h6>
+                    <h6>$field5name$</h6>
+                    <h6>$field4name lbs</h6>
                     </div>
                     </div>
                     ";

@@ -86,7 +86,7 @@ session_start();
                 </div>
                 <br>
                 <div id="area" style="display: none;">
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Enter Masterkey" type="text" name="Masterkey">
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Enter Masterkey" type="password" name="Masterkey">
                     <br><br>
                 </div>
                 <div style="text-align: center">

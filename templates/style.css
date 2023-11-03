@@ -212,6 +212,16 @@ ul {
 	transform: scale(1.0314);
 }
 
+.formPopup {
+	display: none;
+	position: fixed;
+	left: 45%;
+	top: 5%;
+	transform: translate(-50%, 5%);
+	border: 3px solid #999999;
+	z-index: 80;
+}
+
 .card {
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
 	width: max(450px); 

@@ -73,7 +73,8 @@ unset($_SESSION["login_error"]);
 				</div>
 		</div>
 	
-		<div class="slideshow-container" style="width: 80%; height: 40%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px">
+		
+		<div class="slideshow-container" style="width: 80%; height: 40%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
 			<?php
 				$int = 5;
 				while ($int > 0) {
@@ -83,7 +84,7 @@ unset($_SESSION["login_error"]);
 						<li class='item'>
 							<button type='submit' class='itemTile'>
 								<h2>Fruit</h2>
-								<img src='food/freshproduce/apple.png' style='width: 125px;'>										
+								<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
 							</button>
 						</li>
 					</ul>";
@@ -94,7 +95,7 @@ unset($_SESSION["login_error"]);
 					header('Location: '.$uri.'/OnlineFoodStore/templates/account.php');
 				}
 			?>
-
+		
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
 		</div>
@@ -105,6 +106,7 @@ unset($_SESSION["login_error"]);
 			</div>
 		</div>
 		
+
 		<div class="panelTwo" style="width: 50%; height: 40%; background-color: white; position: absolute; top: 900px; margin-left: 10%; border: none">
 			<div style="padding: 5%">
 				<p style="font-family: 'Gill Sans', sans-serif; font-size: 110%">Welcome to OnlineFoodStore! We are passionate food enthusiasts dedicated to bringing you the finest culinary experiences right to your doorstep. Our journey began with a simple goal: to make exceptional food accessible to everyone, no matter where they are. With a curated selection of delectable delights, sourced from local artisans and global epicurean destinations, we aim to delight your taste buds and inspire your kitchen adventures. At OnlineFoodStore, we prioritize quality, freshness, and variety, offering a diverse range of products that cater to all tastes, dietary preferences, and cooking styles. Whether you're a seasoned chef or an aspiring home cook, we are here to be your trusted partner on your gastronomic journey. Join us in savoring the flavors of the world, one delectable bite at a time.</p>

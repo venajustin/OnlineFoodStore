@@ -43,10 +43,8 @@
         session_start();
         unset($_SESSION["signup_error"]);
         unset($_SESSION["login_error"]);
-        $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
-        $dbuser = 'server';
-        $dbpass = 'Kiifne9283';
-        $dbname = 'onlinefoodstore';
+        
+        require "../../credentials.php";
 
         
 

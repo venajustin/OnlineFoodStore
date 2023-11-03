@@ -11,6 +11,10 @@ html {
 	font-family: "Lucida Sans", sans-serif;
 	background-color: var(--light-primary);
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 
 * {

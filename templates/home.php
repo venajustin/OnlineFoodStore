@@ -79,12 +79,13 @@ unset($_SESSION["login_error"]);
 					echo 
 					"<ul class='itemTileList'>
 						<li class='item'>
-							<button type='submit' class='itemTile'>						
+							<button type='submit' class='itemTile'>
 								<h2>Fruit</h2>
-								<img src='food/freshproduce/apple.png' style='width: 125px;'>				
+								<img src='food/freshproduce/apple.png' style='width: 125px;'>										
 							</button>
 						</li>
 					</ul>";
+					
 				}
 	
 				if(isset($_POST["submit"])) { 
@@ -96,9 +97,21 @@ unset($_SESSION["login_error"]);
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
 		</div>
 		
-		<button class="panelTwo" style="width: 80%; height: 40%; background-color: white; position: absolute; top: 820px; margin-left: 10%; border: none">
-			<h2>Ad here</h2>
-		</button>
+		<div style="width: 80%; height: 10%; background-color: none; position: absolute; top: 790px; margin-left: 10%; border: none">
+			<div style="text-align: center; padding-top: 4.5%">
+				<h2 style="color:var(--dark)">About Us</h2>
+			</div>
+		</div>
+		
+		<div class="panelTwo" style="width: 50%; height: 40%; background-color: white; position: absolute; top: 900px; margin-left: 10%; border: none">
+			<div style="padding: 5%">
+				<p style="font-family: 'Gill Sans', sans-serif; font-size: 110%">Welcome to OnlineFoodStore! We are passionate food enthusiasts dedicated to bringing you the finest culinary experiences right to your doorstep. Our journey began with a simple goal: to make exceptional food accessible to everyone, no matter where they are. With a curated selection of delectable delights, sourced from local artisans and global epicurean destinations, we aim to delight your taste buds and inspire your kitchen adventures. At OnlineFoodStore, we prioritize quality, freshness, and variety, offering a diverse range of products that cater to all tastes, dietary preferences, and cooking styles. Whether you're a seasoned chef or an aspiring home cook, we are here to be your trusted partner on your gastronomic journey. Join us in savoring the flavors of the world, one delectable bite at a time.</p>
+			</div>
+		</div>
+
+		<div style="width: 30%; height: 40%; background-color: maroon; position: absolute; top: 900px; margin-left: 60%; border: none">
+			<img src="./pictures/about_us_pic.jpeg" style="width: 100%; height: 100%">
+		</div>
 
 		
     </body>

@@ -3,7 +3,7 @@
     session_start();
 
     
-    function test_input($data) {
+    function test_data($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);

@@ -5,7 +5,7 @@
         header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
         exit;
     }
-        require "../../credentials.php";
+        require "../../../credentials.php";
     
     
         $uid = $_SESSION["user_id"];

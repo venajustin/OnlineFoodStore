@@ -50,7 +50,7 @@ unset($_SESSION["login_error"]);
 		<div style="position: absolute; right: 0px; height: 80%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
 		<div style="height: fit-content; width: 80%">
-				<button class="panelOne" style="width: 80%; height: 40%; background-color: none; position: absolute; top: 96px; margin-left: 10%; border: none">
+				<button class="panelOne" style="width: 80%; height: 40%; background-color: none; position: absolute; top: 96px; margin-left: 10%; border: none" onclick="openForm()">
 					<img src="./pictures/ad_one.png" style="width: 100%; height: 100%">
 				</button>
 
@@ -69,40 +69,42 @@ unset($_SESSION["login_error"]);
 			
 		<div style="width: 80%; height: 15%; background-color: none; position: absolute; top: 395px; margin-left: 10%; border: none">
 				<div style="text-align: center; padding-top: 4.5%">
-					<h2 style="color:var(--dark)">Featured Items</h2>
+					<h2 style="color:var(--dark)">Categories</h2>
 				</div>
 		</div>
 	
 
 		<div class="slideshow-container" style="width: 80%; height: 40%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
 			<?php
-				$int = 5;
-				while ($int > 0) {
-					$int = $int - 1;
-					echo 
-					"<ul class='itemTileList'>
-						<li class='item'>
-							<button type='submit' class='itemTile' onclick='openform()'>
-								<h2>Fruit</h2>
-								<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
-							</button>
-						</li>
-					</ul>
+				echo 
+				"<button type='submit' class='itemTile'>
+					<h2>Fruits and Vegetables</h2>
+					<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
+				</button>
+
+				<button type='submit' class='itemTile'>
+					<h2>Dairy</h2>
+					<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
+				</button>
+
+				<button type='submit' class='itemTile'>
+					<h2>Grains and Bread</h2>
+					<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
+				</button>
+
+				<button type='submit' class='itemTile'>
+					<h2>Protein</h2>
+					<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px;'>										
+				</button>
+				";
 					
-					<div class='formPopup' id=popupForm>
-						<h1>Test</h1>
-						<button onclick='closeform()'>Close</button>
-					</div>";
-					
-				}
-	
 				if(isset($_POST["submit"])) { 
 					header('Location: '.$uri.'/OnlineFoodStore/templates/account.php');
 				}
 			?>
 		
-			<a class="prev" onclick="plusSlides(-1)" style="z-index: 80">&#10094;</a>
-			<a class="next" onclick="plusSlides(1)" style="z-index: 80">&#10095;</a>
+			<!-- <a class="prev" onclick="plusSlides(-1)" style="z-index: 80">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)" style="z-index: 80">&#10095;</a> -->
 		</div>
 		
 		<div style="width: 80%; height: 10%; background-color: none; position: absolute; top: 790px; margin-left: 10%; border: none">

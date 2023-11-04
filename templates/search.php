@@ -49,9 +49,7 @@ unset($_SESSION["login_error"]);
         <div class="searchResult" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
 			<h2>
                 <?php
-        session_start();
-        unset($_SESSION["signup_error"]);
-        unset($_SESSION["login_error"]);
+        
         
        
 

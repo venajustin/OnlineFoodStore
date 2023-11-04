@@ -9,13 +9,21 @@
         exit;
     }
 	
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+
     if ((isset($_POST["cardType"])) && isset($_POST["cardNumber"]) && isset($_POST["cardExpiry"]) && isset($_POST["cardCVV"] && isset($_POST["billingAddress"])) ) {
         if($_POST["cardType"] && $_POST["cardNumber"] && $_POST["cardExpiry"]&& $_POST["cardCVV"] && $_POST["billingAddress"]) {
-            $cardType = $_POST["cardType"];
-            $cardNumber = $_POST["cardNumber"];
-            $cardExpiry = $_POST["cardExpiry"];
-            $cardCVV = $_POST["cardCVV"];
-            $billingAddress = $_POST["billingAddress"];
+            $cardType = test_input($_POST["cardType"]);
+            $cardNumber = test_input($_POST["cardNumber"]);
+            $cardExpiry = test_input($_POST["cardExpiry"]);
+            $cardCVV = test_input($_POST["cardCVV"]);
+            $billingAddress = test_input($_POST["billingAddress"]);
 			
 			require "../../credentials.php";
 

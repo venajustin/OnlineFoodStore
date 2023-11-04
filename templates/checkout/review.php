@@ -91,18 +91,19 @@
                             if (!$row) {
                                 echo "No information set";
                             } else {
-                                echo "Address Line 1: " . $row["address1"] . "<br>";
+                                echo "Address: " . $row["address_line1"] . "<br>";
                                 if ($row["address2"] != "") {
-                                    echo "Address Line 2: " . $row["address2"];
+                                    echo "Address Line 2: " . $row["address_line2"];
                                 }
                                 echo "City: " . $row["city"] . "<br>";
                                 echo "State: " . $row["state_province"] . "<br>";
+                                echo "ZIP: " . $row["zip_code"] . "<br>";
+                                echo "Country: " . $row["country"] . "<br>";
 
 
 
-                                foreach ($row as &$value) {
-                                    echo $value . "<br>";
-                                }
+
+                                
 
                                 unset($value);
                             }

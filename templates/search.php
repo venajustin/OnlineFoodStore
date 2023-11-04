@@ -62,6 +62,7 @@ unset($_SESSION["login_error"]);
         // check connection 
         $search = $_POST["search"];
         $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
+        //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemS = mysqli_query($conn,$searchq);
 
     

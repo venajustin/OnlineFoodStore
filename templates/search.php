@@ -1,3 +1,12 @@
+<?php
+session_start();
+require "../../credentials.php";
+
+unset($_SESSION["signup_error"]);
+unset($_SESSION["login_error"]);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	
@@ -40,11 +49,9 @@
         <div class="searchResult" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
 			<h2>
                 <?php
-        session_start();
-        unset($_SESSION["signup_error"]);
-        unset($_SESSION["login_error"]);
         
-        require "../../credentials.php";
+        
+       
 
         
 
@@ -82,7 +89,7 @@
                     <div style='padding-left: 130px; padding-top: 5px;'>
                     <h3>$field2name</h3>
                     <h4>$field3name</h4>
-                    <h6>$field5name$</h6>
+                    <h6>$$field5name</h6>
                     <h6>$field4name lbs</h6>
                     </div>
                     </div>
@@ -103,13 +110,8 @@
     
 
     <?php
-        session_start();
-        unset($_SESSION["signup_error"]);
-        unset($_SESSION["login_error"]);
-        $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
-        $dbuser = 'server';
-        $dbpass = 'Kiifne9283';
-        $dbname = 'onlinefoodstore';
+       
+       
 
         
 

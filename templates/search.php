@@ -1,3 +1,12 @@
+<?php
+session_start();
+require "../../credentials.php";
+
+unset($_SESSION["signup_error"]);
+unset($_SESSION["login_error"]);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	
@@ -44,7 +53,7 @@
         unset($_SESSION["signup_error"]);
         unset($_SESSION["login_error"]);
         
-        require "../../credentials.php";
+       
 
         
 
@@ -103,13 +112,8 @@
     
 
     <?php
-        session_start();
-        unset($_SESSION["signup_error"]);
-        unset($_SESSION["login_error"]);
-        $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
-        $dbuser = 'server';
-        $dbpass = 'Kiifne9283';
-        $dbname = 'onlinefoodstore';
+       
+       
 
         
 

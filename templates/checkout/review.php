@@ -6,10 +6,7 @@
         exit;
     }  
 
-    $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
-    $dbuser = 'server';
-    $dbpass = 'Kiifne9283';
-    $dbname = 'onlinefoodstore';
+    require "../../../credentials.php";
 
 
     $uid = $_SESSION["user_id"];
@@ -22,7 +19,7 @@
     // address info
     $sql = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
     $address_results = mysqli_query($conn, $sql);
-    $sql = "SELECT card_number, card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
+    $sql = "SELECT card_type, RIGHT(card_number,4), card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
     $card_results = mysqli_query($conn, $sql);
 
 ?>
@@ -94,9 +91,15 @@
                             if (!$row) {
                                 echo "No information set";
                             } else {
-                                foreach ($row as &$value) {
-                                    echo $value . "<br>";
+                                echo "Address Line 1: " . $row["address_line1"] . "<br>";
+                                if ($row["address_line2"] != "") {
+                                    echo "Address Line 2: " . $row["address_line2"] . "<br>";
                                 }
+                                
+                                echo "City: " . $row["city"] . "<br>";
+                                echo "State: " . $row["state_province"] . "<br>";
+                                echo "ZIP: " . $row["zip_code"] . "<br>";
+                                echo "Country: " . $row["country"] . "<br>";
 
                                 unset($value);
                             }
@@ -132,12 +135,13 @@
                             if (!$row) {
                                 echo "No information set";
                             } else {
-                                foreach ($row as &$value) {
-                                    echo $value . "<br>";
-                                }
+                                echo "Card Type: " . $row["card_type"] . "<br>";
+                                echo "Card Number: XXXX-XXXX-XXXX-" . $row["RIGHT(card_number,4)"] . "<br>";
+                                echo "Expiry Date: " . $row["card_expiry"] . "<br>";
+                                echo "Billing Address: " . $row["billing_address"] . "<br>";
+
+                                unset($value);
                             }
-                            unset($value);
-                            
                         }
                         
                     

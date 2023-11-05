@@ -5,10 +5,7 @@
         header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
         exit;
     }
-        $hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
-        $dbuser = 'server';
-        $dbpass = 'Kiifne9283';
-        $dbname = 'onlinefoodstore';
+        require "../../../credentials.php";
     
     
         $uid = $_SESSION["user_id"];
@@ -16,12 +13,9 @@
     
         if (!$conn) { 
             die ("Connection failed: " . mysqli_connect_error());
-        } else {
-            echo "connection success";
         }
     
         // address info
-       
         $sql = "SELECT card_number, card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
         $card_results = mysqli_query($conn, $sql);
     
@@ -88,11 +82,11 @@
                 ?></h3>
                 <br><br><br>
                 <!--Change action to check card info.... or temp store card info for recipt in next html page-->
-                <form method = "post" action= "review.php" name="locationDetails">
+                <form method = "post" action= "../../routes/update_payment.php" name="payment_info">
                 
-                <!--Prolly can use the API to check if cards are valid, these radio buttons will matter to check for which API
+                    <!--Prolly can use the API to check if cards are valid, these radio buttons will matter to check for which API
                     OR there is prolly one API that checks all card types... either way good to know which card-->
-                <div class="radio-buttons">
+                    <div class="radio-buttons">
                         <label>
                             <input type="radio" name="cardType" value="Visa" required> <img src="../checkout/card_logos/visa-logo.jpeg" width = "100px", height = "56px">
                         </label>

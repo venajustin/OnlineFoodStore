@@ -18,10 +18,7 @@
         if ($_POST["username"] && $_POST["password"]) {
            
 
-			$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
-			$dbuser = 'server';
-			$dbpass = 'Kiifne9283';
-			$dbname = 'onlinefoodstore';
+			require "../../credentials.php";
 			
 
             // create connection 

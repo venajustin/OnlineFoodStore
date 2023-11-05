@@ -17,10 +17,16 @@
     } 
 
     // address info
-    $sql = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
-    $address_results = mysqli_query($conn, $sql);
-    $sql = "SELECT card_type, RIGHT(card_number,4), card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
-    $card_results = mysqli_query($conn, $sql);
+    $sql1 = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
+    $address_results = mysqli_query($conn, $sql1);
+    $sql2 = "SELECT card_type, RIGHT(card_number,4), card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
+    $card_results = mysqli_query($conn, $sql2);
+    $sql3 = "SELECT SUM(quantity) FROM shopping_cart WHERE u_id = '$uid'";
+    $sum_results = mysqli_query($conn, $sql3);
+    $sql4 = "SELECT SUM(shopping_cart.quantity*items.item_weight) FROM items, shopping_cart WHERE u_id = '$uid' and items.item_id = shopping_cart.i_id";
+    $totalWeight_results = mysqli_query($conn, $sql4);
+    $sql5 = "SELECT SUM(shopping_cart.quantity*items.item_price) FROM items, shopping_cart WHERE u_id = '$uid' and items.item_id = shopping_cart.i_id";
+    $totalPrice_results = mysqli_query($conn, $sql5);
 
 ?>
 <html lang="en" dir="ltr">
@@ -87,21 +93,19 @@
                         if (!$address_results) {
                             echo "No information set";
                         } else {
-                            $row = mysqli_fetch_assoc($address_results);
-                            if (!$row) {
+                            $address = mysqli_fetch_assoc($address_results);
+                            if (!$address) {
                                 echo "No information set";
                             } else {
-                                echo "Address Line 1: " . $row["address_line1"] . "<br>";
-                                if ($row["address_line2"] != "") {
-                                    echo "Address Line 2: " . $row["address_line2"] . "<br>";
+                                echo "Address Line 1: " . $address["address_line1"] . "<br>";
+                                if ($address["address_line2"] != "") {
+                                    echo "Address Line 2: " . $address["address_line2"] . "<br>";
                                 }
                                 
-                                echo "City: " . $row["city"] . "<br>";
-                                echo "State: " . $row["state_province"] . "<br>";
-                                echo "ZIP: " . $row["zip_code"] . "<br>";
-                                echo "Country: " . $row["country"] . "<br>";
-
-                                unset($value);
+                                echo "City: " . $address["city"] . "<br>";
+                                echo "State: " . $address["state_province"] . "<br>";
+                                echo "ZIP: " . $address["zip_code"] . "<br>";
+                                echo "Country: " . $address["country"] . "<br>";
                             }
                             
                         }
@@ -131,20 +135,16 @@
                         if (!$card_results) {
                             echo "No information set";
                         } else {
-                            $row = mysqli_fetch_assoc($card_results);
-                            if (!$row) {
+                            $card = mysqli_fetch_assoc($card_results);
+                            if (!$card) {
                                 echo "No information set";
                             } else {
-                                echo "Card Type: " . $row["card_type"] . "<br>";
-                                echo "Card Number: XXXX-XXXX-XXXX-" . $row["RIGHT(card_number,4)"] . "<br>";
-                                echo "Expiry Date: " . $row["card_expiry"] . "<br>";
-                                echo "Billing Address: " . $row["billing_address"] . "<br>";
-
-                                unset($value);
+                                echo "Card Type: " . $card["card_type"] . "<br>";
+                                echo "Card Number: XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "<br>";
+                                echo "Expiry Date: " . $card["card_expiry"] . "<br>";
+                                echo "Billing Address: " . $card["billing_address"] . "<br>";
                             }
                         }
-                        
-                    
                     ?>
                 </div>
             </div>
@@ -166,29 +166,90 @@
                 <h1 style="color: #46b35e;">Cart Summary</h1>
                 <br><br><br>
                 <div style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
-                    <h3>Number of Items: </h3>
-                    <!--Pull item count from cart and place here-->
+                    
+                <h3>Number of Items: </h3>
+                    <?php
+                        if (!$sum_results) {
+                            echo "No information set";
+                        } else {
+                            $sum = mysqli_fetch_assoc($sum_results);
+                            if (!$sum) {
+                                echo "No information set";
+                            } else {
+                                echo $sum["SUM(quantity)"];
+                            }
+                        }
+                    ?>
                     <br><br><br>
                     <h3>Total Weight: </h3>
-                    <!--Pull total weight from cart and place here-->
+                    <?php
+                        if (!$totalWeight_results) {
+                            echo "No information set";
+                        } else {
+                            $totalWeight = mysqli_fetch_assoc($totalWeight_results);
+                            if (!$totalWeight) {
+                                echo "No information set";
+                            } else {
+                                echo $totalWeight["SUM(shopping_cart.quantity*items.item_weight)"];
+                            }
+                        }
+                    ?>
                     <br><br>
                 </div>
                 <br>
                 <div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
                     <h3>Subtotal: </h3>
-                    <!--Insert total item cost here-->
+                    <?php
+                        if (!$totalPrice_results) {
+                            echo "No information set";
+                        } else {
+                            $sub = mysqli_fetch_assoc($totalPrice_results);
+                            if (!$sub) {
+                                echo "No information set";
+                            } else {
+                                echo "$" . $sub["SUM(shopping_cart.quantity*items.item_price)"];
+                                $total = $sub["SUM(shopping_cart.quantity*items.item_price)"];
+                            }
+                        }
+                    ?>
                     <br><br><br>
-                    <h3>Shipping: </h3>
-                    <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
+                    <h3>Delivery Fee: </h3>
+                    <?php
+                        if (!$totalWeight_results) {
+                            echo "No information set";
+                        } else {
+                            if (!$totalWeight) {
+                                echo "No information set";
+                            } elseif ($totalWeight["SUM(shopping_cart.quantity*items.item_weight)"] < 20){
+                                echo "$0.00";
+                            } else {
+                                echo "$5.00";
+                                $total += 5;
+                            }
+                        }
+                    ?>
                     <br><br><br>
                     <h3>Sales Tax: </h3>
-                    <!--total item cost * 9.38% omg why is our taxes so high here-->
+                    <?php
+                        if (!$totalPrice_results) {
+                            echo "No information set";
+                        } else {
+                            if (!$sub) {
+                                echo "No  set";
+                            } else {
+                                $stax = number_format($sub["SUM(shopping_cart.quantity*items.item_price)"]*0.083, 2);
+                                echo "$" . $stax;
+                                $total += $stax;
+                            }
+                        }
+                    ?>
                     <br><br>
                 </div>
                 <br>
                 <h3>Total: </h3>
-                <!--calculate and show total here-->
-
+                <?php
+                    echo "$" . $total;
+                ?>
             </div>
     </div>
    

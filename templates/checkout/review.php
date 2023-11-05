@@ -27,6 +27,8 @@
     $totalWeight_results = mysqli_query($conn, $sql4);
     $sql5 = "SELECT SUM(shopping_cart.quantity*items.item_price) FROM items, shopping_cart WHERE u_id = '$uid' and items.item_id = shopping_cart.i_id";
     $totalPrice_results = mysqli_query($conn, $sql5);
+    $sql6 = "SELECT value FROM global_variables WHERE name = 'sales_tax'";
+    $salesTax_results = mysqli_query($conn, $sql6);
 
 ?>
 <html lang="en" dir="ltr">
@@ -235,9 +237,18 @@
                             echo "No information set";
                         } else {
                             if (!$sub) {
-                                echo "No  set";
+                                echo "No information set";
                             } else {
-                                $stax = number_format($sub["SUM(shopping_cart.quantity*items.item_price)"]*0.083, 2);
+                                if (!$salesTax_results) {
+                                    echo "No information set";
+                                } else {
+                                    $tax = mysqli_fetch_assoc($salesTax_results);
+                                    if (!$tax) {
+                                        echo "No information set";
+                                    } 
+                                }
+                                
+                                $stax = number_format($sub["SUM(shopping_cart.quantity*items.item_price)"]*$tax["value"], 2);
                                 echo "$" . $stax;
                                 $total += $stax;
                             }

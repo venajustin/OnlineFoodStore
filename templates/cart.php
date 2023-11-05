@@ -18,6 +18,9 @@
 	<style>
 	</style>
     <body>
+
+		<!--Page Header-->
+
         <div class="header">
             <a href="home.php" class="logo">
 				<img src="../icons/food.png">
@@ -46,7 +49,10 @@
 					}
 				?></a>
         </div>
+
 		
+		<!--List Containing Items from Shopping Cart-->
+
 		<div name="cartContainer" style="z-index:-1; min-height: 160px; height: fit-content; position: absolute; left: 3%; top: 14%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
 			<div style="padding: 10px; width: 900px; border: none; background-color: white; border-bottom: 1px solid grey;">
 				<h1>Shopping Cart</h1>
@@ -60,41 +66,60 @@
 			</div>
 			<ul class="cart" id="cart">
 				<?php
-					//foreach ($array as $name ) {
-						echo "
-							<li>
-								<button class='cartTile'>
-								ItemName<br>Price<br>Picture<br>quantity
-								</button>
-							</li>";
-					//}
+					session_start();
+					unset($_SESSION["signup_error"]);
+						unset($_SESSION["login_error"]);
+						$hostname = 'onlinefoodstore.c2zn58sjaobh.us-west-1.rds.amazonaws.com';
+						$dbuser = 'server';
+						$dbpass = 'Kiifne9283';
+						$dbname = 'onlinefoodstore';					
+						
+				
+				
+						// create connection 
+						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+											// check connection 
+						$search = $_POST["search"];
+						$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+						$itemS = mysqli_query($conn,$searchq);
+										
+				
+						if (!$conn ) { 
+							die ("Connection failed: " . mysqli_connect_error());
+						} 
+							else {
+							if ($itemS) {
+				
+								//Display Items in SHopping Cart
+
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
+									<div class='searchTile' style='background-color: white; padding-top: 5px;'>
+									<div style='position: absolute; height:150px; width: 120px; background-color: grey;
+									'></div>
+									<div style='padding-left: 130px; padding-top: 5px;'>
+									<h3>$field2name</h3>
+									<h4>$field3name</h4>
+									<h6>$field5name$</h6>
+									<h6>$field4name lbs</h6>
+									</div>
+									</div>
+									";
+									echo "";
+								}
+							
+								/* free result set */
+								$itemS->free();
+							}
+							
+						
+						} 
 				?>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-				<li>
-					<button class="cartTile">
-						
-					</button>
-				</li>
-
 			</ul>
 		</div>
 
@@ -102,57 +127,100 @@
 				<div class="reciept" style="padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: fit-content">
 					<ul style="list-style-type: none; width: 340px; height:fit-content; position: fixed; text-align: right">
 						<?php
-							//foreach ($array as $price ) {
-								echo "
+								// create connection 
+						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+						// check connection 
+						$search = $_POST["search"];
+						$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+						$itemS = mysqli_query($conn,$searchq);
+										
+
+						if (!$conn ) { 
+							die ("Connection failed: " . mysqli_connect_error());
+						} 
+							else {
+							if ($itemS) {
+
+								//Print Prices
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
 									<li>
-										<br>
-										$00.00
-									</li>";
-							//}
+									<br>
+									$$field5name
+									</li>
+
+									";
+									echo "";
+								}
+							
+								/* free result set */
+								$itemS->free();
+							}
+						} 
 						?>
-						<li>
-							<br>
-							$00.00
-						</li>
-						<li>
-							<br>
-							$00.00
-						</li>
-						<br>
-						<li style='font-weight: bold;'>
-							<br>
-							$00.00
-						</li>
-					</ul>
-					<ul style="list-style-type: none;width: 340px; height:fit-content; position: relative; text-align: left">
-						<?php
-							//foreach ($array as $name ) {
-								echo "
+					<ul style="list-style-type: none;width: fit-content; height:fit-content; position: relative; text-align: left">
+					<?php
+								// create connection 
+						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+						// check connection 
+							$search = $_POST["search"];
+							$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+							$itemS = mysqli_query($conn,$searchq);
+										
+
+							if (!$conn ) { 
+								die ("Connection failed: " . mysqli_connect_error());
+							} 
+								else {
+								if ($itemS) {
+
+								//Print Names
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
 									<li>
-										<br>
-										Name
-									</li>";
-							//}
-						?>
-						<li>
-							<br>
-							Name
-						</li>
-						<li>
-							<br>
-							Name
-						</li>							
-					</ul>
+									<br>
+									$field2name
+									</li>
+
+									";
+									echo "";
+								}
+							
+								/* free result set */
+								$itemS->free();
+							}
+							
+						
+						} 
+					?>
+				
+				<!--Subtotal-->
+
 					<br>
 					<div style="padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;">
 						<h2>Subtotal:</h2>
 					</div>
+
+				<!--Checkout Button-->
+
 					<div style="position: relative; border-top: 1px solid grey; padding-top: 2%;">
 						<a href="checkout/review.php">
 						<button style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
 							Checkout</button>
 						</a>
 					</div>
+
+
 				</div>
 			</li>
 			<li style="list-style-type: none;">

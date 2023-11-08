@@ -105,7 +105,7 @@
                     <br><br>
                     <input class="inputField" style="text-indent: 10px" placeholder="Card Number" type="text" name="cardNumber" required>
                     <br><br>
-                    <input class="inputField" style="text-indent: 10px" placeholder="Card Expiry Date (MM/YY)" type="text" name="cardExpiry" required>
+                    <input class="inputField" style="text-indent: 10px" placeholder="Card Expiry Date (XXXX-XX)" type="text" name="cardExpiry" required>
                     <br><br>
                     <input class="inputField" style="text-indent: 10px" placeholder="CVV" type="text" name="cardCVV" required>
                     <br><br>

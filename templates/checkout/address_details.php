@@ -95,8 +95,13 @@
                     <br><br>
                     <input class= "inputField" style="text-indent: 10px" placeholder="Zip Code" type="text" name="zipCode" required>
                     <br><br>
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Country" type="text" name="country" required>
-                    <br><br>
+                        <select class="inputField" name="country" id="country" required>
+                        <option value="select" disabled>--Select Country--</option>            
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="MX">Mexico</option>
+                        </select>                    
+                        <br><br>
                     <input type="submit" class="inputField" value="Continue" id = "submitButton">
 
                 </form>

@@ -2,6 +2,10 @@
 session_start();
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
+
+if (!isset($_SESSION["username"])) {
+    header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
+}
 ?>
 
 <!DOCTYPE html>

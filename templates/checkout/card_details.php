@@ -34,6 +34,38 @@
             padding-left: 10px;
         }
     </style>
+     <script>
+     function validateForm() {
+        const cardExpiry = document.forms["payment_info"]["cardExpiry"].value;
+        const cardNumber = document.forms["payment_info"]["cardNumber"].value;
+        const cardType = document.forms["payment_info"]["cardType"].value;
+        const cardCVV = document.forms["payment_info"]["cardCVV"].value;
+
+        const visaMastercardPattern = /^\d{16}$/; // 16 digits for Visa and Mastercard
+        const americanExpressPattern = /^\d{15}$/; // 15 digits for American Express
+        const expiryPattern = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY format
+        const CVVPattern = /^\d{3}$/; // only wants 3 digits
+
+        if ((cardType === "American Express" && !americanExpressPattern.test(cardNumber)) ||
+            (cardType !== "American Express" && !visaMastercardPattern.test(cardNumber))) {
+            alert("Error: Invalid Card Number!");
+            return false; // Prevent form submission
+        }
+
+        if (!expiryPattern.test(cardExpiry)) {
+            alert("Error: Invalid Expiration Date");
+            return false; // Prevent form submission
+        }
+
+        if (!CVVPattern.test(cardCVV)) {
+            alert("Error: Invalid CVV");
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+
 	<head>
         <meta charset="utf-8">
         <title>Checkout: Enter Address</title> 
@@ -82,10 +114,8 @@
                 ?></h3>
                 <br><br><br>
                 <!--Change action to check card info.... or temp store card info for recipt in next html page-->
-                <form method = "post" action= "../../routes/update_payment.php" name="payment_info">
+                <form method="post" action="../../routes/update_payment.php" name="payment_info" onsubmit="return validateForm()">
                 
-                    <!--Prolly can use the API to check if cards are valid, these radio buttons will matter to check for which API
-                    OR there is prolly one API that checks all card types... either way good to know which card-->
                     <div class="radio-buttons">
                         <label>
                             <input type="radio" name="cardType" value="Visa" required> <img src="../checkout/card_logos/visa-logo.jpeg" width = "100px", height = "56px">
@@ -105,7 +135,7 @@
                     <br><br>
                     <input class="inputField" style="text-indent: 10px" placeholder="Card Number" type="text" name="cardNumber" required>
                     <br><br>
-                    <input class="inputField" style="text-indent: 10px" placeholder="Card Expiry Date (XXXX-XX)" type="text" name="cardExpiry" required>
+                    <input class="inputField" style="text-indent: 10px" placeholder="Card Expiry Date (MM/YYYY)" type="text" name="cardExpiry" required>
                     <br><br>
                     <input class="inputField" style="text-indent: 10px" placeholder="CVV" type="text" name="cardCVV" required>
                     <br><br>
@@ -114,6 +144,7 @@
                     <input type="submit" class="inputField" value="Continue" id = "submitButton">
 
                 </form>
+               
                
 
             </div>

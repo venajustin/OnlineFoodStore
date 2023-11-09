@@ -13,6 +13,55 @@ if (!isset($_SESSION["username"])) {
 
 	
 	<head>
+    <style>
+        /* Style for the main container */
+        .container {
+            width: 90%; /* Change width to 90% */
+            height: 30vh; /* Height set to 30% of the viewport height */
+            margin: 0 auto; /* Center the container */
+        }
+
+        /* Style for the navigation bar */
+        .navbar {
+            background-color: #1c3144; /* Dark blue background */
+            width: 90%; /* Change width to 90% */
+            overflow: hidden;
+            margin: 0 auto; /* Center the navbar */
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change hover background color to a lighter complementary shade */
+        .navbar a:hover {
+            background-color: #254261; /* A lighter complementary shade */
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Style for the main content area */
+        .content {
+            background-color: white;
+            padding: 20px;
+        }
+
+        /* Hide content initially */
+        .content > div {
+            display: none;
+            height: 80vh;
+        }
+
+        /* Show content based on button click */
+        .content div.active {
+            display: block;
+        }
+    </style>
 		<link rel="shortcut icon" href="icons/grocery.ico"/>
         <meta charset="utf-8">
         <title>Online Food Store</title>
@@ -48,37 +97,49 @@ if (!isset($_SESSION["username"])) {
 					}
 				?></a>
         </div>
-
-                </div>
-                <br><br><br><br><br><br><br><br>
-                <br>
-                <h2>user account details and settings page</h2>
-                <br>
-                <?php
-
-
-
-                echo "Signed in as: " . $_SESSION["username"] ;
-
+             
+       <div class="container" style ="margin-top: 10%;">
+       <div class="navbar">
+        <a href="#" onclick="showTab('tab1')">Account Settings</a>
+        <a href="#" onclick="showTab('tab2')">Address Details</a>
+        <a href="#" onclick="showTab('tab3')">Payment Methods</a>
+        
+        <?php
                 if ($_SESSION["is_employee"]) {
-                    echo "<br>You are a manager of online food store!!!";
-                    echo "<br><a href='./managerpage.php'>MANAGER PAGE</a>";
+                    echo('<a href="managerpage.php">Manager Page</a>');
                 }
-
-                    
-
                 ?>
-                <br>
-                <a href="../routes/logout.php">Logout</a>
+                
+        <a href="../routes/logout.php" onclick="showTab('tab4')">Logout</a>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="active" id="tab1">Tab 1 Content
+                
 
+            </div>
+            <div id="tab2">Tab 2 Content</div>
+            <div id="tab3">Tab 3 Content</div>
+            <div id="tab4"> </div>
+        </div>
+    </div>
 
-                <br>
-                <br>
-                <br>
-                Debug Info - Session Variables:
-                <pre><?php print_r($_SESSION); ?></pre>
-                </div>
+    <script>
+        function showTab(tabId) {
+            const contentDivs = document.querySelectorAll(".content > div");
 
+            // Hide all content divs
+            contentDivs.forEach(div => {
+                div.classList.remove("active");
+            });
+
+            // Show the selected tab
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+        }
+    </script>
     </body>
 </html>
 

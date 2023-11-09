@@ -6,6 +6,7 @@ unset($_SESSION["login_error"]);
 if (!isset($_SESSION["username"])) {
     header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -114,12 +115,40 @@ if (!isset($_SESSION["username"])) {
     </div>
     <div class="container">
         <div class="content">
-            <div class="active" id="tab1">Tab 1 Content
+            <div class="active" id="tab1"> Account Info
                 
 
             </div>
-            <div id="tab2">Tab 2 Content</div>
-            <div id="tab3">Tab 3 Content</div>
+            <div id="tab2">Shipping Address
+                <br>
+                <div style="flex-grow: 5"> 
+                    <?php
+                        if (!$address_results) {
+                            echo "No information set";
+                        } else {
+                            $address = mysqli_fetch_assoc($address_results);
+                            if (!$address) {
+                                echo "No information set";
+                            } else {
+                                echo "Address Line 1: " . $address["address_line1"] . "<br>";
+                                if ($address["address_line2"] != "") {
+                                    echo "Address Line 2: " . $address["address_line2"] . "<br>";
+                                }
+                                
+                                echo "City: " . $address["city"] . "<br>";
+                                echo "State: " . $address["state_province"] . "<br>";
+                                echo "ZIP: " . $address["zip_code"] . "<br>";
+                                echo "Country: " . $address["country"] . "<br>";
+                            }
+                            
+                        }
+                        
+                    
+                    ?>
+                </div>
+
+            </div>
+            <div id="tab3">Payment Info</div>
             <div id="tab4"> </div>
         </div>
     </div>

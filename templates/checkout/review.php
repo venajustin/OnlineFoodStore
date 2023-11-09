@@ -44,7 +44,7 @@
     </style>
 	<head>
         <meta charset="utf-8">
-        <title>Checkout: Enter Address</title> 
+        <title>Checkout</title> 
         <!--if account saves address skip this page-->
 		<meta name="viewport">
         <link rel="stylesheet" href="../style.css">

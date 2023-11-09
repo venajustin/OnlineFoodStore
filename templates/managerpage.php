@@ -20,6 +20,56 @@ unset($_SESSION["login_error"]);
         <title>Online Food Store</title>
 		<meta name="viewport">
         <link rel="stylesheet" href="style.css">
+
+		<style>
+			/* Style for the main container */
+			.container {
+				width: 90%; /* Change width to 90% */
+				height: 30vh; /* Height set to 30% of the viewport height */
+				margin: 0 auto; /* Center the container */
+			}
+
+			/* Style for the navigation bar */
+			.navbar {
+				background-color: #1c3144; /* Dark blue background */
+				width: 90%; /* Change width to 90% */
+				overflow: hidden;
+				margin: 0 auto; /* Center the navbar */
+			}
+
+			.navbar a {
+				float: left;
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			/* Change hover background color to a lighter complementary shade */
+			.navbar a:hover {
+				background-color: #254261; /* A lighter complementary shade */
+				color: white;
+				text-decoration: none;
+			}
+
+			/* Style for the main content area */
+			.content {
+				background-color: white;
+				padding: 20px;
+			}
+
+			/* Hide content initially */
+			.content > div {
+				display: none;
+				height: 80vh;
+			}
+
+			/* Show content based on button click */
+			.content div.active {
+				display: block;
+			}
+		</style>
     </head>
 
     <body>
@@ -47,8 +97,6 @@ unset($_SESSION["login_error"]);
 		<div style="position: absolute; right: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
 		<div style="margin-left: 2%; margin-right: 2%; margin-top: 100px;">
-
-			<!-- <div style="align-self: center;"> -->
 				<div class="search-container" style="padding-top: 10px; padding-bottom: 10px; padding-left: 1%; padding-right: 1%; background-color: var(--dark); border-radius: 50px; height: 60px; width: 82%; text-align: center;">
 					<form action="../routes/action_page.php">
 						<input type="text" placeholder="Search.." name="search" method="post" style="width: 88%; height: 40px;">
@@ -62,35 +110,77 @@ unset($_SESSION["login_error"]);
 						</button>
 					</form>
 				</div>
-			<!-- </div> -->
 
-			<!-- fix this later ^^-->
-			<!-- also need a logout button, maybe a drop down menu -->
 			<br><br><br><br><br> 
 
 			<h3> 
 				<a href="../routes/account_link.php" style="color: black;" onmouseover="this.style.color='white'" onmouseout="this.style.color='black'">User settings</a>
 			</h3>
-			
-			<br><br>
+		
 
-			<h3>Dashboard: </h3>
-			<p>- Total sales and the number of completed orders</p>
-			<p>- Include table or card in the center</p>
+			
+			<div class="container" style ="margin-top: 5%;">
+				<div class="navbar">
+					<a href="#" onclick="showTab('tab1')">Dashboard</a>
+					<a href="#" onclick="showTab('tab2')">Order Management</a>
+					<a href="#" onclick="showTab('tab3')">Inventory Management</a>
+							
+					<a href="../routes/logout.php" onclick="showTab('tab4')">Logout</a>
+				</div>
+				<div class="container">
+					<div class="content">
+						<div class="active" id="tab1">
+							<p>- Total sales and the number of completed orders</p>
+							<p>- Include table or card in the center</p>
+						</div>
+						<div id="tab2">
+							<p>- List of completed orders</p>
+							<p>- Use a table</p>
+						</div>
+						<div id="tab3">
+							<p>- List all products in the database here</p>
+							<p>- Use a table</p>
+						</div>
+						<div id="tab4"> </div>
+					</div>
+				</div>
 
-			<br><br>
-			
-			<h3>Order Management:</h3>
-			<p>- List of completed orders</p>
-			<p>- Use a table</p>
-			
-			<br><br>
-			
-			<h3>Inventory Management: Add or remove products</h3>
-			<p>- List all products in the database here</p>
-			<p>- Use a table</p>
+				<script>
+					function showTab(tabId) {
+						const contentDivs = document.querySelectorAll(".content > div");
+
+						// Hide all content divs
+						contentDivs.forEach(div => {
+							div.classList.remove("active");
+						});
+
+						// Show the selected tab
+						const selectedTab = document.getElementById(tabId);
+						if (selectedTab) {
+							selectedTab.classList.add("active");
+						}
+					}
+				</script>
+			</div>
+
 		</div>
 		
+
+
+		<div style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1400px; margin-left: 45%; border: none">
+			<img src="../icons/city.png" style="width: 15%; margin-left: 40%; margin-right: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
+		</div>
+
+		<div style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1500px; left: 50%; transform: translateX(-50%); border: none;">
+			<a href="home.php" class="logo">
+				<img src="../icons/food-dark.png" style="width: 5%; display: block; margin: 0 auto;">
+			</a>
+		</div>
+
+		<div style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1400px; margin-right: 50%; border: none">
+			<img src="../icons/city.png" style="transform: scaleX(-1); width: 15%; margin-right: 40%; margin-left: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
+		</div>
+
     </body>
 
 </html>

@@ -55,7 +55,7 @@ unset($_SESSION["login_error"]);
 				?></a>
         </div>
  
-        <div class="searchResult" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
+        <div class="searchResult" style="width: 80%; height: 80%; background-color: white; position: absolute; top: 88px; margin-left: 10%">
 			<h2>
                 <?php
 
@@ -86,21 +86,24 @@ unset($_SESSION["login_error"]);
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
                     echo "
-                    <form action='../templates/item.php' method='post' value =$field1name>
-                    <button style='width: fit-content'>
-                        <div class='searchTile' style='background-color: white; padding-top: 5px;'>
-                        <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
-                            <div style='padding-left: 130px; padding-top: 5px;'>
-                            <h3>$field2name</h3>
-                            <h4>$field3name</h4>
-                            <h6>$$field5name</h6>
-                            <h6>$field4name lbs</h6>
-                            </div>
+
+                        <div style='position: absolute; left: 20px; height:500px; width: 500px; background-color: grey;'></div>
+
+                        <div style='position: fixed; left: 40%; height:300px; width: 40%; px;padding-left: 130px; padding-top: 5px;'>
+                        <h3>$field2name</h3>
+                        <h4>$field3name</h4>
+                        <h6>$$field5name</h6>
+                        <h6>$field4name lbs</h6>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
+							Add to Cart</button>
+						</a>
                         </div>
-					
-					</button>
-				    </form>
-                    
+  
                     ";
                     echo "";
                 }

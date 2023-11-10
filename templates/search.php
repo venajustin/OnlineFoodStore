@@ -77,7 +77,6 @@ unset($_SESSION["login_error"]);
             if ($itemS) {
 
                 /* fetch associative array */
-                echo "<h2 style='text-align:center;'>Showing results for '$search'</h3>";
                 echo "<br>";
                 echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
@@ -86,6 +85,7 @@ unset($_SESSION["login_error"]);
                     $field3name = $row["item_description"];
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
+                    $count += 1;
                     echo "
                     <form action='../templates/item.php' method='post'>
                         <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$field1name>
@@ -104,6 +104,8 @@ unset($_SESSION["login_error"]);
                     ";
                     echo "";
                 }
+                echo "<h2 style='text-align:center;'>$count results for '$search'</h3>";
+                echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>$count results for '$search'</h3>";
             
                 /* free result set */
                 $itemS->free();

@@ -92,7 +92,7 @@ unset($_SESSION["login_error"]);
                 }
             
                 /* free result set */
-                $itemS->free();
+                $itemidS->free();
             }
             exit();
         

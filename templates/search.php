@@ -67,7 +67,7 @@ unset($_SESSION["login_error"]);
         $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemS = mysqli_query($conn,$searchq);
-
+        $count = 0;
     
 
         if (!$conn ) { 
@@ -77,7 +77,6 @@ unset($_SESSION["login_error"]);
             if ($itemS) {
 
                 /* fetch associative array */
-                echo "Showing results for '$search':";
                 echo "<br>";
                 echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
@@ -86,25 +85,27 @@ unset($_SESSION["login_error"]);
                     $field3name = $row["item_description"];
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
+                    $count += 1;
                     echo "
-                    <form action='../templates/item.php' method='post' value =$field1name>
-                    <button style='width: fit-content'>
-                        <div class='searchTile' style='background-color: white; padding-top: 5px;'>
-                        <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
-                            <div style='padding-left: 130px; padding-top: 5px;'>
-                            <h3>$field2name</h3>
-                            <h4>$field3name</h4>
-                            <h6>$$field5name</h6>
-                            <h6>$field4name lbs</h6>
+                    <form action='../templates/item.php' method='post'>
+                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$field1name>
+                            <div class='searchTile' style='background-color: white; padding-top: 5px;'>
+                                <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
+                                <div style='padding-left: 130px; padding-top: 5px;'>
+                                    <h3>$field2name</h3>
+                                    <h4>$field3name</h4>
+                                    <h6>$$field5name</h6>
+                                    <h6>$field4name lbs</h6>
+                                </div>
                             </div>
-                        </div>
-					
-					</button>
+                        </button>
 				    </form>
                     
                     ";
                     echo "";
                 }
+                echo "<h2 style='text-align:center;'>$count results for '$search'</h3>";
+                echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>$count results for '$search'</h3>";
             
                 /* free result set */
                 $itemS->free();

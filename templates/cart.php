@@ -79,7 +79,7 @@ unset($_SESSION["login_error"]);
 				// check connection 
 				$sql = "SELECT * FROM shopping_cart, items WHERE u_id = $uid and i_id = item_id";
 				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
-				$itemS = mysqli_query($conn,$sql);
+				//$itemS = mysqli_query($conn,$sql);
 
 				echo"hello";
 
@@ -184,6 +184,7 @@ unset($_SESSION["login_error"]);
 								$itemS->free();
 							}
 						} 
+						echo"hello";
 						?>
 					<ul style="list-style-type: none;width: fit-content; height:fit-content; position: relative; text-align: left">
 					<?php

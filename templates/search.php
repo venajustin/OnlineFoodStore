@@ -79,6 +79,7 @@ unset($_SESSION["login_error"]);
                     $field5name = $row["item_price"];
                     echo "
                     <form action='../templates/item.php' method='post' value =$field1name>
+                    <button style='width: fit-content'>
                         <div class='searchTile' style='background-color: white; padding-top: 5px;'>
                         <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
                             <div style='padding-left: 130px; padding-top: 5px;'>

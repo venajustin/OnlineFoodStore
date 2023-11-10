@@ -22,54 +22,58 @@ unset($_SESSION["login_error"]);
         <link rel="stylesheet" href="style.css">
 
 		<style>
-			/* Style for the main container */
-			.container {
-				width: 90%; /* Change width to 90% */
-				height: 30vh; /* Height set to 30% of the viewport height */
-				margin: 0 auto; /* Center the container */
-			}
+        /* Style for the main container */
+        .container {
+            width: 90%;
+            height: 30%;
+            margin: 0 auto;
+        }
 
-			/* Style for the navigation bar */
-			.navbar {
-				background-color: #1c3144; /* Dark blue background */
-				width: 90%; /* Change width to 90% */
-				overflow: hidden;
-				margin: 0 auto; /* Center the navbar */
-			}
+        /* Style for the navigation bar */
+        .navbar {
+            background-color: #1c3144;
+            width: 90%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
 
-			.navbar a {
-				float: left;
-				display: block;
-				color: white;
-				text-align: center;
-				padding: 14px 16px;
-				text-decoration: none;
-			}
+        .navbar button {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
 
-			/* Change hover background color to a lighter complementary shade */
-			.navbar a:hover {
-				background-color: #254261; /* A lighter complementary shade */
-				color: white;
-				text-decoration: none;
-			}
+        /* Change hover background color to a lighter complementary shade */
+        .navbar button:hover {
+            background-color: #254261;
+            color: white;
+            text-decoration: none;
+        }
+        
 
-			/* Style for the main content area */
-			.content {
-				background-color: white;
-				padding: 20px;
-			}
+        /* Style for the main content area */
+        .content {
+            background-color: white;
+            padding: 20px;
+        }
 
-			/* Hide content initially */
-			.content > div {
-				display: none;
-				height: 80vh;
-			}
+        /* Hide content initially */
+        .content>div {
+            display: none;
+            height: 80vh;
+        }
 
-			/* Show content based on button click */
-			.content div.active {
-				display: block;
-			}
-		</style>
+        /* Show content based on button click */
+        .content div.active {
+            display: block;
+        }
+    </style>
     </head>
 
     <body>
@@ -113,19 +117,14 @@ unset($_SESSION["login_error"]);
 
 			<br><br><br><br><br> 
 
-			<h3> 
-				<a href="../routes/account_link.php" style="color: black;" onmouseover="this.style.color='white'" onmouseout="this.style.color='black'">User settings</a>
-			</h3>
-		
-
 			
 			<div class="container" style ="margin-top: 5%;">
 				<div class="navbar">
-					<a href="#" onclick="showTab('tab1')">Dashboard</a>
-					<a href="#" onclick="showTab('tab2')">Order Management</a>
-					<a href="#" onclick="showTab('tab3')">Inventory Management</a>
-							
-					<a href="../routes/logout.php" onclick="showTab('tab4')">Logout</a>
+				<button onclick="showTab('tab1')">Dashboard</button>
+				<button onclick="showTab('tab2')">Order Management</button>
+				<button onclick="showTab('tab3')">Inventory Management</button>
+				<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
+            	<button onclick="window.location.href='../routes/logout.php'">Logout</button>
 				</div>
 				<div class="container">
 					<div class="content">

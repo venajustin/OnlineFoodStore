@@ -45,17 +45,18 @@ unset($_SESSION["login_error"]);
 					}
 				?></a>
         </div>
-
-        <div class="itemPage" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
+ 
+        <div class="searchResult" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
 			<h2>
+                <?php
 
-<?php
         // create connection 
         $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
         // check connection 
         $itemid = $_POST["itemid"];
-        $itemidq = "SELECT * FROM items WHERE item_id=$itemid;
+        $itemidq = "SELECT * FROM items WHERE item_id=$itemid";
+        //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemidS = mysqli_query($conn,$itemidq);
 
     
@@ -67,26 +68,30 @@ unset($_SESSION["login_error"]);
             if ($itemidS) {
 
                 /* fetch associative array */
-                echo "Showing results for '$search':";
                 echo "<br>";
                 echo "<br>";
-                while ($row = $itemS->fetch_assoc()) {
+                while ($row = $itemidS->fetch_assoc()) {
                     $field1name = $row["item_id"];
                     $field2name = $row["item_name"];
                     $field3name = $row["item_description"];
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
                     echo "
-                    <div class='searchTile' style='background-color: white; padding-top: 5px;'>
-                    <div style='position: absolute; height:150px; width: 120px; background-color: grey;
-                    '></div>
-                    <div style='padding-left: 130px; padding-top: 5px;'>
-                    <h3>$field2name</h3>
-                    <h4>$field3name</h4>
-                    <h6>$$field5name</h6>
-                    <h6>$field4name lbs</h6>
-                    </div>
-                    </div>
+                    <form action='../templates/item.php' method='post' value =$field1name>
+                    <button style='width: fit-content'>
+                        <div class='searchTile' style='background-color: white; padding-top: 5px;'>
+                        <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
+                            <div style='padding-left: 130px; padding-top: 5px;'>
+                            <h3>$field2name</h3>
+                            <h4>$field3name</h4>
+                            <h6>$$field5name</h6>
+                            <h6>$field4name lbs</h6>
+                            </div>
+                        </div>
+					
+					</button>
+				    </form>
+                    
                     ";
                     echo "";
                 }
@@ -99,3 +104,11 @@ unset($_SESSION["login_error"]);
             } 
 
     ?>
+    </h2>
+		</div> 
+    
+		
+    </body>
+</html>
+
+

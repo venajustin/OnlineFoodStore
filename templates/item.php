@@ -91,6 +91,7 @@ unset($_SESSION["login_error"]);
 
                         <div style='position: fixed; left: 40%; height:300px; width: 40%; px;padding-left: 130px; padding-top: 5px;'>
                         <h3>$field2name</h3>
+                        <br>
                         <h4>$field3name</h4>
                         <h6>$$field5name</h6>
                         <h6>$field4name lbs</h6>

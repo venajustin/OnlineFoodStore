@@ -18,11 +18,15 @@ require "../../credentials.php";
         die ("Connection failed: " . mysqli_connect_error());
     } 
 
-    // address info
+    //user info
     $sql1 = "SELECT address_line1, address_line2, city, state_province, zip_code, country FROM address_information WHERE user_id = '$uid'";
     $address_results = mysqli_query($conn, $sql1);
     $sql2 = "SELECT card_type, RIGHT(card_number,4), card_expiry, card_cvv, billing_address FROM payment_information WHERE user_id = '$uid'";
     $card_results = mysqli_query($conn, $sql2);
+    $sql3 = "SELECT username, password, is_employee FROM users WHERE user_id = '$uid'";
+    $account_results = mysqli_query($conn, $sql3);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -63,6 +67,7 @@ require "../../credentials.php";
             color: white;
             text-decoration: none;
         }
+        
 
         /* Style for the main content area */
         .content {
@@ -110,9 +115,7 @@ require "../../credentials.php";
         <?php
           if (isset($_SESSION["username"])) {
               echo $_SESSION["username"] . "<br>User Settings";
-          } else {
-              echo "Login /<br>Register";
-          }
+          } 
           ?>
           </a>
     </div>
@@ -134,6 +137,16 @@ require "../../credentials.php";
         <div class="container">
             <div class="content">
                 <div class="active" id="tab1"> Account Info
+                <div style="flex-grow: 5">
+                        <?php
+                         
+                            $userData = mysqli_fetch_assoc($account_results);
+                           
+                                echo "Username: " . $_SESSION["username"] . "<br>";
+
+
+                        ?>
+                    </div>
 
 
                 </div>

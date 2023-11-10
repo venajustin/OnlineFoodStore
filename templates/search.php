@@ -49,12 +49,6 @@ unset($_SESSION["login_error"]);
         <div class="searchResult" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
 			<h2>
                 <?php
-        
-        
-       
-
-        
-
 
         // create connection 
         $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);

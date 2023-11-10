@@ -3,6 +3,8 @@ session_start();
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
 
+$_SESSION["return_to"] = "templates/account.php";
+
 if (!isset($_SESSION["username"])) {
     header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
 }
@@ -37,7 +39,7 @@ require "../../credentials.php";
         /* Style for the main container */
         .container {
             width: 90%;
-            height: 30vh;
+            height: 30%;
             margin: 0 auto;
         }
 
@@ -78,7 +80,7 @@ require "../../credentials.php";
         /* Hide content initially */
         .content>div {
             display: none;
-            height: 80vh;
+            height: 80%;
         }
 
         /* Show content based on button click */
@@ -111,20 +113,30 @@ require "../../credentials.php";
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" x="0px" y="0px"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M18.2001 21.9854C18.2001 20.3285 19.5432 18.9854 21.2001 18.9854H28.0777C29.4325 18.9854 30.6192 19.8934 30.9733 21.2011L33.6329 31.0212H78.7999C79.7022 31.0212 80.5565 31.4273 81.1262 32.1269C81.6959 32.8266 81.9205 33.7455 81.7377 34.629L76.5795 59.5604C76.3193 60.8178 75.2879 61.7702 74.0138 61.9295L39.6259 66.228C38.1424 66.4134 36.7489 65.4784 36.3581 64.0354L25.7821 24.9854H21.2001C19.5432 24.9854 18.2001 23.6422 18.2001 21.9854ZM35.2579 37.0212L41.468 59.951L71.139 56.2421L75.1157 37.0212H35.2579ZM45.5 73.0073C44.6716 73.0073 44 73.6789 44 74.5073C44 75.3357 44.6716 76.0073 45.5 76.0073C46.3284 76.0073 47 75.3357 47 74.5073C47 73.6789 46.3284 73.0073 45.5 73.0073ZM38 74.5073C38 70.3652 41.3579 67.0073 45.5 67.0073C49.6421 67.0073 53 70.3652 53 74.5073C53 78.6495 49.6421 82.0073 45.5 82.0073C41.3579 82.0073 38 78.6495 38 74.5073ZM69.4999 73.0073C68.6715 73.0073 67.9999 73.6789 67.9999 74.5073C67.9999 75.3357 68.6715 76.0073 69.4999 76.0073C70.3284 76.0073 70.9999 75.3357 70.9999 74.5073C70.9999 73.6789 70.3284 73.0073 69.4999 73.0073ZM62 74.5073C62 70.3652 65.3578 67.0073 69.4999 67.0073C73.6421 67.0073 76.9999 70.3652 76.9999 74.5073C76.9999 78.6495 73.6421 82.0073 69.4999 82.0073C65.3578 82.0073 62 78.6495 62 74.5073Z" fill="black" /></svg>
         </a>
 
-        <a style="float: right;" class="cart" href="../routes/account_link.php">
+
         <?php
-          if (isset($_SESSION["username"])) {
-              echo $_SESSION["username"] . "<br>User Settings";
-          } 
-          ?>
-          </a>
+            if (isset($_SESSION["username"])) {
+                echo(
+                "<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../routes/logout.php'>" .
+                    "Logout" .
+                "</a>"
+                );
+            }
+        ?>
+        <a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
+            if (isset($_SESSION["username"])) {
+                echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+            } else {
+                echo "Login / Register";
+            }
+        ?></a>
     </div>
 
     <div class="container" style="margin-top: 10%;">
         <div class="navbar">
             <button onclick="showTab('tab1')">Account Settings</button>
             <button onclick="showTab('tab2')">Address Details</button>
-            <button onclick="showTab('tab3')">Payment Methods</button>
+            <button onclick="showTab('tab3')">Payment Method</button>
 
             <?php
             if ($_SESSION["is_employee"]) {
@@ -132,7 +144,7 @@ require "../../credentials.php";
             }
             ?>
 
-            <button onclick="window.location.href='../routes/logout.php'">Logout</button>
+            
         </div>
         <div class="container">
             <div class="content">
@@ -150,51 +162,58 @@ require "../../credentials.php";
 
 
                 </div>
-                <div id="tab2">Shipping Address
-                    <br>
+                <div id="tab2">
+                    
                     <div style="flex-grow: 5">
+                        <table>
+                            <tr><th>Shipping Address <a class="noindex" href="./checkout/address_details.php">Edit</a></th></tr>
                         <?php
                         if (!$address_results) {
-                            echo "No information set";
+                            echo "<tr><th>No information set</th></tr>";
                         } else {
                             $address = mysqli_fetch_assoc($address_results);
                             if (!$address) {
-                                echo "No information set";
+                                echo "<tr><th>No information set</tr></th>";
                             } else {
-                                echo "Address Line 1: " . $address["address_line1"] . "<br>";
+                                echo "<tr><td>Address Line 1: </td><td><b>" . $address["address_line1"] . "</b></td></tr>";
                                 if ($address["address_line2"] != "") {
-                                    echo "Address Line 2: " . $address["address_line2"] . "<br>";
+                                    echo "<tr><td>Address Line 2: </td><td><b>" . $address["address_line2"] . "</b></td></tr>";
                                 }
 
-                                echo "City: " . $address["city"] . "<br>";
-                                echo "State: " . $address["state_province"] . "<br>";
-                                echo "ZIP: " . $address["zip_code"] . "<br>";
-                                echo "Country: " . $address["country"] . "<br>";
+                                echo "<tr><td>City: </td><td><b>" . $address["city"] . "</b></td></tr>";
+                                echo "<tr><td>State: </td><td><b>" . $address["state_province"] . "</b></td></tr>";
+                                echo "<tr><td>ZIP: </td><td><b>" . $address["zip_code"] . "</b></td></tr>";
+                                echo "<tr><td>Country: </td><td><b>" . $address["country"] . "</b></td></tr>";
                             }
                         }
 
 
                         ?>
+                        </table>
                     </div>
 
                 </div>
-                <div id="tab3">Payment Info
+                <div id="tab3">
                 <div style="flex-grow: 5"> 
+                    <table>
+                        <tr><th>Payment Info  <a class="noindex" href="./checkout/card_details.php">Edit</a></th></tr>
+
                     <?php
                         if (!$card_results) {
-                            echo "No information set";
+                            echo "<tr><th>No information set</th></tr>";
                         } else {
                             $card = mysqli_fetch_assoc($card_results);
                             if (!$card) {
-                                echo "No information set";
+                                echo "<tr><th>No information set</th></tr>";
                             } else {
-                                echo "Card Type: " . $card["card_type"] . "<br>";
-                                echo "Card Number: XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "<br>";
-                                echo "Expiry Date: " . $card["card_expiry"] . "<br>";
-                                echo "Billing Address: " . $card["billing_address"] . "<br>";
+                                echo "<tr><td>Card Type: </td><td><b>" . $card["card_type"] . "</b></td></tr>";
+                                echo "<tr><td>Card Number: </td><td><b>XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "</b></td></tr>";
+                                echo "<tr><td>Expiry Date: </td><td><b>" . $card["card_expiry"] . "</b></td></tr>";
+                                echo "<tr><td>Billing Address: </td><td><b>" . $card["billing_address"] . "</b></td></tr>";
                             }
                         }
                     ?>
+                    </table>
                 </div>
 
 

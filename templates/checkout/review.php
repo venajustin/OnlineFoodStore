@@ -8,6 +8,8 @@
 
     require "../../../credentials.php";
 
+    $_SESSION["return_to"] = "templates/checkout/review.php";
+
 
     $uid = $_SESSION["user_id"];
     $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
@@ -72,13 +74,13 @@
             	<?php
 					if (isset($_SESSION["username"])) {
 						echo(
-						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../routes/logout.php'>" .
+						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../../routes/logout.php'>" .
 							"Logout" .
 						"</a>"
 						);
 					}
 				?>
-            	<a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
+            	<a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../../routes/account_link.php"><?php
 					if (isset($_SESSION["username"])) {
 						echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
 					} else {
@@ -93,70 +95,67 @@
             <br><br><br><br>
 
             <!-- Address Details -->
-            <div style="display:flex; justify-content:space-between; text-align:center;">
-                <div>
-                    <h3>Address Details</h3>
-                    <a style = "margin-left: 10px" href="address_details.php">Edit</a> 
-
-                </div>
-                <div style="flex-grow: 5"> 
-                    <?php
-                        if (!$address_results) {
-                            echo "No information set";
-                        } else {
-                            $address = mysqli_fetch_assoc($address_results);
-                            if (!$address) {
-                                echo "No information set";
-                            } else {
-                                echo "Address Line 1: " . $address["address_line1"] . "<br>";
-                                if ($address["address_line2"] != "") {
-                                    echo "Address Line 2: " . $address["address_line2"] . "<br>";
-                                }
-                                
-                                echo "City: " . $address["city"] . "<br>";
-                                echo "State: " . $address["state_province"] . "<br>";
-                                echo "ZIP: " . $address["zip_code"] . "<br>";
-                                echo "Country: " . $address["country"] . "<br>";
-                            }
-                            
-                        }
-                        
+            <div style="display:flex; justify-content: center; align-items: center;">
+                <div style="display:flex; justify-content:space-between; text-align:center;">
                     
-                    ?>
-                </div>
-            </div>
-            
-            <!-- Add address fields here -->
-            
-            <br><br><br>
-
-            <!-- Card Details -->
-			
-           
-            <div style="display:flex; justify-content:space-between; text-align:center;">
-                
-                
-                <div style = "float: left; margin-left: 10px">
-                    <h3>Card Details</h3>
-                    <a style = "margin-left: 45px" href="card_details.php">Edit</a> 
-                </div>
-                
-                <div style="flex-grow: 5"> 
-                    <?php
-                        if (!$card_results) {
-                            echo "No information set";
-                        } else {
-                            $card = mysqli_fetch_assoc($card_results);
-                            if (!$card) {
-                                echo "No information set";
+                    <div style="flex-grow: 5"> 
+                        <table>
+                                <tr><th>Shipping Address <a class="noindex" href="./address_details.php">Edit</a></th></tr>
+                            <?php
+                            if (!$address_results) {
+                                echo "<tr><th>No information set</th></tr>";
                             } else {
-                                echo "Card Type: " . $card["card_type"] . "<br>";
-                                echo "Card Number: XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "<br>";
-                                echo "Expiry Date: " . $card["card_expiry"] . "<br>";
-                                echo "Billing Address: " . $card["billing_address"] . "<br>";
+                                $address = mysqli_fetch_assoc($address_results);
+                                if (!$address) {
+                                    echo "<tr><th>No information set</tr></th>";
+                                } else {
+                                    echo "<tr><td>Address Line 1: </td><td><b>" . $address["address_line1"] . "</b></td></tr>";
+                                    if ($address["address_line2"] != "") {
+                                        echo "<tr><td>Address Line 2: </td><td><b>" . $address["address_line2"] . "</b></td></tr>";
+                                    }
+
+                                    echo "<tr><td>City: </td><td><b>" . $address["city"] . "</b></td></tr>";
+                                    echo "<tr><td>State: </td><td><b>" . $address["state_province"] . "</b></td></tr>";
+                                    echo "<tr><td>ZIP: </td><td><b>" . $address["zip_code"] . "</b></td></tr>";
+                                    echo "<tr><td>Country: </td><td><b>" . $address["country"] . "</b></td></tr>";
+                                }
                             }
-                        }
-                    ?>
+
+
+                            ?>
+                        </table>
+                    </div>
+                </div>
+                        </div>
+                
+            <div style="display:flex; justify-content: center; align-items: center;">
+                <div  style="display:flex; justify-content:space-between; text-align:center;">
+                    
+                    
+                    
+                    <div style="flex-grow: 5"> 
+
+                    <table>
+                            <tr><th>Payment Info  <a class="noindex" href="./card_details.php">Edit</a></th></tr>
+
+                        <?php
+                            if (!$card_results) {
+                                echo "<tr><th>No information set</th></tr>";
+                            } else {
+                                $card = mysqli_fetch_assoc($card_results);
+                                if (!$card) {
+                                    echo "<tr><th>No information set</th></tr>";
+                                } else {
+                                    echo "<tr><td>Card Type: </td><td><b>" . $card["card_type"] . "</b></td></tr>";
+                                    echo "<tr><td>Card Number: </td><td><b>XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "</b></td></tr>";
+                                    echo "<tr><td>Expiry Date: </td><td><b>" . $card["card_expiry"] . "</b></td></tr>";
+                                    echo "<tr><td>Billing Address: </td><td><b>" . $card["billing_address"] . "</b></td></tr>";
+                                }
+                            }
+                        ?>
+                        </table>
+                            
+                    </div>
                 </div>
             </div>
 

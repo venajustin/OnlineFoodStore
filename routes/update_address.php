@@ -54,7 +54,7 @@
                 // check result and connection
                 if ($results) { 
                    
-                    header("Location: ../templates/checkout/review.php");
+                    header("Location: ../" . $_SESSION["return_to"]);
                     exit();
                 } else {
                     $_SESSION["address_error"] = " id not found ";

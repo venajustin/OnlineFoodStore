@@ -75,7 +75,7 @@ unset($_SESSION["login_error"]);
 				<?php
 				// create connection 
 				$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
-
+				$uid = $_SESSION["user_id"];
 				// check connection 
 				$sql = "SELECT * FROM shopping_cart, items WHERE u_id = $uid and i_id = item_id";
 				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";

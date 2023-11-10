@@ -9,6 +9,14 @@ if (!isset($_SESSION["username"]) or !$_SESSION["is_employee"]) {
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
 
+require "../../credentials.php";
+$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+
+$search = $_POST["search"];
+
+if (!$conn ) { 
+	die ("Connection failed: " . mysqli_connect_error());
+} 
 ?>
 
 
@@ -146,6 +154,25 @@ unset($_SESSION["login_error"]);
 						<div id="tab3">
 							<p>- List all products in the database here</p>
 							<p>- Use a table</p>
+							<?php 
+							$allItems = "SELECT * FROM items";
+							$itemS = mysqli_query($conn,$allItems);
+							echo "<br>";
+							
+							// Select all data from the table
+
+							if ($itemS->num_rows > 0) {
+								// Output data of each row
+								while($row = $itemS->fetch_assoc()) {
+									echo "ID: " . $row["item_id"]. " - Name: " . $row["item_name"]. " - Price: " . $row["item_price"]. " - Stock: " . "<br>";
+								}
+							} else {
+								echo "0 results";
+							}
+
+							// Close the connection
+							$conn->close();
+							?>
 						</div>
 						<div id="tab4"> </div>
 					</div>

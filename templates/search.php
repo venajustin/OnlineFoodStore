@@ -68,7 +68,7 @@ unset($_SESSION["login_error"]);
             if ($itemS) {
 
                 /* fetch associative array */
-                echo "Showing results for '$search':";
+                echo "<h2 style='text-align:center;'>Showing results for '$search'</h3>";
                 echo "<br>";
                 echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
@@ -79,18 +79,17 @@ unset($_SESSION["login_error"]);
                     $field5name = $row["item_price"];
                     echo "
                     <form action='../templates/item.php' method='post' value =$field1name>
-                    <button style='width: fit-content'>
-                        <div class='searchTile' style='background-color: white; padding-top: 5px;'>
-                        <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
-                            <div style='padding-left: 130px; padding-top: 5px;'>
-                            <h3>$field2name</h3>
-                            <h4>$field3name</h4>
-                            <h6>$$field5name</h6>
-                            <h6>$field4name lbs</h6>
+                        <button style='border:none; width: 100%;text-align:left;font-size:20px;'>
+                            <div class='searchTile' style='background-color: white; padding-top: 5px;'>
+                                <div style='position: absolute; height:150px; width: 120px; background-color: grey;'></div>
+                                <div style='padding-left: 130px; padding-top: 5px;'>
+                                    <h3>$field2name</h3>
+                                    <h4>$field3name</h4>
+                                    <h6>$$field5name</h6>
+                                    <h6>$field4name lbs</h6>
+                                </div>
                             </div>
-                        </div>
-					
-					</button>
+                        </button>
 				    </form>
                     
                     ";

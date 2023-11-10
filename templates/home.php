@@ -54,7 +54,7 @@ unset($_SESSION["login_error"]);
 
 		<div style="height: fit-content; width: 80%">
 				<form action="../templates/search.php" method="post">
-					<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; border: none" onclick="openForm()">
+					<button class="panelOne" style="width: 80%; height: 40%; background-color: skyblue; position: absolute; top: 96px; margin-left: 10%; border: none">
 						<img src="./pictures/ad_one.png" style="width: 80%; height: 100%">
 					</button>
 				</form>

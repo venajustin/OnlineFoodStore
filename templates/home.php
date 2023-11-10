@@ -90,7 +90,7 @@ unset($_SESSION["login_error"]);
 				echo 
 				"
 				<form action='../templates/search.php' method='post'>
-					<button type='submit' class='itemTile' name='search' value='Fruit'>
+					<button type='submit' class='itemTile' name='search' value='Produce'>
 						<h2>Produce</h2>
 						<img src='food/freshproduce/apple.png' style='width: 100%; max-width: 125px'>
 					</button>

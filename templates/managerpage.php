@@ -82,15 +82,22 @@ unset($_SESSION["login_error"]);
 				<h1 style="color:#88d498;"> Management </h1>
 			</div>
 
-			<a class="cart" style = "float: right; margin-right: 1.5%; padding-top: 8px" href="../routes/account_link.php"> 
-				<?php
+			<?php
 					if (isset($_SESSION["username"])) {
-						echo $_SESSION["username"];
-					} else {
-						echo "Login /<br>Register";
+						echo(
+						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../routes/logout.php'>" .
+							"Logout" .
+						"</a>"
+						);
 					}
 				?>
-			</a>
+            	<a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
+					if (isset($_SESSION["username"])) {
+						echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+					} else {
+						echo "Login / Register";
+					}
+				?></a>
         </div>
 
 		<div style="position: absolute; left: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>

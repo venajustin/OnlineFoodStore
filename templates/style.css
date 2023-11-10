@@ -212,6 +212,14 @@ ul {
 	transform: scale(1.0314);
 }
 
+.account_text:hover span {
+	display:none;
+}
+
+.account_text:hover:before {
+	content: "Account Settings";
+}
+
 .card {
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
 	width: max(450px); 

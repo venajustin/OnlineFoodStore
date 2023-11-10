@@ -1,10 +1,15 @@
+<?php
+session_start();
+require "../../credentials.php";
+
+unset($_SESSION["signup_error"]);
+unset($_SESSION["login_error"]);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<?php
-		session_start();
-		unset($_SESSION["signup_error"]);
-		unset($_SESSION["login_error"]);
-
 		if (!isset($_SESSION["username"])) {
 			header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
 		}
@@ -66,64 +71,77 @@
 			<div style="padding: 10px; width: 900px; border: none; background-color: white; border-bottom: 1px solid grey;">
 				<h1>Shopping Cart</h1>
 			</div>
-			<div style="position: absolute; z-index: -100">				
+			<ul class="cart" style="background-color:skyblue" id="cart">
 				<?php
-					if (isset($_SESSION["username"])) {
-						echo "<h2>Your cart is empty</h2>";
-					}
-				?>
-			</div>
-			<ul class="cart" id="cart">
-				<?php
-						
-						require "../../credentials.php";
-						
-				
-				
-						// create connection 
-						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
-											// check connection 
-						$search = $_POST["search"];
-						$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
-						$itemS = mysqli_query($conn,$searchq);
-										
-				
-						if (!$conn ) { 
-							die ("Connection failed: " . mysqli_connect_error());
-						} 
-							else {
-							if ($itemS) {
-				
-								//Display Items in SHopping Cart
+				// create connection 
+				$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
-								while ($row = $itemS->fetch_assoc()) {
-									$field1name = $row["item_id"];
-									$field2name = $row["item_name"];
-									$field3name = $row["item_description"];
-									$field4name = $row["item_weight"];
-									$field5name = $row["item_price"];
+				// check connection 
+				$sql = "SELECT * FROM shopping_cart, items WHERE u_id = $uid and i_id = item_id";
+				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
+				$itemS = mysqli_query($conn,$sql);
+
+				echo"hello";
+
+				if (!$conn ) { 
+					die ("Connection failed: " . mysqli_connect_error());
+				} 
+				else {
+					if ($itemS) {
+
+						/* fetch associative array */
+						echo "Shopping Cart:";
+						echo "<br>";
+						echo "<br>";
+						while ($row = $itemS->fetch_assoc()) {
+							$field1name = $row["item_id"];
+							$field2name = $row["u_id"];
+							$field3name = $row["item_description"];
+							$field4name = $row["item_weight"];
+							$field5name = $row["item_price"];
+							echo "
+									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
+										<div style='position: absolute; height:150px; width: 120px; background-color: grey;'>
+										</div>
+										<div style='padding-left: 130px; padding-top: 5px;'>
+											<h3>$field1name</h3>
+										</div>
+									</div>
+							";
+							echo "";
+						}
+					
+						/* free result set */
+						$itemS->free();
+					}
+					exit();
+				
+				} 
+
+						
+							
+									if ($result->num_rows > 0) {
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+										echo"hello";
+										}
+									} else {
+										echo "0 results";
 									echo "
 									<div class='searchTile' style='background-color: white; padding-top: 5px;'>
-									<div style='position: absolute; height:150px; width: 120px; background-color: grey;
-									'></div>
-									<div style='padding-left: 130px; padding-top: 5px;'>
-									<h3>$field2name</h3>
-									<h4>$field3name</h4>
-									<h6>$field5name$</h6>
-									<h6>$field4name lbs</h6>
-									</div>
+										<div style='position: absolute; height:150px; width: 120px; background-color: grey;'>
+										</div>
+										<div style='padding-left: 130px; padding-top: 5px;'>
+											<h3>$field1name</h3>
+										</div>
 									</div>
 									";
 									echo "";
 								}
 							
 								/* free result set */
-								$itemS->free();
-							}
-							
-						
-						} 
-				?>
+								$results->free();
+					?>
 			</ul>
 		</div>
 

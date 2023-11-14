@@ -69,7 +69,9 @@ unset($_SESSION["login_error"]);
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemidS = mysqli_query($conn,$itemidq);
 
-    
+        echo "<hr/>";
+        echo "<img src=\"./food/$itemid.png\">";
+        
 
         if (!$conn ) { 
             die ("Connection failed: " . mysqli_connect_error());
@@ -119,6 +121,7 @@ unset($_SESSION["login_error"]);
             } 
 
     ?>
+    
     </h2>
 		</div> 
     

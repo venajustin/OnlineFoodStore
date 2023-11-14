@@ -103,28 +103,28 @@ unset($_SESSION["login_error"]);
 				<form action='../templates/search.php' method='post'>
 					<button type='submit' class='itemTile' name='search' value='Produce'>
 						<h2>Produce</h2>
-						<img src='food/freshproduce/1.png' style='width: 100%; max-width: 125px'>
+						<img src='food/1.png' style='width: 100%; max-width: 125px'>
 					</button>
 				</form>
 				
 				<form action='../templates/search.php' method='post'>
 					<button type='submit' class='itemTile' name='search' value='Dairy'>
 						<h2>Dairy</h2>
-						<img src='food/dairy/milk.png' style='width: 100%; max-width: 125px;'>										
+						<img src='food/milk.png' style='width: 100%; max-width: 125px;'>										
 					</button>
 				</form>
 
 				<form action='../templates/search.php' method='post'>
 					<button type='submit' class='itemTile' name='search' value='Grain'>
 						<h2>Grains and Bread</h2>
-						<img src='food/grainsnbread/rice.png' style='width: 100%; max-width: 125px;'>										
+						<img src='food/rice.png' style='width: 100%; max-width: 125px;'>										
 					</button>
 				</form>
 
 				<form action='../templates/search.php' method='post'>
 					<button type='submit' class='itemTile' name='search' value='Protein'>
 						<h2>Protein</h2>
-						<img src='food/protein/chicken.png' style='width: 100%; max-width: 125px;'>										
+						<img src='food/chicken.png' style='width: 100%; max-width: 125px;'>										
 					</button>
 				</form>
 				";

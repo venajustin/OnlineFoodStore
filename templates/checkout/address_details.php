@@ -81,7 +81,7 @@
 				?></a>
         </div>
         <div class="center-screen" style="float: left; padding-left: 13%; padding-top: 7%;">
-            <div class="card" style="width: max(700px); text-align: center;">
+            <div class="card" style="width: max(700px); text-align: center; z-index: 80">
                 <br>
                 <h1 style="color: #46b35e;">Enter Shipping Address</h1>
                 <br>

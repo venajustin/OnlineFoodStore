@@ -68,7 +68,6 @@ unset($_SESSION["login_error"]);
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemS = mysqli_query($conn,$searchq);
         $count = 0;
-
     
 
         if (!$conn ) { 

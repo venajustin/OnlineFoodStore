@@ -54,7 +54,8 @@ unset($_SESSION["login_error"]);
 					}
 				?></a>
         </div>
- 
+                    
+        
         <div class="searchResult" style="width: 80%; height: 80%; background-color: white; position: absolute; top: 88px; margin-left: 10%">
 			<h2>
                 <?php
@@ -68,7 +69,9 @@ unset($_SESSION["login_error"]);
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemidS = mysqli_query($conn,$itemidq);
 
-    
+        echo "<hr/>";
+        echo "<img src=\"./food/$itemid.png\">";
+        
 
         if (!$conn ) { 
             die ("Connection failed: " . mysqli_connect_error());
@@ -86,7 +89,6 @@ unset($_SESSION["login_error"]);
                     $field4name = $row["item_weight"];
                     $field5name = $row["item_price"];
                     echo "
-
                         <div style='position: absolute; left: 20px; height:500px; width: 500px; background-color: grey;'></div>
 
                         <div style='position: fixed; left: 40%; height:300px; width: 40%; px;padding-left: 130px; padding-top: 5px;'>
@@ -106,7 +108,9 @@ unset($_SESSION["login_error"]);
                         </div>
   
                     ";
+                    
                     echo "";
+                    
                 }
             
                 /* free result set */
@@ -117,6 +121,7 @@ unset($_SESSION["login_error"]);
             } 
 
     ?>
+    
     </h2>
 		</div> 
     

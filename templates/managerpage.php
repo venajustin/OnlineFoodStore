@@ -135,26 +135,14 @@ if (!$conn ) {
 			
 			<div class="container" style ="margin-top: 5%;">
 				<div class="navbar">
-				<button onclick="showTab('tab1')">Dashboard</button>
-				<button onclick="showTab('tab2')">Order Management</button>
-				<button onclick="showTab('tab3')">Inventory Management</button>
+				<button onclick="showTab('tab1')">Inventory</button>
+				<button onclick="showTab('tab2')">Add New Item</button>
 				<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
-            	<button onclick="window.location.href='../routes/logout.php'">Logout</button>
 				</div>
 				<div class="container">
 					<div class="content">
 						<div class="active" id="tab1">
-							<p>- Total sales and the number of completed orders</p>
-							<p>- Include table or card in the center</p>
-						</div>
-						<div id="tab2">
-							<p>- List of completed orders</p>
-							<p>- Use a table</p>
-						</div>
-						<div id="tab3">
-							<p>- List all products in the database here</p>
-							<p>- Use a table</p>
-							<?php 
+						<?php 
 							$allItems = "SELECT * FROM items";
 							$itemS = mysqli_query($conn,$allItems);
 							echo "<br>";
@@ -164,7 +152,16 @@ if (!$conn ) {
 							if ($itemS->num_rows > 0) {
 								// Output data of each row
 								while($row = $itemS->fetch_assoc()) {
-									echo "ID: " . $row["item_id"]. " - Name: " . $row["item_name"]. " - Price: " . $row["item_price"]. " - Stock: " . "<br>";
+									echo '<div style="margin: 10px; display: flex; justify-content: space-between; align-items: center;">';
+									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
+
+									echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
+									echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
+									echo 'Add to stock: ';
+									echo '<input type="number" name="userNumber" min="1" max="9999" required style="margin-left: 10px;">';
+									echo '<input type="submit" value="Add" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
+									echo '</form>';
+									echo '</div>';
 								}
 							} else {
 								echo "0 results";
@@ -174,8 +171,11 @@ if (!$conn ) {
 							$conn->close();
 							?>
 						</div>
-						<div id="tab4"> </div>
-					</div>
+						<div id="tab2">
+							<p>- List of completed orders</p>
+							<p>- Use a table</p>
+						</div>
+						
 				</div>
 
 				<script>

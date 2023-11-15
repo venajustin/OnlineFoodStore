@@ -37,6 +37,9 @@ a:hover{
 	text-decoration: underline;
 }
 
+a.noindex {
+	z-index: unset;
+}
 
 .row::after {
 	content: "";

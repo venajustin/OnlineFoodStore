@@ -71,27 +71,35 @@ $_SESSION["return_to"] = "templates/cart.php";
 
 
 
-		<!--List Containing Items from Shopping Cart-->
+		<!--List Containing Items from Shopping Cart-->				
+		<div class="center-screen" style="padding-top: 7%;">
+			<div class="card" style="width: max(800px); text-align: center;">
+				<br>
+				
+				<h1 style="color: #46b35e;">Shopping Cart</h1>
+				<br>
 
-		<div name="cartContainer" style="z-index:-1; min-height: 160px; height: fit-content; position: absolute; left: 3%; top: 14%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
-			<div style="padding: 10px; width: 900px; border: none; background-color: white; border-bottom: 1px solid grey;">
-				<h1>Shopping Cart</h1>
-			</div>
-			<ul class="cart" style="background-color:skyblue" id="cart">
+				<ul class="cart" style="background-color:skyblue" id="cart">
 				<?php
 				// create connection 
 				$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+
+				$sql6 = "SELECT value FROM global_variables WHERE name = 'sales_tax'";
+				$salesTax_results = mysqli_query($conn, $sql6);
+
 				$uid = $_SESSION["user_id"];  
 				// check connection 
-				$sql = "SELECT item_id, item_name, item_description, item_weight, item_price
+				$sql = "SELECT item_id, item_name, quantity, item_description, item_weight, item_price
 						FROM items
 						INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
-						AND shopping_cart.u_id = " . $_SESSION["user_id"];
+						AND shopping_cart.u_id = $uid";
 				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
 				$itemS = mysqli_query($conn,$sql);
 
-				$total_cost = 0;
+				$sub_total = 0;
 				$total_weight = 0;
+				$num_items = mysqli_num_rows($itemS);
+				$total = 0;
 
 				if (!$conn ) { 
 					die ("Connection failed: " . mysqli_connect_error());
@@ -99,6 +107,19 @@ $_SESSION["return_to"] = "templates/cart.php";
 				else {
 					if ($itemS) {
 
+						if ($num_items == 0) {
+							
+							echo "
+									
+										
+										<div style=' background-color: white; padding-top: 5px;'>
+											<h3>Cart is Empty!</h3>
+											<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+										</div>
+									
+								
+							";
+						}
 						/* fetch associative array */
 
 						while ($row = $itemS->fetch_assoc()) {
@@ -106,16 +127,25 @@ $_SESSION["return_to"] = "templates/cart.php";
 							$i_description = $row["item_description"];
 							$i_weight = $row["item_weight"];
 							$i_price = $row["item_price"];
+							$i_quantity = $row["quantity"];
 
-							$total_cost += $i_price;
-							$total_weight += $i_weight;
+							$sub_total += $i_price * $i_quantity;
+							$total_weight += $i_weight * $i_quantity;
 
 							echo "
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
 										<div style='position: absolute; height:150px; width: 120px; background-color: grey;'>
 										</div>
 										<div style='padding-left: 130px; padding-top: 5px;'>
-											<h3>$i_name</h3>
+											<h3>$i_name  x $i_quantity</h3>
+											
+										</div>
+										<div style='padding-left: 130px; padding-top: 5px;'>
+											$i_description
+										</div>
+										<div style='padding-left: 130px; padding-top: 5px;'>
+											Weight: $i_weight
+											
 										</div>
 									</div>
 							";
@@ -124,73 +154,85 @@ $_SESSION["return_to"] = "templates/cart.php";
 					
 						/* free result set */
 						$itemS->free();
-					}
-					;
+					} 
+					
 				}
 				?>
 			</ul>
-		</div>
-				
+			
+			</div>
+
+
+			<div class="card" style="margin-left: 40px; width: max(300px);">
+					<br>
+					<h1 style="color: #46b35e;">Cart Summary</h1>
+					<br><br><br>
+					
+					<div style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
+					
+					<h3>Number of Items: </h3>
 						<?php
-								// create connection 
-						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
-						// check connection 
-						$search = $_POST["search"];
-						$searchq = "SELECT * FROM items 
-									WHERE 
-									item_description LIKE '%$search%' 
-									OR 
-									item_name LIKE '%$search%'";
-						$itemS = mysqli_query($conn,$searchq);
-										
-
-						if (!$conn ) { 
-							die ("Connection failed: " . mysqli_connect_error());
-						} 
-							else {
-							if ($itemS) {
-
-								//Print Prices
-								echo"
-								<div class='reciept' style='padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: auto; overflow: scroll'>
-									<ul style='list-style-type: none; width: 340px; height:fit-content; position: relative; text-align: right'>
-								";
-								
-								echo "
-									</ul>
-									<li>
-													<br>
-													
-									</li>
-									<!--Subtotal-->
-				
-									<br>
-									<div style='padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;'>
-										<h2>Subtotal: $$total_cost</h2>
-									</div>
-				
-									<!--Checkout Button-->
-					
-										<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
-											<a href='checkout/review.php'>
-											<button style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; '>
-												Checkout</button>
-											</a>
-										</div>
-					
-									</ul>
-								</div>
-								<li style='list-style-type: none;'>
-									<br>
-							
-								</li>";
-							
-								/* free result set */
-								$itemS->free();
-							}
-						} 
-						
+							echo $num_items;
 						?>
+						<br>
+						<h3>Total Weight: </h3>
+						<?php
+							echo $total_weight;
+						?>
+						<br>
+					</div>
+					<br>
+					<div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
+						<h3>Subtotal: </h3>
+						<?php
+							echo $sub_total;
+						?>
+						<br><br>
+						<h3>Delivery Fee: </h3>
+						<?php
+							if ($total_weight < 20){
+									echo "$0.00";
+							} else {
+								echo "$5.00";
+								$total += 5;
+							}
+							
+						?>
+						<br><br>
+						<h3>Sales Tax: </h3>
+						<?php
+							
+							if (!$salesTax_results) {
+								echo "No information set";
+							} else {
+								$tax = mysqli_fetch_assoc($salesTax_results);
+								if (!$tax) {
+									echo "No information set";
+								} 
+							}
+							$stax = $sub_total * $tax["value"];
+							echo "$" . number_format((float)$stax, 2, '.', '');
+							$total += $stax;
+									
+									
+						?>
+						<br><br>
+					</div>
+					<br>
+					<h3>Total: </h3>
+					<?php
+					    $total += $sub_total;
+						echo "$" . number_format((float)$total, 2, '.', '');
+					?>
+
+					<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
+						<a href='checkout/review.php'>
+						<button style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 200px; border-radius:3px ;position: relative; '>
+							Checkout</button>
+						</a>
+					</div>
+				</div>
+		</div>
 						
 					
     </body>

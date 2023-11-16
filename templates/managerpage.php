@@ -8,6 +8,7 @@ if (!isset($_SESSION["username"]) or !$_SESSION["is_employee"]) {
 
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
+unset($_SESSION["return_to"]);
 
 require "../../credentials.php";
 $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);

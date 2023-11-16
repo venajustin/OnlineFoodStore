@@ -53,7 +53,12 @@
                             
                             $_SESSION["signup_error"] = "Manager key is incorrect,";
 
-                            header("Location: ../templates/register.php");
+                            if (!isset($_SESSION["return_to"])) {
+                                header("Location: ../templates/home.php");
+                            } else {
+                                header("Location: ../" . $_SESSION["return_to"]);
+                                unset($_SESSION["return_to"]);
+                            }
                             exit();
                         
                         }

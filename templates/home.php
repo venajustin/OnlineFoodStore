@@ -2,6 +2,7 @@
 session_start();
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
+unset($_SESSION["return_to"]);
 ?>
 
 <!DOCTYPE html>

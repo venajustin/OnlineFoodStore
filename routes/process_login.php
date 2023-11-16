@@ -65,7 +65,12 @@
 						$sql = "SELECT * FROM users";
 						$results = mysqli_query($conn, $sql);
 						echo "<br>SUCCESS: You have logged in!";
-                        header("Location: ../templates/home.php");
+                        if (!isset($_SESSION["return_to"])) {
+                            header("Location: ../templates/home.php");
+                        } else {
+                            header("Location: ../" . $_SESSION["return_to"]);
+                            unset($_SESSION["return_to"]);
+                        }
                         exit();
 					} else {
 						echo "FAILED: Password is incorrect!";

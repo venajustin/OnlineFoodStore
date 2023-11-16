@@ -81,21 +81,21 @@ unset($_SESSION["login_error"]);
                 echo "<br>";
                 echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
-                    $field1name = $row["item_id"];
+                    $i_name = $row["item_id"];
                     $field2name = $row["item_name"];
-                    $field3name = $row["item_description"];
-                    $field4name = $row["item_weight"];
-                    $field5name = $row["item_price"];
+                    $i_description = $row["item_description"];
+                    $i_weight = $row["item_weight"];
+                    $i_price = $row["item_price"];
                     $count += 1;
                     echo "
                     <form action='../templates/item.php' method='post'>
-                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$field1name>
+                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$i_name>
                             <div class='searchTile' style='background-color: white; padding-top: 5px;'>
                                 <div style='padding-left: 160px; padding-top: 5px;'>
                                     <h3>$field2name</h3>
-                                    <h4>$field3name</h4>
-                                    <h6>$$field5name</h6>
-                                    <h6>$field4name lbs</h6>
+                                    <h4>$i_description</h4>
+                                    <h6>$$i_price</h6>
+                                    <h6>$i_weight lbs</h6>
                                 </div>
                             </div>
                         </button>

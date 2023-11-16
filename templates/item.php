@@ -83,19 +83,19 @@ unset($_SESSION["login_error"]);
                 echo "<br>";
                 echo "<br>";
                 while ($row = $itemidS->fetch_assoc()) {
-                    $field1name = $row["item_id"];
+                    $i_name = $row["item_id"];
                     $field2name = $row["item_name"];
-                    $field3name = $row["item_description"];
-                    $field4name = $row["item_weight"];
-                    $field5name = $row["item_price"];
+                    $i_description = $row["item_description"];
+                    $i_weight = $row["item_weight"];
+                    $i_price = $row["item_price"];
                     echo "
 
                         <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
                         <h3>$field2name</h3>
                         <br>
-                        <h4>$field3name</h4>
-                        <h6>$$field5name</h6>
-                        <h6>$field4name lbs</h6>
+                        <h4>$i_description</h4>
+                        <h6>$$i_price</h6>
+                        <h6>$i_weight lbs</h6>
                         <br>
                         <br>
                         <br>

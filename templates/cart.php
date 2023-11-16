@@ -5,6 +5,8 @@ require "../../credentials.php";
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
 
+$_SESSION["return_to"] = "templates/cart.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +68,9 @@ unset($_SESSION["login_error"]);
         </div>
 
 		
+
+
+
 		<!--List Containing Items from Shopping Cart-->
 
 		<div name="cartContainer" style="z-index:-1; min-height: 160px; height: fit-content; position: absolute; left: 3%; top: 14%; background-color: white; padding-left: 2%; padding-right: 2%; padding-bottom: 20px; margin-bottom: 500px;">
@@ -78,9 +83,15 @@ unset($_SESSION["login_error"]);
 				$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 				$uid = $_SESSION["user_id"];  
 				// check connection 
-				$sql = "SELECT * FROM items";
+				$sql = "SELECT item_id, item_name, item_description, item_weight, item_price
+						FROM items
+						INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
+						AND shopping_cart.u_id = " . $_SESSION["user_id"];
 				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
 				$itemS = mysqli_query($conn,$sql);
+
+				$total_cost = 0;
+				$total_weight = 0;
 
 				if (!$conn ) { 
 					die ("Connection failed: " . mysqli_connect_error());
@@ -91,17 +102,20 @@ unset($_SESSION["login_error"]);
 						/* fetch associative array */
 
 						while ($row = $itemS->fetch_assoc()) {
-							$field1name = $row["item_id"];
-							$field2name = $row["u_id"];
-							$field3name = $row["item_description"];
-							$field4name = $row["item_weight"];
-							$field5name = $row["item_price"];
+							$i_name = $row["item_name"];
+							$i_description = $row["item_description"];
+							$i_weight = $row["item_weight"];
+							$i_price = $row["item_price"];
+
+							$total_cost += $i_price;
+							$total_weight += $i_weight;
+
 							echo "
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
 										<div style='position: absolute; height:150px; width: 120px; background-color: grey;'>
 										</div>
 										<div style='padding-left: 130px; padding-top: 5px;'>
-											<h3>$field1name</h3>
+											<h3>$i_name</h3>
 										</div>
 									</div>
 							";
@@ -122,7 +136,11 @@ unset($_SESSION["login_error"]);
 						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 						// check connection 
 						$search = $_POST["search"];
-						$searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'";
+						$searchq = "SELECT * FROM items 
+									WHERE 
+									item_description LIKE '%$search%' 
+									OR 
+									item_name LIKE '%$search%'";
 						$itemS = mysqli_query($conn,$searchq);
 										
 
@@ -137,48 +155,18 @@ unset($_SESSION["login_error"]);
 								<div class='reciept' style='padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: auto; overflow: scroll'>
 									<ul style='list-style-type: none; width: 340px; height:fit-content; position: relative; text-align: right'>
 								";
-								while ($row = $itemS->fetch_assoc()) {
-									$field1name = $row["item_id"];
-									$field2name = $row["item_name"];
-									$field3name = $row["item_description"];
-									$field4name = $row["item_weight"];
-									$field5name = $row["item_price"];
-									echo "
-									<li>
-									<br>
-									$$field5name
-									</li>
-
-									";
-									echo "";
-								}
-								echo"</ul><ul style='list-style-type: none;width: fit-content; height:fit-content; position: fixed; text-align: left'>";
-								while ($row = $itemS->fetch_assoc()) {
-									$field1name = $row["item_id"];
-									$field2name = $row["item_name"];
-									$field3name = $row["item_description"];
-									$field4name = $row["item_weight"];
-									$field5name = $row["item_price"];
-									echo "
-									<li>
-									<br>
-									$$field5name
-									</li>
-
-									";
-									echo "";
-								}
+								
 								echo "
 									</ul>
 									<li>
 													<br>
-													$field2name
-													</li>
+													
+									</li>
 									<!--Subtotal-->
 				
 									<br>
 									<div style='padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;'>
-										<h2>Subtotal:</h2>
+										<h2>Subtotal: $$total_cost</h2>
 									</div>
 				
 									<!--Checkout Button-->
@@ -203,6 +191,8 @@ unset($_SESSION["login_error"]);
 						} 
 						
 						?>
+						
 					
     </body>
+	
 </html>

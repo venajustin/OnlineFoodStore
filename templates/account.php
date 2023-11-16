@@ -7,6 +7,7 @@ $_SESSION["return_to"] = "templates/account.php";
 
 if (!isset($_SESSION["username"])) {
     header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
+    exit();
 }
     
 

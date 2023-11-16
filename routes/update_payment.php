@@ -47,6 +47,7 @@
                 if ($results) { 
                    
                     header("Location: ../" . $_SESSION["return_to"]);
+                    unset($_SESSION["return_to"]);
                     exit();
                 } else {
                     $_SESSION["payment_error"] = " id not found ";

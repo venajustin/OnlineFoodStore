@@ -158,9 +158,16 @@ if (!$conn ) {
 
 									echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
 									echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
-									echo 'Add to stock: ';
-									echo '<input type="number" name="userNumber" min="1" max="9999" required style="margin-left: 10px;">';
-									echo '<input type="submit" value="Add" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
+									echo 'Change name: ';
+									echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
+									
+									echo 'Change price: ';
+									echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
+									
+
+									echo 'Change stock: ';
+									echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
+									echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
 									echo '</form>';
 									echo '</div>';
 								}

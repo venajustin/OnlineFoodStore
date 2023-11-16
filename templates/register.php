@@ -25,6 +25,7 @@ session_start();
         }
     </style> 
     <head>
+        <link rel="shortcut icon" href="icons/grocery.ico"/>
         <meta charset="utf-8">
         <title>Create an Account</title>
     </head>

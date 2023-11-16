@@ -17,6 +17,7 @@ session_start();
   <!--ANIMATION-->
 
   <head>
+      <link rel="shortcut icon" href="icons/grocery.ico"/>
       <meta charset="utf-8">
       <title>Login</title>
   </head>

@@ -15,6 +15,7 @@ unset($_SESSION["login_error"]);
 		}
 	?>
     <head>
+		<link rel="shortcut icon" href="icons/grocery.ico"/>
         <meta charset="utf-8">
         <title>Online Food Store</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,9 +89,7 @@ unset($_SESSION["login_error"]);
 					if ($itemS) {
 
 						/* fetch associative array */
-						echo "Shopping Cart:";
-						echo "<br>";
-						echo "<br>";
+
 						while ($row = $itemS->fetch_assoc()) {
 							$field1name = $row["item_id"];
 							$field2name = $row["u_id"];
@@ -112,15 +111,12 @@ unset($_SESSION["login_error"]);
 						/* free result set */
 						$itemS->free();
 					}
-					exit();
+					;
 				}
 				?>
 			</ul>
 		</div>
-
-		</div>
-				<div class="reciept" style="padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: fit-content">
-					<ul style="list-style-type: none; width: 340px; height:fit-content; position: fixed; text-align: right">
+				
 						<?php
 								// create connection 
 						$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
@@ -137,6 +133,10 @@ unset($_SESSION["login_error"]);
 							if ($itemS) {
 
 								//Print Prices
+								echo"
+								<div class='reciept' style='padding: 20px; position: fixed; background-color: white; right: 2%; top: 14%; width: 380px; height: auto; overflow: scroll'>
+									<ul style='list-style-type: none; width: 340px; height:fit-content; position: relative; text-align: right'>
+								";
 								while ($row = $itemS->fetch_assoc()) {
 									$field1name = $row["item_id"];
 									$field2name = $row["item_name"];
@@ -152,6 +152,50 @@ unset($_SESSION["login_error"]);
 									";
 									echo "";
 								}
+								echo"</ul><ul style='list-style-type: none;width: fit-content; height:fit-content; position: fixed; text-align: left'>";
+								while ($row = $itemS->fetch_assoc()) {
+									$field1name = $row["item_id"];
+									$field2name = $row["item_name"];
+									$field3name = $row["item_description"];
+									$field4name = $row["item_weight"];
+									$field5name = $row["item_price"];
+									echo "
+									<li>
+									<br>
+									$$field5name
+									</li>
+
+									";
+									echo "";
+								}
+								echo "
+									</ul>
+									<li>
+													<br>
+													$field2name
+													</li>
+									<!--Subtotal-->
+				
+									<br>
+									<div style='padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;'>
+										<h2>Subtotal:</h2>
+									</div>
+				
+									<!--Checkout Button-->
+					
+										<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
+											<a href='checkout/review.php'>
+											<button style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; '>
+												Checkout</button>
+											</a>
+										</div>
+					
+									</ul>
+								</div>
+								<li style='list-style-type: none;'>
+									<br>
+							
+								</li>";
 							
 								/* free result set */
 								$itemS->free();
@@ -159,34 +203,6 @@ unset($_SESSION["login_error"]);
 						} 
 						
 						?>
-					<ul style="list-style-type: none;width: fit-content; height:fit-content; position: relative; text-align: left">
-					<li>
-									<br>
-									$field2name
-									</li>
-					<!--Subtotal-->
-
-					<br>
-					<div style="padding-top: 8px; position: relative; height: 45px; border-top: 1px solid grey;">
-						<h2>Subtotal:</h2>
-					</div>
-
-				<!--Checkout Button-->
-
-					<div style="position: relative; border-top: 1px solid grey; padding-top: 2%;">
-						<a href="checkout/review.php">
-						<button style="border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative; ">
-							Checkout</button>
-						</a>
-					</div>
-
-
-				</div>
-			</li>
-			<li style="list-style-type: none;">
-				<br>
-				
-			</li>
-		</ul>
+					
     </body>
 </html>

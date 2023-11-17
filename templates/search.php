@@ -58,7 +58,7 @@ $_SESSION["return_to"] = "templates/search.php";
 				?></a>
         </div>
            
-        <div style="position: absolute; top: 120px; width: 80%; left: 10%; padding-bottom: 3%">
+        <div style="position: absolute; top: 110px; width: 80%; left: 10%; padding-bottom: 3%">
             <div class="searchResult" style="height: fit-content; background-color: white; box-shadow: 0px 0px 7px grey; border-radius: 5px">
                 <h2>
                     <?php

@@ -144,7 +144,7 @@ if (!$conn ) {
 									echo '<div style="border-bottom: solid gray 1px; padding-top: 7px; padding-bottom: 5px; margin: 10px; display: flex; justify-content: space-between; align-items: center;">';
 									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
 									echo "<form action='../templates/itempreview.php' method='post'>";
-									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: gainsboro;'name='itemid' value =$i_id>Edit</button>";
+									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
 										
 									echo"</form>";
 									echo '</div>';

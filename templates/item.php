@@ -103,6 +103,7 @@ unset($_SESSION["login_error"]);
                         <br>
                         <form action='../routes/cart_action.php' method='post' >
                         <input type='hidden' name='item_to_edit' value=$iid>
+                        Quantity: <input type='text' name='quantity' value=1>
                         <input type='submit' name='add' value='Add to Cart' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
 							
                         

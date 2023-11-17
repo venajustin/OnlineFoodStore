@@ -34,15 +34,19 @@
         $row = mysqli_fetch_assoc($results);
 
         if (isset($_POST["subtract"])) {
+            $quantity = 1;
+            if (isset($_POST["quantity"])) {
+                $quantity = $_POST["quantity"];
+            }
             if ($results->num_rows > 0) {
                 $i_quantity = $row["quantity"];
-                if ($i_quantity == 1) {
+                if ($i_quantity - $quantity < 1) {
                     $sql = "DELETE FROM shopping_cart 
                             WHERE u_id = $uid AND i_id = $i_id";
                     $results = mysqli_query($conn, $sql);
                 } else {
                     $sql = "UPDATE shopping_cart
-                            SET quantity=($i_quantity - 1)
+                            SET quantity=($i_quantity - $quantity)
                             WHERE u_id = $uid AND i_id = $i_id";
                     $results = mysqli_query($conn, $sql);
                 }
@@ -51,16 +55,19 @@
 
         } 
         if (isset($_POST["add"])) {
-            
+            $quantity = 1;
+            if (isset($_POST["quantity"])) {
+                $quantity = $_POST["quantity"];
+            }
             if ($results->num_rows > 0) {
                 $i_quantity = $row["quantity"];
                 $sql = "UPDATE shopping_cart
-                        SET quantity=($i_quantity + 1)
+                        SET quantity=($i_quantity + $quantity)
                         WHERE u_id = $uid AND i_id = $i_id";
                 $results = mysqli_query($conn, $sql);
             } else {
                 $sql = "INSERT INTO shopping_cart
-                        VALUES ($uid, $i_id, 1)
+                        VALUES ($uid, $i_id, $quantity)
                         ";
                 $results = mysqli_query($conn, $sql);
             }

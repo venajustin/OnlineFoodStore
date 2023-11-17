@@ -149,20 +149,20 @@ $_SESSION["return_to"] = "templates/cart.php";
 
 							echo "
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
-										<div style='position: absolute; height:150px; width: 120px; background-color: grey;'>
-										</div>
-										<div style='padding-left: 130px; padding-top: 5px;'>
-											<h3>$i_name  x $i_quantity</h3>
-											
-										</div>
-										<div style='padding-left: 130px; padding-top: 5px;'>
-											$i_description
-										</div>
-										<div style='padding-left: 130px; padding-top: 5px;'>
-											Weight: $i_weight
-											
-										</div>
+									<form action='../templates/item.php' method='post'>
+										<button style='background-color: white; border:none; width: 100%;text-align:left; padding-left: 40px; font-size:20px;' name='itemid' value =$i_id>
+											<img style= 'position: absolute; height:150px; left: 120px ;width: 150px; background-color: white; border: solid black 1px;'src=\"./food/$i_id.png\">
+											<div style='padding-left: 130px; padding-top: 5px;'>
+												<h3>$i_name  x $i_quantity</h3>
+											</div>
+											<div style='padding-left: 130px; padding-top: 5px;'>$i_description</div>
+											<div style='padding-left: 130px; padding-top: 5px;'>
+												Weight: $i_weight		
+											</div>
+										</button>
+									</form>
 										<div class='edit-quantity-buttons'>
+									
 											<form action='../routes/cart_action.php' method='post' >
 												<input type='hidden' name='item_to_edit' value=$i_id>
 												<input type='submit' name='subtract' value='-'>

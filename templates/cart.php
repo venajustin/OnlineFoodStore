@@ -166,6 +166,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 											<form action='../routes/cart_action.php' method='post' >
 												<input type='hidden' name='item_to_edit' value=$i_id>
 												<input type='submit' name='subtract' value='-'>
+												<input style='width:50px;' type='text' name='quantity' value=1>
 												<input type='submit' name='add' value='+'>
 											</form>
 										</div>

@@ -80,7 +80,7 @@
 					}
 				?></a>
         </div>
-        <div class="center-screen" style="float: left; padding-left: 13%; padding-top: 7%;">
+        <div class="center-screen" style="float: center; padding-top: 7%;">
             <div class="card" style="width: max(700px); text-align: center; z-index: 80">
                 <br>
                 <h1 style="color: #46b35e;">Enter Shipping Address</h1>
@@ -117,35 +117,7 @@
                
 
             </div>
-            <div class="card" style="margin-left: 40px; width: max(300px);">
-                <br>
-                <h1 style="color: #46b35e;">Cart Summary</h1>
-                <br><br><br>
-                <div style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
-                    <h3>Number of Items: </h3>
-                    <!--Pull item count from cart and place here-->
-                    <br><br><br>
-                    <h3>Total Weight: </h3>
-                    <!--Pull total weight from cart and place here-->
-                    <br><br>
-                </div>
-                <br>
-                <div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
-                    <h3>Subtotal: </h3>
-                    <!--Insert total item cost here-->
-                    <br><br><br>
-                    <h3>Shipping: </h3>
-                    <!--Insert Shipping cost here(only 0.00 or 5.00 i think)-->
-                    <br><br><br>
-                    <h3>Sales Tax: </h3>
-                    <!--total item cost * 9.38% omg why is our taxes so high here-->
-                    <br><br>
-                </div>
-                <br>
-                <h3>Total: </h3>
-                <!--calculate and show total here-->
-
-            </div>
+            
         </div>
         
     </body>

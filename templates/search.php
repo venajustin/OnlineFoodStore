@@ -66,7 +66,11 @@ $_SESSION["return_to"] = "templates/search.php";
         $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
         // check connection 
-        $search = $_POST["search"];
+        if (isset($_POST["search"])) {
+            $search = $_POST["search"];
+        } else {
+            $search = "";
+        }
         $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemS = mysqli_query($conn,$searchq);
@@ -107,9 +111,13 @@ $_SESSION["return_to"] = "templates/search.php";
                     ";
                     echo "";
                 }
-                echo "<h2 style='text-align:center;'>$count results for '$search'</h3>";
-                echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>$count results for '$search'</h3>";
-            
+
+                
+                if ($search != "") {
+                    echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>$count results for '$search'</h3>";
+                } else {
+                    echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>Browse our whole inventory!</h3>";
+                }
                 /* free result set */
                 $itemS->free();
             }

@@ -25,7 +25,7 @@ $_SESSION["return_to"] = "templates/cart.php";
     </head>
 	<style>
 	</style>
-    <body>
+    <body style="padding-bottom: 50px">
 
 		<!--Page Header-->
 
@@ -72,8 +72,8 @@ $_SESSION["return_to"] = "templates/cart.php";
 
 
 		<!--List Containing Items from Shopping Cart-->				
-		<div class="center-screen" style="padding-top: 7%;">
-			<div class="card" style="width: max(800px); text-align: center;">
+		<div style="padding-bottom: 30px; margin-bottom: 3%">
+			<div class="card" style="width: max(1000px); text-align: center; background-color: maroon; box-shadow: 0px 0px 7px grey; z-index: 80; left: 3%; top: 120px; position: absolute; margin-bottom: 3%">
 				<br>
 				
 				<h1 style="color: #46b35e;">Shopping Cart</h1>
@@ -99,6 +99,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 				$sub_total = 0;
 				$total_weight = 0;
 				$num_items = mysqli_num_rows($itemS);
+				$total_item_quantity = 0;
 				$total = 0;
 
 				if (!$conn ) { 
@@ -146,27 +147,28 @@ $_SESSION["return_to"] = "templates/cart.php";
 
 							$sub_total += $i_price * $i_quantity;
 							$total_weight += $i_weight * $i_quantity;
+							$total_item_quantity += $i_quantity;
 
 							echo "
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
-										<div style='position: absolute; height:150px; width: 120px; background-color: grey;'>
-										</div>
-										<div style='padding-left: 130px; padding-top: 5px;'>
-											<h3>$i_name  x $i_quantity</h3>
-											
-										</div>
-										<div style='padding-left: 130px; padding-top: 5px;'>
-											$i_description
-										</div>
-										<div style='padding-left: 130px; padding-top: 5px;'>
-											Weight: $i_weight
-											
-										</div>
+									<form action='../templates/item.php' method='post'>
+										<button style='background-color: white; border:none; width: 100%;text-align:left; padding-left: 40px; font-size:20px;' name='itemid' value =$i_id>
+											<img style= 'position: absolute; height:150px; left: 120px ;width: 150px; background-color: white; border: solid black 1px;'src=\"./food/$i_id.png\">
+											<div style='padding-left: 130px; padding-top: 5px;'>
+												<h3>$i_name  x $i_quantity</h3>
+											</div>
+											<div style='padding-left: 130px; padding-top: 5px;'>$i_description</div>
+											<div style='padding-left: 130px; padding-top: 5px;'>
+												Weight: $i_weight		
+											</div>
+										</button>
+									</form>
 										<div class='edit-quantity-buttons'>
+									
 											<form action='../routes/cart_action.php' method='post' >
 												<input type='hidden' name='item_to_edit' value=$i_id>
 												<input type='submit' name='subtract' value='-'>
-												<input style='width:50px;' type='text' name='quantity' value=1>
+												<input style='width:50px;' type='number' min='1' name='quantity' value=1>
 												<input type='submit' name='add' value='+'>
 											</form>
 										</div>
@@ -186,7 +188,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 			</div>
 
 
-			<div class="card" style="margin-left: 40px; width: max(300px);">
+			<div class="card" style="margin-left: 40px; width: max(300px); position: fixed; right: 3%; top: 20%; text-align: center; box-shadow: 0px 0px 7px grey">
 					<br>
 					<h1 style="color: #46b35e;">Cart Summary</h1>
 					<br><br><br>
@@ -195,12 +197,12 @@ $_SESSION["return_to"] = "templates/cart.php";
 					
 					<h3>Number of Items: </h3>
 						<?php
-							echo $num_items;
+							echo number_format($total_item_quantity, 0);
 						?>
 						<br>
 						<h3>Total Weight: </h3>
 						<?php
-							echo $total_weight;
+							echo number_format($total_weight, 0) . " lbs";
 						?>
 						<br>
 					</div>
@@ -208,7 +210,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 					<div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
 						<h3>Subtotal: </h3>
 						<?php
-							echo $sub_total;
+							echo "$" . number_format($sub_total, 2);
 						?>
 						<br><br>
 						<h3>Delivery Fee: </h3>
@@ -234,7 +236,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 								} 
 							}
 							$stax = $sub_total * $tax["value"];
-							echo "$" . number_format((float)$stax, 2, '.', '');
+							echo "$" . number_format((float)$stax, 2);
 							$total += $stax;
 									
 									
@@ -245,7 +247,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 					<h3>Total: </h3>
 					<?php
 					    $total += $sub_total;
-						echo "$" . number_format((float)$total, 2, '.', '');
+						echo "$" . number_format((float)$total, 2);
 					?>
 
 					<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
@@ -255,9 +257,10 @@ $_SESSION["return_to"] = "templates/cart.php";
 						</a>
 					</div>
 				</div>
-		</div>
 						
-					
+		</div>
+		
+
     </body>
 	
 </html>

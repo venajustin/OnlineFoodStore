@@ -9,7 +9,7 @@
 html {
 	overflow-x: hidden;
 	font-family: "Lucida Sans", sans-serif;
-	background-color: var(--light-primary);
+	background-color: white;
 }
 html, body {
     max-width: 100%;
@@ -225,12 +225,12 @@ ul {
 
 .card {
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
-	width: max(450px); 
+	width: max(550px);
 	height: auto; 
 	margin: auto;  
 	padding-top: 2px;
 	padding-bottom: 20px;
-	border-radius: 25px;
+	border-radius: 5px;
 	top: 0%;
 	z-index: 100;
 }
@@ -317,8 +317,8 @@ ul {
 
 .center-screen {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: left;
+	align-items: left;
 	text-align: center;
 	min-height: 90vh;
 }

@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html style="background-color: var(--light-primary);" lang="en" dir="ltr">
 
   <link rel="stylesheet" href="style.css">
 

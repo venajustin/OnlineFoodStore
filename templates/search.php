@@ -57,78 +57,80 @@ $_SESSION["return_to"] = "templates/search.php";
 					}
 				?></a>
         </div>
- 
-        <div class="searchResult" style="width: 80%; height: fit-content; background-color: white; position: absolute; top: 88px; margin-left: 10%">
-			<h2>
-                <?php
+           
+        <div style="position: absolute; top: 120px; width: 80%; left: 10%; padding-bottom: 3%">
+            <div class="searchResult" style="height: fit-content; background-color: white; box-shadow: 0px 0px 7px grey; border-radius: 5px">
+                <h2>
+                    <?php
 
-        // create connection 
-        $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
+                        // create connection 
+                        $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
-        // check connection 
-        if (isset($_POST["search"])) {
-            $search = $_POST["search"];
-        } else {
-            $search = "";
-        }
-        $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
-        //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
-        $itemS = mysqli_query($conn,$searchq);
-        $count = 0;
-    
-
-        if (!$conn ) { 
-            die ("Connection failed: " . mysqli_connect_error());
-        } 
-        else {
-            if ($itemS) {
-
-                /* fetch associative array */
-                echo "<br>";
-                echo "<br>";
-                while ($row = $itemS->fetch_assoc()) {
-                    $i_id = $row["item_id"];
-                    $field2name = $row["item_name"];
-                    $i_description = $row["item_description"];
-                    $i_weight = $row["item_weight"];
-                    $i_price = $row["item_price"];
-                    $count += 1;
-                    echo "
-                    <form action='../templates/item.php' method='post'>
-                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$i_id>
-                            <div class='searchTile' style='background-color: white; padding-top: 5px;'>
-                                <div style='padding-left: 160px; padding-top: 5px;'>
-                                    <h3>$field2name</h3>
-                                    <h4>$i_description</h4>
-                                    <h6>$$i_price</h6>
-                                    <h6>$i_weight lbs</h6>
-                                </div>
-                                
-                            </div>
-                        </button>
-				    </form>
+                        // check connection 
+                        if (isset($_POST["search"])) {
+                            $search = $_POST["search"];
+                        } else {
+                            $search = "";
+                        }
+                        $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
+                        //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
+                        $itemS = mysqli_query($conn,$searchq);
+                        $count = 0;
                     
-                    ";
-                    echo "";
-                }
 
-                
-                if ($search != "") {
-                    echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>$count results for '$search'</h3>";
-                } else {
-                    echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>Browse our whole inventory!</h3>";
-                }
-                /* free result set */
-                $itemS->free();
-            }
-            exit();
-        
-            } 
+                        if (!$conn ) { 
+                            die ("Connection failed: " . mysqli_connect_error());
+                        } 
+                        else {
+                            if ($itemS) {
 
-    ?>
-    </h2>
-		</div> 
-    
+                                /* fetch associative array */
+                                echo "<br>";
+                                echo "<br>";
+                                while ($row = $itemS->fetch_assoc()) {
+                                    $i_id = $row["item_id"];
+                                    $field2name = $row["item_name"];
+                                    $i_description = $row["item_description"];
+                                    $i_weight = $row["item_weight"];
+                                    $i_price = $row["item_price"];
+                                    $count += 1;
+                                    echo "
+                                    <form action='../templates/item.php' method='post'>
+                                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$i_id>
+                                            <div class='searchTile' style='background-color: white; padding-top: 5px;'>
+                                            <img style= 'position: absolute; left: 20px; height:150px; width: 150px; background-color: white; border: solid black 1px;'src=\"./food/$i_id.png\">
+                                                <div style='padding-left: 170px; padding-top: 5px;'>
+                                                    <h3>$field2name</h3>
+                                                    <h4>$i_description</h4>
+                                                    <h6>$$i_price</h6>
+                                                    <h6>$i_weight lbs</h6>
+                                                </div>
+                                                
+                                            </div>
+                                        </button>
+                                    </form>
+                                    
+                                    ";
+                                    echo "";
+                                }
+
+                                
+                                if ($search != "") {
+                                    echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>$count results for '$search'</h3>";
+                                } else {
+                                    echo "<h2 style='position:absolute; top: 3px ;left: 3px; text-align:center;'>Browse our whole inventory!</h3>";
+                                }
+                                /* free result set */
+                                $itemS->free();
+                            }
+                            exit();
+                        
+                            } 
+
+                    ?>
+                </h2>
+            </div> 
+        </div>
 		
     </body>
 </html>

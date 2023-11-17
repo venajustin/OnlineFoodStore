@@ -60,9 +60,9 @@ unset($_SESSION["return_to"]);
 
 
 
-		<div style="position: absolute; left: 0px; height: 80%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
+		<div style="position: absolute; left: 0px; height: 80%; width: 10%; top 88px; background-color: white; z-index: 80"></div>
 
-		<div style="position: absolute; right: 0px; height: 80%; width: 10%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
+		<div style="position: absolute; right: 0px; height: 80%; width: 10%; top 88px; background-color: white; z-index: 80"></div>
 
 		<div style="height: fit-content; width: 80%">
 				<form action="../templates/search.php" method="post">
@@ -97,7 +97,7 @@ unset($_SESSION["return_to"]);
 		</div>
 	
 
-		<div class="slideshow-container" style="width: 80%; height: 40%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
+		<div class="slideshow-container" style="width: 80%; height: 35%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
 			<?php
 				echo 
 				"

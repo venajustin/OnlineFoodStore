@@ -93,6 +93,7 @@ $_SESSION["return_to"] = "templates/search.php";
                     <form action='../templates/item.php' method='post'>
                         <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$i_id>
                             <div class='searchTile' style='background-color: white; padding-top: 5px;'>
+                            <img style= 'position: absolute; left: 20px; height:150px; width: 150px; background-color: white; border: solid black 1px;'src=\"./food/$i_id.png\">
                                 <div style='padding-left: 160px; padding-top: 5px;'>
                                     <h3>$field2name</h3>
                                     <h4>$i_description</h4>

@@ -22,12 +22,15 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $item_id = $_POST["iid"];
+        $item_id = $_POST["item_id"];
         $userNumber = $_POST["userNumber"];
-        $nameChange = $_POST["newName"];
         $newPrice = $_POST["userPrice"];
+        $newWeight = $_POST["userWeight"];
+        $newKeyWords = $_POST["newKeywords"];
+        $newDescription = $_POST["newDescription"];
+        $newName = $_POST["newName"];
     
-        $sql = "UPDATE items SET inv_count = $userNumber, item_name = '$nameChange', item_price = $newPrice WHERE item_id = $item_id";
+        $sql = "UPDATE items SET inv_count = $userNumber, item_name = '$newName',item_price = $newPrice WHERE item_id = $item_id";
     
         if ($conn->query($sql) === TRUE) {
             echo "Stock updated successfully";

@@ -76,12 +76,13 @@ unset($_SESSION["login_error"]);
 
                 /* fetch associative array */
                 while ($row = $itemidS->fetch_assoc()) {
-                    $iid = $row["item_id"];
+                    $item_id = $row["item_id"];
                     $field2name = $row["item_name"];
                     $i_description = $row["item_description"];
                     $i_weight = $row["item_weight"];
                     $i_price = $row["item_price"];
                     $i_inv = $row["inv_count"];
+                    $i_keywords = $row["item_keywords"];
                     echo "
 
                         <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
@@ -91,18 +92,19 @@ unset($_SESSION["login_error"]);
                         <br>
                         <h4>Description</h4>
                         <textarea name = 'newDescription' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>$i_description</textarea>
-                        <h4>Price</h4>
-                        <input type = 'number' name = 'userPrice' value = $i_price min = '1' step = '0.01' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
-                        <h4>Weight Lbs</h4>
-                        <input type = 'number' name = 'userWeight' value = $i_weight min = '1' step = '0.01' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
+                        <h4>Search Keywords</h4>
+                        <textarea name = 'newKeywords' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>$i_keywords</textarea>
 
-                        
+                        <h4>Price</h4>
+                        <input type = 'number' name = 'userPrice' value = $i_price min = '0.01' step = '0.01' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
+                        <h4>Weight Lbs</h4>
+                        <input type = 'number' name = 'userWeight' value = $i_weight min = '0.01' step = '0.01' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
                         <br>
-                        <input type='hidden' name='item_to_edit' value=$iid>
+                        <input type='hidden' name='item_to_edit' value=$item_id>
                         <h4>Stock Quantity</h4>
                         <input type = 'number' name = 'userNumber' value = $i_inv min = '1' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
 
-                        <input type='submit' name='add' value='Update' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
+                        <input type='submit' name='update' value='Update' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
 							
                         
                                    

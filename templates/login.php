@@ -45,7 +45,7 @@ session_start();
         </a>
     </div>
 <div class = "center-screen">
-  <div class = "card" style="text-align: center;">
+  <div class = "card" style="text-align: center; position: absolute; left: 50%; margin-left: -275px; top: 20%">
     <h1 style= "text-align: center; margin-top: 10px;">
         Login
       </h1>
@@ -61,16 +61,15 @@ session_start();
 
 
     <form method="post" action="../routes/process_login.php" name="myForm">
+          <br>
           <input class= "inputField" style="text-indent: 10px" placeholder="Username" type="text" name="username" required>
+          <br>
           <br>
           <br>
           <input class= "inputField" style="text-indent: 10px" placeholder="Password" type="password" id="pwd" name="password" required>
           <br>
           <br>
-          <div style="text-align: left; text-indent: 30px;">
-            <a href="changepassword.php">Forgot Password?</a>
-          </div>
-          
+          <br>
           <br>
 
       <div style="text-align: center">
@@ -81,7 +80,7 @@ session_start();
           <a href="register.php">Create an account!</a>
       </div>
     </form>
-</div>
+  </div>
 </div>
 
 

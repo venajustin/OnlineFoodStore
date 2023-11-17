@@ -34,14 +34,14 @@ if (!$conn ) {
         /* Style for the main container */
         .container {
             width: 90%;
-            height: 30%;
+            height: 100vh;
             margin: 0 auto;
         }
 
         /* Style for the navigation bar */
         .navbar {
             background-color: #1c3144;
-            width: 90%;
+            width: 100%;
             overflow: hidden;
             margin: 0 auto;
         }
@@ -121,10 +121,9 @@ if (!$conn ) {
 			<br><br>
 
 			
-			<div class="container" style ="margin-top: 5%;">
+			<div class="container" style ="margin-top: 5%; box-shadow: 0px 0px 7px grey">
 				<div class="navbar">
 				<button onclick="showTab('tab1')">Inventory</button>
-				<button onclick="showTab('tab2')">Add New Item</button>
 				<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
 				</div>
 				<div class="container">
@@ -155,30 +154,6 @@ if (!$conn ) {
 
 							// Close the connection
 							$conn->close();
-							?>
-						</div>
-						<div id="tab2">
-							<p>- List of completed orders</p>
-							<p>- Use a table</p>
-						</div>
-						<div id="tab3">
-							<p>- Edit Page</p>
-							<p>- Use a table</p>
-							<?php
-							echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
-							echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
-							echo 'Change name: ';
-							echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
-							
-							echo 'Change price: ';
-							echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
-							
-
-							echo 'Change stock: ';
-							echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
-							echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
-							echo '</form>';
-							
 							?>
 						</div>
 						

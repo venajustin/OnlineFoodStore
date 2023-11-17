@@ -99,6 +99,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 				$sub_total = 0;
 				$total_weight = 0;
 				$num_items = mysqli_num_rows($itemS);
+				$total_item_quantity = 0;
 				$total = 0;
 
 				if (!$conn ) { 
@@ -146,6 +147,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 
 							$sub_total += $i_price * $i_quantity;
 							$total_weight += $i_weight * $i_quantity;
+							$total_item_quantity += $i_quantity;
 
 							echo "
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
@@ -166,7 +168,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 											<form action='../routes/cart_action.php' method='post' >
 												<input type='hidden' name='item_to_edit' value=$i_id>
 												<input type='submit' name='subtract' value='-'>
-												<input style='width:50px;' type='text' name='quantity' value=1>
+												<input style='width:50px;' type='number' min='1' name='quantity' value=1>
 												<input type='submit' name='add' value='+'>
 											</form>
 										</div>
@@ -195,12 +197,12 @@ $_SESSION["return_to"] = "templates/cart.php";
 					
 					<h3>Number of Items: </h3>
 						<?php
-							echo $num_items;
+							echo number_format($total_item_quantity, 0);
 						?>
 						<br>
 						<h3>Total Weight: </h3>
 						<?php
-							echo $total_weight;
+							echo number_format($total_weight, 0) . " lbs";
 						?>
 						<br>
 					</div>
@@ -208,7 +210,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 					<div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
 						<h3>Subtotal: </h3>
 						<?php
-							echo $sub_total;
+							echo "$" . number_format($sub_total, 2);
 						?>
 						<br><br>
 						<h3>Delivery Fee: </h3>
@@ -234,7 +236,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 								} 
 							}
 							$stax = $sub_total * $tax["value"];
-							echo "$" . number_format((float)$stax, 2, '.', '');
+							echo "$" . number_format((float)$stax, 2);
 							$total += $stax;
 									
 									
@@ -245,7 +247,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 					<h3>Total: </h3>
 					<?php
 					    $total += $sub_total;
-						echo "$" . number_format((float)$total, 2, '.', '');
+						echo "$" . number_format((float)$total, 2);
 					?>
 
 					<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>

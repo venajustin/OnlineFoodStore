@@ -220,7 +220,7 @@
                         if (!$sub) {
                             echo "No information set";
                         } else {
-                            echo "$" . $sub["SUM(shopping_cart.quantity*items.item_price)"];
+                            echo "$" . number_format($sub["SUM(shopping_cart.quantity*items.item_price)"], 2);
                             $total = $sub["SUM(shopping_cart.quantity*items.item_price)"];
                         }
                     }
@@ -259,8 +259,8 @@
                                 } 
                             }
                             
-                            $stax = number_format($sub["SUM(shopping_cart.quantity*items.item_price)"]*$tax["value"], 2);
-                            echo "$" . $stax;
+                            $stax = $sub["SUM(shopping_cart.quantity*items.item_price)"]*$tax["value"];
+                            echo "$" . number_format($stax, 2);
                             $total += $stax;
                         }
                     }
@@ -270,7 +270,7 @@
             <br>
             <h3>Total: </h3>
             <?php
-                echo "$" . $total;
+                echo "$" . number_format( $total, 2);
             ?>
         </div>
     </div>

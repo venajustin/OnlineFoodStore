@@ -5,6 +5,8 @@ require "../../credentials.php";
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
 
+$_SESSION["return_to"] = "templates/search.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +83,7 @@ unset($_SESSION["login_error"]);
                 echo "<br>";
                 echo "<br>";
                 while ($row = $itemS->fetch_assoc()) {
-                    $i_name = $row["item_id"];
+                    $i_id = $row["item_id"];
                     $field2name = $row["item_name"];
                     $i_description = $row["item_description"];
                     $i_weight = $row["item_weight"];
@@ -89,7 +91,7 @@ unset($_SESSION["login_error"]);
                     $count += 1;
                     echo "
                     <form action='../templates/item.php' method='post'>
-                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$i_name>
+                        <button style='border:none; width: 100%;text-align:left;font-size:20px;' name='itemid' value =$i_id>
                             <div class='searchTile' style='background-color: white; padding-top: 5px;'>
                                 <div style='padding-left: 160px; padding-top: 5px;'>
                                     <h3>$field2name</h3>
@@ -97,6 +99,7 @@ unset($_SESSION["login_error"]);
                                     <h6>$$i_price</h6>
                                     <h6>$i_weight lbs</h6>
                                 </div>
+                                
                             </div>
                         </button>
 				    </form>

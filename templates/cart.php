@@ -119,10 +119,25 @@ $_SESSION["return_to"] = "templates/cart.php";
 									
 								
 							";
+						} else {
+							echo "
+
+							<div style=' background-color: white; padding-top: 5px;'>
+								<form action='../routes/cart_action.php' method='post' >
+									
+									<input style='color: red' type='submit' name='remove_all' value='Remove all from Cart'>
+									
+								</form>
+							</div>
+
+							";
+
+
 						}
 						/* fetch associative array */
 
 						while ($row = $itemS->fetch_assoc()) {
+							$i_id = $row["item_id"];
 							$i_name = $row["item_name"];
 							$i_description = $row["item_description"];
 							$i_weight = $row["item_weight"];
@@ -146,6 +161,13 @@ $_SESSION["return_to"] = "templates/cart.php";
 										<div style='padding-left: 130px; padding-top: 5px;'>
 											Weight: $i_weight
 											
+										</div>
+										<div class='edit-quantity-buttons'>
+											<form action='../routes/cart_action.php' method='post' >
+												<input type='hidden' name='item_to_edit' value=$i_id>
+												<input type='submit' name='subtract' value='-'>
+												<input type='submit' name='add' value='+'>
+											</form>
 										</div>
 									</div>
 							";

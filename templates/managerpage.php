@@ -117,21 +117,8 @@ if (!$conn ) {
 		<div style="position: absolute; right: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
 
 		<div style="margin-left: 2%; margin-right: 2%; margin-top: 100px;">
-				<div class="search-container" style="padding-top: 10px; padding-bottom: 10px; padding-left: 1%; padding-right: 1%; background-color: var(--dark); border-radius: 50px; height: 60px; width: 82%; text-align: center;">
-					<form action="../routes/action_page.php">
-						<input type="text" placeholder="Search.." name="search" method="post" style="width: 88%; height: 40px;">
 
-						<button type="submit" style="width: 40px; float: right; margin-right: 2%;">
-							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" viewBox="0 0 32 40" version="1.1" xml:space="preserve" style="" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
-								<g transform="matrix(1,0,0,1,-192,-96)">
-									<path fill="currentColor" stroke="currentColor" d="M202.766,116.29L194.313,124.273C193.912,124.652 193.894,125.285 194.273,125.687C194.652,126.088 195.285,126.106 195.687,125.727L204.224,117.664C206.093,119.127 208.445,120 211,120C217.071,120 222,115.071 222,109C222,102.929 217.071,98 211,98C204.929,98 200,102.929 200,109C200,111.796 201.045,114.349 202.766,116.29ZM211,100C215.967,100 220,104.033 220,109C220,113.967 215.967,118 211,118C206.033,118 202,113.967 202,109C202,104.033 206.033,100 211,100Z"/>
-								</g>
-							</svg>
-						</button>
-					</form>
-				</div>
-
-			<br><br><br><br><br> 
+			<br><br>
 
 			
 			<div class="container" style ="margin-top: 5%;">
@@ -153,22 +140,13 @@ if (!$conn ) {
 							if ($itemS->num_rows > 0) {
 								// Output data of each row
 								while($row = $itemS->fetch_assoc()) {
+									$i_id = $row["item_id"];
 									echo '<div style="margin: 10px; display: flex; justify-content: space-between; align-items: center;">';
 									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
-
-									echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
-									echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
-									echo 'Change name: ';
-									echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
-									
-									echo 'Change price: ';
-									echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
-									
-
-									echo 'Change stock: ';
-									echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
-									echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
-									echo '</form>';
+									echo "<form action='../templates/itempreview.php' method='post'>";
+									echo "<button name='itemid' value =$i_id>Edit</button>";
+										
+									echo"</form>";
 									echo '</div>';
 								}
 							} else {
@@ -183,12 +161,34 @@ if (!$conn ) {
 							<p>- List of completed orders</p>
 							<p>- Use a table</p>
 						</div>
+						<div id="tab3">
+							<p>- Edit Page</p>
+							<p>- Use a table</p>
+							<?php
+							echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
+							echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
+							echo 'Change name: ';
+							echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
+							
+							echo 'Change price: ';
+							echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
+							
+
+							echo 'Change stock: ';
+							echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
+							echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
+							echo '</form>';
+							
+							?>
+						</div>
 						
 				</div>
 
 				<script>
 					function showTab(tabId) {
 						const contentDivs = document.querySelectorAll(".content > div");
+
+						
 
 						// Hide all content divs
 						contentDivs.forEach(div => {
@@ -200,6 +200,8 @@ if (!$conn ) {
 						if (selectedTab) {
 							selectedTab.classList.add("active");
 						}
+
+
 					}
 				</script>
 			</div>

@@ -25,7 +25,7 @@ $_SESSION["return_to"] = "templates/cart.php";
     </head>
 	<style>
 	</style>
-    <body>
+    <body style="padding-bottom: 50px">
 
 		<!--Page Header-->
 
@@ -72,8 +72,8 @@ $_SESSION["return_to"] = "templates/cart.php";
 
 
 		<!--List Containing Items from Shopping Cart-->				
-		<div class="center-screen" style="padding-top: 7%;">
-			<div class="card" style="width: max(800px); text-align: center;">
+		<div style="padding-bottom: 30px; margin-bottom: 3%">
+			<div class="card" style="width: max(1000px); text-align: center; background-color: maroon; box-shadow: 0px 0px 7px grey; z-index: 80; left: 3%; top: 120px; position: absolute; margin-bottom: 3%">
 				<br>
 				
 				<h1 style="color: #46b35e;">Shopping Cart</h1>
@@ -188,7 +188,7 @@ $_SESSION["return_to"] = "templates/cart.php";
 			</div>
 
 
-			<div class="card" style="margin-left: 40px; width: max(300px);">
+			<div class="card" style="margin-left: 40px; width: max(300px); position: fixed; right: 3%; top: 20%; text-align: center; box-shadow: 0px 0px 7px grey">
 					<br>
 					<h1 style="color: #46b35e;">Cart Summary</h1>
 					<br><br><br>
@@ -257,9 +257,10 @@ $_SESSION["return_to"] = "templates/cart.php";
 						</a>
 					</div>
 				</div>
-		</div>
 						
-					
+		</div>
+		
+
     </body>
 	
 </html>

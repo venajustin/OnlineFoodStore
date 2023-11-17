@@ -155,20 +155,7 @@ if (!$conn ) {
 								while($row = $itemS->fetch_assoc()) {
 									echo '<div style="margin: 10px; display: flex; justify-content: space-between; align-items: center;">';
 									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
-
-									echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
-									echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
-									echo 'Change name: ';
-									echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
-									
-									echo 'Change price: ';
-									echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
-									
-
-									echo 'Change stock: ';
-									echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
-									echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
-									echo '</form>';
+									echo '<button onclick="showTab(\'tab3\')">Edit</button>';
 									echo '</div>';
 								}
 							} else {
@@ -182,6 +169,26 @@ if (!$conn ) {
 						<div id="tab2">
 							<p>- List of completed orders</p>
 							<p>- Use a table</p>
+						</div>
+						<div id="tab3">
+							<p>- Edit Page</p>
+							<p>- Use a table</p>
+							<?php
+							echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
+							echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
+							echo 'Change name: ';
+							echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
+							
+							echo 'Change price: ';
+							echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
+							
+
+							echo 'Change stock: ';
+							echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
+							echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
+							echo '</form>';
+							
+							?>
 						</div>
 						
 				</div>
@@ -199,6 +206,10 @@ if (!$conn ) {
 						const selectedTab = document.getElementById(tabId);
 						if (selectedTab) {
 							selectedTab.classList.add("active");
+						}
+
+						if(tabId == 'tab3'){
+
 						}
 					}
 				</script>

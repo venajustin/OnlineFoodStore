@@ -40,7 +40,7 @@ require "../../credentials.php";
         /* Style for the main container */
         .container {
             width: 90%;
-            height: 30%;
+            height: 100vh;
             margin: 0 auto;
         }
 
@@ -97,6 +97,7 @@ require "../../credentials.php";
 </head>
 
 <body>
+
     <div class="header">
         <a href="home.php" class="logo">
             <img src="../icons/food.png">
@@ -133,7 +134,7 @@ require "../../credentials.php";
         ?></a>
     </div>
 
-    <div class="container" style="margin-top: 10%;">
+    <div class="container" style="margin-top: 10%; box-shadow: 0px 0px 7px grey; background-color: none; z-index: 110">
         <div class="navbar">
             <button onclick="showTab('tab1')">Account Settings</button>
             <button onclick="showTab('tab2')">Address Details</button>
@@ -151,17 +152,15 @@ require "../../credentials.php";
             <div class="content">
                 <div class="active" id="tab1"> Account Info
                     <div style="flex-grow: 5">
-                        <?php
-                         
-                            $userData = mysqli_fetch_assoc($account_results);
-                           
-                                echo "Username: " . $_SESSION["username"] . "<br>";
+                            <?php
+                            
+                                $userData = mysqli_fetch_assoc($account_results);
+                            
+                                    echo "Username: " . $_SESSION["username"] . "<br>";
 
 
-                        ?>
+                            ?>
                     </div>
-
-
                 </div>
                 <div id="tab2">
                     
@@ -195,30 +194,29 @@ require "../../credentials.php";
 
                 </div>
                 <div id="tab3">
-                <div style="flex-grow: 5"> 
-                    <table>
-                        <tr><th>Payment Info  <a class="noindex" href="./checkout/card_details.php">Edit</a></th></tr>
+                    <div style="flex-grow: 5"> 
+                        <table>
+                            <tr><th>Payment Info  <a class="noindex" href="./checkout/card_details.php">Edit</a></th></tr>
 
-                    <?php
-                        if (!$card_results) {
-                            echo "<tr><th>No information set</th></tr>";
-                        } else {
-                            $card = mysqli_fetch_assoc($card_results);
-                            if (!$card) {
+                        <?php
+                            if (!$card_results) {
                                 echo "<tr><th>No information set</th></tr>";
                             } else {
-                                echo "<tr><td>Card Type: </td><td><b>" . $card["card_type"] . "</b></td></tr>";
-                                echo "<tr><td>Card Number: </td><td><b>XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "</b></td></tr>";
-                                echo "<tr><td>Expiry Date: </td><td><b>" . $card["card_expiry"] . "</b></td></tr>";
-                                echo "<tr><td>Billing Address: </td><td><b>" . $card["billing_address"] . "</b></td></tr>";
+                                $card = mysqli_fetch_assoc($card_results);
+                                if (!$card) {
+                                    echo "<tr><th>No information set</th></tr>";
+                                } else {
+                                    echo "<tr><td>Card Type: </td><td><b>" . $card["card_type"] . "</b></td></tr>";
+                                    echo "<tr><td>Card Number: </td><td><b>XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "</b></td></tr>";
+                                    echo "<tr><td>Expiry Date: </td><td><b>" . $card["card_expiry"] . "</b></td></tr>";
+                                    echo "<tr><td>Billing Address: </td><td><b>" . $card["billing_address"] . "</b></td></tr>";
+                                }
                             }
-                        }
-                    ?>
-                    </table>
+                        ?>
+                        </table>
+                    </div>
                 </div>
 
-
-                </div>
                 <div id="tab4"> </div>
             </div>
         </div>

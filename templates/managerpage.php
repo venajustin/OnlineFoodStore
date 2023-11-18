@@ -33,7 +33,7 @@ if (!$conn ) {
 		<style>
         /* Style for the main container */
         .container {
-            width: 90%;
+            width: 100%;
             height: auto;
             margin: 0 auto;
 			overflow: scroll;
@@ -42,7 +42,7 @@ if (!$conn ) {
         /* Style for the navigation bar */
         .navbar {
             background-color: #1c3144;
-            width: 90%;
+            width: 100%;
             overflow: hidden;
             margin: auto;
         }
@@ -113,17 +113,14 @@ if (!$conn ) {
 					}
 				?></a>
         </div>
-
-		<div style="margin-left: 2%; margin-right: 2%; margin-top: 100px; margin-bottom: 3%;">
-
-			<br><br>
-
-			<div class="navbar" style="box-shadow: 3px 0px 7px grey, -3px 0px 7px grey; z-index: 150">
-				<button onclick="showTab('tab1')">Inventory</button>
-				<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
+		
+			<div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
+				<div class="navbar" style="z-index: 150; box-shadow: 0px 0px 7px grey;">
+					<button onclick="showTab('tab1')">Inventory</button>
+					<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
 				</div>
 
-			<div class="container" style = "box-shadow: 3px 0px 7px grey, -3px 0px 7px grey; padding-top: 7px">
+				<div class="container" style = "z-index: 20;">
 					<div class="content">
 						<div class="active" id="tab1">
 						<?php 

@@ -225,12 +225,12 @@ ul {
 
 .card {
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
-	width: max(550px);
+	width: max(500px);
 	height: auto; 
 	margin: auto;  
 	padding-top: 2px;
 	padding-bottom: 20px;
-	border-radius: 5px;
+	border-radius: 15px;
 	top: 0%;
 	z-index: 100;
 }

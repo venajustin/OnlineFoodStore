@@ -73,6 +73,12 @@
             }
             
         }
+
+        if (isset($_POST["remove_item"])) {
+            $sql = "DELETE FROM shopping_cart 
+                    WHERE u_id = $uid AND i_id = $i_id";
+            $results = mysqli_query($conn, $sql);
+        }
     }
 
     if (isset($_POST["remove_all"])) {

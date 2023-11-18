@@ -36,14 +36,15 @@ if (!$conn ) {
             width: 90%;
             height: 100vh;
             margin: 0 auto;
+			overflow: scroll;
         }
 
         /* Style for the navigation bar */
         .navbar {
             background-color: #1c3144;
-            width: 100%;
+            width: 90%;
             overflow: hidden;
-            margin: 0 auto;
+            margin: auto;
         }
 
         .navbar button {
@@ -120,44 +121,44 @@ if (!$conn ) {
 
 			<br><br>
 
-			
-			<div class="container" style ="margin-top: 5%; box-shadow: 0px 0px 7px grey">
-				<div class="navbar">
+			<div class="navbar" style="box-shadow: 3px 0px 7px grey, -3px 0px 7px grey; z-index: 150">
 				<button onclick="showTab('tab1')">Inventory</button>
 				<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
-				</div>
-				<div class="container">
+			</div>
+
+			<div class="container" style = "box-shadow: 3px 0px 7px grey, -3px 0px 7px grey; padding-top: 7px">
+				
 					<div class="content">
 						<div class="active" id="tab1">
-						<?php 
-							$allItems = "SELECT * FROM items";
-							$itemS = mysqli_query($conn,$allItems);
-							echo "<br>";
+							<?php 
+								$allItems = "SELECT * FROM items";
+								$itemS = mysqli_query($conn,$allItems);
 							
-							// Select all data from the table
+								
+								// Select all data from the table
 
-							if ($itemS->num_rows > 0) {
-								// Output data of each row
-								while($row = $itemS->fetch_assoc()) {
-									$i_id = $row["item_id"];
-									echo '<div style="border-bottom: solid gray 1px; padding-top: 7px; padding-bottom: 5px; margin: 10px; display: flex; justify-content: space-between; align-items: center;">';
-									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
-									echo "<form action='../templates/itempreview.php' method='post'>";
-									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
-										
-									echo"</form>";
-									echo '</div>';
+								if ($itemS->num_rows > 0) {
+									// Output data of each row
+									while($row = $itemS->fetch_assoc()) {
+										$i_id = $row["item_id"];
+										echo '<div style="border-bottom: solid gray 1px; padding-top: 7px; padding-bottom: 5px; margin: 10px; display: flex; justify-content: space-between; align-items: center; z-index: 80">';
+										echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
+										echo "<form action='../templates/itempreview.php' method='post'>";
+										echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
+											
+										echo"</form>";
+										echo '</div>';
+									}
+								} else {
+									echo "0 results";
 								}
-							} else {
-								echo "0 results";
-							}
 
-							// Close the connection
-							$conn->close();
-							?>
+								// Close the connection
+								$conn->close();
+								?>
 						</div>
-						
-				</div>
+					</div>
+			</div>
 
 				<script>
 					function showTab(tabId) {

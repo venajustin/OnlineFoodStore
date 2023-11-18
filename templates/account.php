@@ -42,12 +42,13 @@ require "../../credentials.php";
             width: 90%;
             height: 100vh;
             margin: 0 auto;
+            overflow: scroll;
         }
 
         /* Style for the navigation bar */
         .navbar {
             background-color: #1c3144;
-            width: 90%;
+            width: 100%;
             overflow: hidden;
             margin: 0 auto;
         }

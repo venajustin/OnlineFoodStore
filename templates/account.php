@@ -135,23 +135,19 @@ require "../../credentials.php";
         ?></a>
     </div>
 
-    <div class="container" style="margin-top: 10%; box-shadow: 0px 0px 7px grey; background-color: none; z-index: 110">
         <div class="navbar">
-            <button onclick="showTab('tab1')">Account Settings</button>
-            <button onclick="showTab('tab2')">Address Details</button>
-            <button onclick="showTab('tab3')">Payment Method</button>
-
-            <?php
-            if ($_SESSION["is_employee"]) {
-                echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
-            }
-            ?>
-
-            
+                <button onclick="showTab('tab1')">Account Settings</button>
+                <?php
+                if ($_SESSION["is_employee"]) {
+                    echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
+                }
+                ?>
         </div>
-        <div class="container">
+        
+    <div class="container" style="margin-top: 10%; box-shadow: 0px 0px 7px grey; background-color: none; z-index: 110">
+        
             <div class="content">
-                <div class="active" id="tab1"> Account Info
+                <div class="active" id="tab1"> Account Info 
                     <div style="flex-grow: 5">
                             <?php
                             
@@ -162,8 +158,8 @@ require "../../credentials.php";
 
                             ?>
                     </div>
-                    <br>
-                    <br>
+                <br>
+                <br>
                     <div style="flex-grow: 5">
                         <table>
                             <tr><th>Shipping Address <a class="noindex" href="./checkout/address_details.php">Edit</a></th></tr>
@@ -186,45 +182,11 @@ require "../../credentials.php";
                                 echo "<tr><td>Country: </td><td><b>" . $address["country"] . "</b></td></tr>";
                             }
                         }
-
-
                         ?>
                         </table>
                     </div>
-
-                </div>
-                <div id="tab2">
-                    
-                    <div style="flex-grow: 5">
-                        <table>
-                            <tr><th>Shipping Address <a class="noindex" href="./checkout/address_details.php">Edit</a></th></tr>
-                        <?php
-                        if (!$address_results) {
-                            echo "<tr><th>No information set</th></tr>";
-                        } else {
-                            $address = mysqli_fetch_assoc($address_results);
-                            if (!$address) {
-                                echo "<tr><th>No information set</tr></th>";
-                            } else {
-                                echo "<tr><td>Address Line 1: </td><td><b>" . $address["address_line1"] . "</b></td></tr>";
-                                if ($address["address_line2"] != "") {
-                                    echo "<tr><td>Address Line 2: </td><td><b>" . $address["address_line2"] . "</b></td></tr>";
-                                }
-
-                                echo "<tr><td>City: </td><td><b>" . $address["city"] . "</b></td></tr>";
-                                echo "<tr><td>State: </td><td><b>" . $address["state_province"] . "</b></td></tr>";
-                                echo "<tr><td>ZIP: </td><td><b>" . $address["zip_code"] . "</b></td></tr>";
-                                echo "<tr><td>Country: </td><td><b>" . $address["country"] . "</b></td></tr>";
-                            }
-                        }
-
-
-                        ?>
-                        </table>
-                    </div>
-
-                </div>
-                <div id="tab3">
+                 <br>
+                <br>
                     <div style="flex-grow: 5"> 
                         <table>
                             <tr><th>Payment Info  <a class="noindex" href="./checkout/card_details.php">Edit</a></th></tr>
@@ -246,11 +208,10 @@ require "../../credentials.php";
                         ?>
                         </table>
                     </div>
+
                 </div>
 
-                <div id="tab4"> </div>
             </div>
-        </div>
 
         <script>
             function showTab(tabId) {

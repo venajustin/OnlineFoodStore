@@ -114,9 +114,6 @@ if (!$conn ) {
 				?></a>
         </div>
 
-		<div style="position: absolute; left: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
-		<div style="position: absolute; right: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
-
 		<div style="margin-left: 2%; margin-right: 2%; margin-top: 100px;">
 
 			<br><br>

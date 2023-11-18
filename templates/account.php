@@ -40,14 +40,15 @@ require "../../credentials.php";
         /* Style for the main container */
         .container {
             width: 90%;
-            height: 30%;
+            height: 100vh;
             margin: 0 auto;
+            overflow: scroll;
         }
 
         /* Style for the navigation bar */
         .navbar {
             background-color: #1c3144;
-            width: 90%;
+            width: 100%;
             overflow: hidden;
             margin: 0 auto;
         }
@@ -97,6 +98,7 @@ require "../../credentials.php";
 </head>
 
 <body>
+
     <div class="header">
         <a href="home.php" class="logo">
             <img src="../icons/food.png">
@@ -133,38 +135,29 @@ require "../../credentials.php";
         ?></a>
     </div>
 
-    <div class="container" style="margin-top: 10%;">
+    <div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
         <div class="navbar">
-            <button onclick="showTab('tab1')">Account Settings</button>
-            <button onclick="showTab('tab2')">Address Details</button>
-            <button onclick="showTab('tab3')">Payment Method</button>
-
-            <?php
-            if ($_SESSION["is_employee"]) {
-                echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
-            }
-            ?>
-
-            
+                <button onclick="showTab('tab1')">Account Settings</button>
+                <?php
+                if ($_SESSION["is_employee"]) {
+                    echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
+                }
+                ?>
         </div>
-        <div class="container">
-            <div class="content">
-                <div class="active" id="tab1"> Account Info
+        <div class="content">
+            <div class="active" id="tab1"> Account Info 
                 <div style="flex-grow: 5">
                         <?php
-                         
+                        
                             $userData = mysqli_fetch_assoc($account_results);
-                           
+                        
                                 echo "Username: " . $_SESSION["username"] . "<br>";
 
 
                         ?>
-                    </div>
-
-
                 </div>
-                <div id="tab2">
-                    
+                <br>
+                <br>
                     <div style="flex-grow: 5">
                         <table>
                             <tr><th>Shipping Address <a class="noindex" href="./checkout/address_details.php">Edit</a></th></tr>
@@ -187,41 +180,36 @@ require "../../credentials.php";
                                 echo "<tr><td>Country: </td><td><b>" . $address["country"] . "</b></td></tr>";
                             }
                         }
+                        ?>
+                        </table>
+                    </div>
+                 <br>
+                <br>
+                    <div style="flex-grow: 5"> 
+                        <table>
+                            <tr><th>Payment Info  <a class="noindex" href="./checkout/card_details.php">Edit</a></th></tr>
 
-
+                        <?php
+                            if (!$card_results) {
+                                echo "<tr><th>No information set</th></tr>";
+                            } else {
+                                $card = mysqli_fetch_assoc($card_results);
+                                if (!$card) {
+                                    echo "<tr><th>No information set</th></tr>";
+                                } else {
+                                    echo "<tr><td>Card Type: </td><td><b>" . $card["card_type"] . "</b></td></tr>";
+                                    echo "<tr><td>Card Number: </td><td><b>XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "</b></td></tr>";
+                                    echo "<tr><td>Expiry Date: </td><td><b>" . $card["card_expiry"] . "</b></td></tr>";
+                                    echo "<tr><td>Billing Address: </td><td><b>" . $card["billing_address"] . "</b></td></tr>";
+                                }
+                            }
                         ?>
                         </table>
                     </div>
 
                 </div>
-                <div id="tab3">
-                <div style="flex-grow: 5"> 
-                    <table>
-                        <tr><th>Payment Info  <a class="noindex" href="./checkout/card_details.php">Edit</a></th></tr>
 
-                    <?php
-                        if (!$card_results) {
-                            echo "<tr><th>No information set</th></tr>";
-                        } else {
-                            $card = mysqli_fetch_assoc($card_results);
-                            if (!$card) {
-                                echo "<tr><th>No information set</th></tr>";
-                            } else {
-                                echo "<tr><td>Card Type: </td><td><b>" . $card["card_type"] . "</b></td></tr>";
-                                echo "<tr><td>Card Number: </td><td><b>XXXX-XXXX-XXXX-" . $card["RIGHT(card_number,4)"] . "</b></td></tr>";
-                                echo "<tr><td>Expiry Date: </td><td><b>" . $card["card_expiry"] . "</b></td></tr>";
-                                echo "<tr><td>Billing Address: </td><td><b>" . $card["billing_address"] . "</b></td></tr>";
-                            }
-                        }
-                    ?>
-                    </table>
-                </div>
-
-
-                </div>
-                <div id="tab4"> </div>
             </div>
-        </div>
 
         <script>
             function showTab(tabId) {
@@ -237,6 +225,7 @@ require "../../credentials.php";
                 }
             }
         </script>
+    </div>
 </body>
 
 </html>

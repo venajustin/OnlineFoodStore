@@ -135,7 +135,7 @@ require "../../credentials.php";
         ?></a>
     </div>
 
-    <div class="container" style="margin-top: 10%; box-shadow: 0px 0px 7px grey; background-color: none; z-index: 110">
+    <div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
         <div class="navbar">
                 <button onclick="showTab('tab1')">Account Settings</button>
                 <?php
@@ -144,18 +144,18 @@ require "../../credentials.php";
                 }
                 ?>
         </div>
-            <div class="content">
-                <div class="active" id="tab1"> Account Info 
-                    <div style="flex-grow: 5">
-                            <?php
-                            
-                                $userData = mysqli_fetch_assoc($account_results);
-                            
-                                    echo "Username: " . $_SESSION["username"] . "<br>";
+        <div class="content">
+            <div class="active" id="tab1"> Account Info 
+                <div style="flex-grow: 5">
+                        <?php
+                        
+                            $userData = mysqli_fetch_assoc($account_results);
+                        
+                                echo "Username: " . $_SESSION["username"] . "<br>";
 
 
-                            ?>
-                    </div>
+                        ?>
+                </div>
                 <br>
                 <br>
                     <div style="flex-grow: 5">

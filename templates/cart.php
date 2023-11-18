@@ -167,7 +167,7 @@ if (!isset($_SESSION["username"])) {
 							$i_stock = $row["inv_count"];
 
 							$sub_total += $i_price * $i_quantity;
-							$total_weight += $i_weight * $i_quantity;
+							$total_weight += $i_weight * (float) $i_quantity;
 							$total_item_quantity += $i_quantity;
 
 							echo "
@@ -176,7 +176,12 @@ if (!isset($_SESSION["username"])) {
 											<button style='background-color: white; border:none; width: 100%;text-align:left; padding-left: 40px; font-size:20px;' name='itemid' value =$i_id>
 												<img style= 'position: absolute; height:150px; left: 2%; width: 150px; background-color: white; border: solid grey 1px;'src=\"./food/$i_id.png\">
 												<div style='padding-left: 130px; padding-top: 5px;'>
-													<h3>$i_name  x $i_quantity</h3>
+													<h3>$i_name  x $i_quantity </h3>";
+													if ($i_stock < $i_quantity) {
+														echo "<h5 style='color:red;'> Total in Stock: " . $i_stock . "</h4>";
+													}
+
+							echo "
 												</div>
 												<div style='padding-left: 130px; padding-top: 5px;'>$i_description</div>
 												<div style='padding-left: 130px; padding-top: 5px;'>
@@ -184,13 +189,15 @@ if (!isset($_SESSION["username"])) {
 												</div>
 											</button>
 										</form>
-										<div class='edit-quantity-buttons' style='width:100px; margin-left:30%'>
+										<div class='edit-quantity-buttons' style='width:180px; margin:auto;'>
 
 											<form action='../routes/cart_action.php' method='post' >
 												<input type='hidden' name='item_to_edit' value=$i_id>
-												<input type='submit' style='float:right;' name='add' value='+'>
+												<input type='submit' style='float:right;' name='add' value='&nbsp&nbsp+&nbsp&nbsp'>
 												<input style='width:50px;' type='number' min='1' name='quantity' value=1>
-												<input type='submit' style='float:left;' name='subtract' value='-'>
+												<input type='submit' style='float:left; margin-right:10px;' name='remove_item' value='remove all'>
+												<input type='submit' style='float:left;' name='subtract' value='&nbsp&nbsp-&nbsp&nbsp'>
+												
 												
 											</form>
 										</div>
@@ -226,7 +233,7 @@ if (!isset($_SESSION["username"])) {
 				<br>
 				<h3>Total Weight: </h3>
 				<?php
-				echo number_format($total_weight, 0) . " lbs";
+				echo number_format($total_weight, 2) . " lbs";
 				?>
 				<br>
 			</div>

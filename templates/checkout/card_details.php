@@ -108,7 +108,7 @@
 				?></a>
         </div>
         <div class="center-screen" style="float: center;  padding-top: 7%;">
-            <div class="card" style="width: max(700px); text-align: center;">
+            <div class="card" style="width: max(700px); text-align: center; box-shadow: 0px 0px 7px grey;">
                 <br>
                 <h1 style="color: #46b35e;">Card Details</h1>
                 <br>

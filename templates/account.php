@@ -162,6 +162,36 @@ require "../../credentials.php";
 
                             ?>
                     </div>
+                    <br>
+                    <br>
+                    <div style="flex-grow: 5">
+                        <table>
+                            <tr><th>Shipping Address <a class="noindex" href="./checkout/address_details.php">Edit</a></th></tr>
+                        <?php
+                        if (!$address_results) {
+                            echo "<tr><th>No information set</th></tr>";
+                        } else {
+                            $address = mysqli_fetch_assoc($address_results);
+                            if (!$address) {
+                                echo "<tr><th>No information set</tr></th>";
+                            } else {
+                                echo "<tr><td>Address Line 1: </td><td><b>" . $address["address_line1"] . "</b></td></tr>";
+                                if ($address["address_line2"] != "") {
+                                    echo "<tr><td>Address Line 2: </td><td><b>" . $address["address_line2"] . "</b></td></tr>";
+                                }
+
+                                echo "<tr><td>City: </td><td><b>" . $address["city"] . "</b></td></tr>";
+                                echo "<tr><td>State: </td><td><b>" . $address["state_province"] . "</b></td></tr>";
+                                echo "<tr><td>ZIP: </td><td><b>" . $address["zip_code"] . "</b></td></tr>";
+                                echo "<tr><td>Country: </td><td><b>" . $address["country"] . "</b></td></tr>";
+                            }
+                        }
+
+
+                        ?>
+                        </table>
+                    </div>
+
                 </div>
                 <div id="tab2">
                     

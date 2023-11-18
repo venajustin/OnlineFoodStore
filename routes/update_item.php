@@ -11,6 +11,11 @@
         return $data;
     }
     
+    if(isset($_SESSION["is_employee"]) != 1){
+        header('Location: '.$uri. '/OnlineFoodStore/templates/home.php');
+        exit;
+    }
+
     require "../../credentials.php";
 
     // create connection 
@@ -18,10 +23,11 @@
     // check connection 
     if (!$conn) { 
         die("Connection failed: " . mysqli_connect_error());
+        
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+        echo "test";
         $item_id = $_POST["item_id"];
         $userNumber = $_POST["userNumber"];
         $newPrice = $_POST["userPrice"];
@@ -30,7 +36,8 @@
         $newDescription = $_POST["newDescription"];
         $newName = $_POST["newName"];
     
-        $sql = "UPDATE items SET inv_count = $userNumber, item_name = '$newName',item_price = $newPrice WHERE item_id = $item_id";
+        $sql = "UPDATE items SET item_weight = $newWeight, inv_count = $userNumber, item_name = '$newName',item_price = $newPrice WHERE item_id = $item_id";
+        $results = mysqli_query($conn, $sql);
     
         if ($conn->query($sql) === TRUE) {
             echo "Stock updated successfully";

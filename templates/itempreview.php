@@ -83,16 +83,19 @@ unset($_SESSION["login_error"]);
                     $i_price = $row["item_price"];
                     $i_inv = $row["inv_count"];
                     $i_keywords = $row["item_keywords"];
+                    $i_timesBought = $row["times_bought"];
                     echo "
 
                         <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
                         <form action='../routes/update_item.php' method='post' >
                         <h4>Name</h4>
-                        <input type = 'text' name = 'newName' value = $field2name style = 'width: 100%; boxing-size: border-box; font-size: 26px; padding: 10px; margin-bottom: 10px'>
+                        <input type = 'text' name = 'newName' value = $field2name style = 'width: 100%; boxing-size: border-box; font-size: 26px; padding: 10px; margin-bottom: 10px required'>
                         <br>
                         <h4>Description</h4>
-                        <textarea name = 'newDescription' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>$i_description</textarea>
+                        <textarea  name = 'newDescription' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>$i_description</textarea>
+
                         <h4>Search Keywords</h4>
+
                         <textarea name = 'newKeywords' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>$i_keywords</textarea>
 
                         <h4>Price</h4>
@@ -100,7 +103,9 @@ unset($_SESSION["login_error"]);
                         <h4>Weight Lbs</h4>
                         <input type = 'number' name = 'userWeight' value = $i_weight min = '0.01' step = '0.01' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
                         <br>
-                        <input type='hidden' name='item_to_edit' value=$item_id>
+                        <input type='hidden' name='item_id' value=$item_id>
+                        <input type='hidden' name='times_bought' value=$i_timesBought>
+
                         <h4>Stock Quantity</h4>
                         <input type = 'number' name = 'userNumber' value = $i_inv min = '1' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
 

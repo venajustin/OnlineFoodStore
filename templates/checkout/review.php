@@ -39,10 +39,6 @@ $salesTax_results = mysqli_query($conn, $sql6);
     /* IMPORTANT: This page is only accessible after login!
          WHEN BOOTING UP PAGE MAKE SURE USER IS LOGGED IN PHP CHECK REQUIRED
         */
-    h3 {
-        float: left;
-        padding-left: 10px;
-    }
 </style>
 
 <head>
@@ -109,7 +105,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
 
 
     <div class="center-screen" style="padding-top: 7%;">
-        <div class="card" style="width: max(800px); text-align: center;">
+        <div class="card" style="width: max(800px); text-align: center; box-shadow: 0px 0px 7px grey;">
             <br>
             <h1 style="color: #46b35e;">Checkout</h1>
             <br><br><br><br>
@@ -197,10 +193,10 @@ $salesTax_results = mysqli_query($conn, $sql6);
         </div>
 
 
-        <div class="card" style="margin-left: 40px; width: max(300px);">
+        <div class="card" style="margin-left: 40px; width: max(300px); right: 3%; top: 120px; text-align: center; box-shadow: 0px 0px 7px grey">
             <br>
             <h1 style="color: #46b35e;">Cart Summary</h1>
-            <br><br><br>
+            <br><br>
             <div
                 style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
 
@@ -217,7 +213,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
                     }
                 }
                 ?>
-                <br><br><br>
+                <br>
                 <h3>Total Weight: </h3>
                 <?php
                 if (!$totalWeight_results) {
@@ -231,7 +227,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
                     }
                 }
                 ?>
-                <br><br>
+                <br>
             </div>
             <br>
             <div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
@@ -249,7 +245,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
                     }
                 }
                 ?>
-                <br><br><br>
+                <br><br>
                 <h3>Delivery Fee: </h3>
                 <?php
                 if (!$totalWeight_results) {
@@ -265,7 +261,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
                     }
                 }
                 ?>
-                <br><br><br>
+                <br><br>
                 <h3>Sales Tax: </h3>
                 <?php
                 if (!$totalPrice_results) {
@@ -291,14 +287,12 @@ $salesTax_results = mysqli_query($conn, $sql6);
                 ?>
                 <br><br>
             </div>
-            <br>
             <h3>Total: </h3>
             <?php
             echo "$" . number_format($total, 2);
             ?>
         </div>
     </div>
-
 
 </body>
 

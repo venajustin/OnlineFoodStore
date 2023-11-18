@@ -86,10 +86,8 @@ if (!isset($_SESSION["username"])) {
 
 
 	<!--List Containing Items from Shopping Cart-->
-	<div
-		style=" left: 3%; top: 120px; position: absolute; margin-bottom: 3%; padding-bottom: 30px; margin-bottom: 3%; background-color: white;">
-		<div class="card"
-			style="width: max(1000px); text-align: center; background-color: maroon; box-shadow: 0px 0px 7px grey; z-index: 80;">
+	<div style=" left: 3%; top: 120px; position: absolute; margin-bottom: 3%; padding-bottom: 30px; margin-bottom: 3%; background-color: white;">
+		<div class="card" style="width: max(1000px); text-align: center; background-color: maroon; box-shadow: 0px 0px 7px grey; z-index: 80;">
 			<br>
 
 			<h1 style="color: #46b35e;">Shopping Cart</h1>
@@ -274,7 +272,6 @@ if (!isset($_SESSION["username"])) {
 				?>
 				<br><br>
 			</div>
-			<br>
 			<h3>Total: </h3>
 			<?php
 			$total += $sub_total;

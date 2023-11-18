@@ -33,8 +33,8 @@ if (!$conn ) {
 		<style>
         /* Style for the main container */
         .container {
-            width: 90%;
-            height: 100vh;
+            width: 100%;
+            height: auto;
             margin: 0 auto;
 			overflow: scroll;
         }
@@ -42,7 +42,7 @@ if (!$conn ) {
         /* Style for the navigation bar */
         .navbar {
             background-color: #1c3144;
-            width: 90%;
+            width: 100%;
             overflow: hidden;
             margin: auto;
         }
@@ -76,7 +76,7 @@ if (!$conn ) {
         /* Hide content initially */
         .content>div {
             display: none;
-            height: 80vh;
+            height: 500px;
         }
 
         /* Show content based on button click */
@@ -113,52 +113,68 @@ if (!$conn ) {
 					}
 				?></a>
         </div>
+		
+			<div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
+				<div class="navbar" style="z-index: 150; box-shadow: 0px 0px 7px grey;">
+					<button onclick="showTab('tab1')">Inventory</button>
+					<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
+				</div>
 
-		<div style="position: absolute; left: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
-		<div style="position: absolute; right: 0px; height: 200%; width: 2%; top 88px; background-color: var(--light-primary); z-index: 80"></div>
-
-		<div style="margin-left: 2%; margin-right: 2%; margin-top: 100px;">
-
-			<br><br>
-
-			<div class="navbar" style="box-shadow: 3px 0px 7px grey, -3px 0px 7px grey; z-index: 150">
-				<button onclick="showTab('tab1')">Inventory</button>
-				<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
-			</div>
-
-			<div class="container" style = "box-shadow: 3px 0px 7px grey, -3px 0px 7px grey; padding-top: 7px">
-				
+				<div class="container" style = "z-index: 20;">
 					<div class="content">
 						<div class="active" id="tab1">
-							<?php 
-								$allItems = "SELECT * FROM items";
-								$itemS = mysqli_query($conn,$allItems);
+						<?php 
+							$allItems = "SELECT * FROM items";
+							$itemS = mysqli_query($conn,$allItems);
 							
-								
-								// Select all data from the table
+							
+							// Select all data from the table
 
-								if ($itemS->num_rows > 0) {
-									// Output data of each row
-									while($row = $itemS->fetch_assoc()) {
-										$i_id = $row["item_id"];
+							if ($itemS->num_rows > 0) {
+								// Output data of each row
+								while($row = $itemS->fetch_assoc()) {
+									$i_id = $row["item_id"];
 										echo '<div style="border-bottom: solid gray 1px; padding-top: 7px; padding-bottom: 5px; margin: 10px; display: flex; justify-content: space-between; align-items: center; z-index: 80">';
-										echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
-										echo "<form action='../templates/itempreview.php' method='post'>";
-										echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
-											
-										echo"</form>";
-										echo '</div>';
-									}
-								} else {
-									echo "0 results";
+									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
+									echo "<form action='../templates/itempreview.php' method='post'>";
+									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
+										
+									echo"</form>";
+									echo '</div>';
 								}
+							} else {
+								echo "0 results";
+							}
 
-								// Close the connection
-								$conn->close();
-								?>
+							// Close the connection
+							$conn->close();
+							?>
 						</div>
-					</div>
-			</div>
+						<div id="tab2">
+							<p>- List of completed orders</p>
+							<p>- Use a table</p>
+						</div>
+						<div id="tab3">
+							<p>- Edit Page</p>
+							<p>- Use a table</p>
+							<?php
+							echo '<form action="../routes/update_item.php" method="post" style="display: flex; align-items: center;">';
+							echo '<input type="hidden" name="item_id" value="' . $row["item_id"] . '">';
+							echo 'Change name: ';
+							echo '<input type="text" name="newName" maxlength="30" required style="margin-left: 10px;">';
+							
+							echo 'Change price: ';
+							echo '<input type="number" name="userPrice" min = "0.01" step = "0.01" required style="margin-left: 10px;">';
+							
+
+							echo 'Change stock: ';
+							echo '<input type="number" name="userNumber" min="1" required style="margin-left: 10px;">';
+							echo '<input type="submit" value="Update" style="background-color: #1c3144; color: white; padding: 4px 8px; border: none; border-radius: 3px; cursor: pointer; margin-left: 5px;">';
+							echo '</form>';
+							
+							?>
+						</div>
+				</div>
 
 				<script>
 					function showTab(tabId) {
@@ -183,23 +199,5 @@ if (!$conn ) {
 			</div>
 
 		</div>
-		
-
-
-		<div style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1400px; margin-left: 45%; border: none">
-			<img src="../icons/city.png" style="width: 15%; margin-left: 40%; margin-right: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
-		</div>
-
-		<div style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1500px; left: 50%; transform: translateX(-50%); border: none;">
-			<a href="home.php" class="logo">
-				<img src="../icons/food-dark.png" style="width: 5%; display: block; margin: 0 auto;">
-			</a>
-		</div>
-
-		<div style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1400px; margin-right: 50%; border: none">
-			<img src="../icons/city.png" style="transform: scaleX(-1); width: 15%; margin-right: 40%; margin-left: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
-		</div>
-
     </body>
-
 </html>

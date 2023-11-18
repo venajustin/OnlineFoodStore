@@ -150,7 +150,7 @@ require "../../credentials.php";
         <div class="container">
             <div class="content">
                 <div class="active" id="tab1"> Account Info
-                <div style="flex-grow: 5">
+                    <div style="flex-grow: 5">
                         <?php
                          
                             $userData = mysqli_fetch_assoc($account_results);
@@ -237,6 +237,7 @@ require "../../credentials.php";
                 }
             }
         </script>
+    </div>
 </body>
 
 </html>

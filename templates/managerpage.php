@@ -133,7 +133,7 @@ if (!$conn ) {
 						<?php 
 							$allItems = "SELECT * FROM items";
 							$itemS = mysqli_query($conn,$allItems);
-							echo "<br>";
+							echo "";
 							
 							// Select all data from the table
 

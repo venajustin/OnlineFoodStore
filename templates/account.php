@@ -155,9 +155,30 @@ require "../../credentials.php";
 
 
                         ?>
+                        <br>
+                        <b>Change Password</b>
+                        <br>
+                        <form name="myForm" method="post" action="../routes/process_login.php">
+                            Current Password:
+                            <br>
+                            <input type="password" id="pwd" name="password" style="border: 0.5px solid black; height: 16pt" required>
+                            <br>
+                            <br>
+                            New Password:
+                            <br>
+                            <input type="password" id="pwd" name="newPassword" style="border: 0.5px solid black; height: 16pt">
+                            <br>
+                            <br>
+                            Confirm New Password:
+                            <br>
+                            <input type="password" id="pwd" name="newPassword" style="border: 0.5px solid black; height: 16pt">
+                            <br>
+                            <button type="button">Submit</button>
+                        </form>
+                        
                 </div>
                 <br>
-                <br>
+
                     <div style="flex-grow: 5">
                         <table>
                             <tr><th>Shipping Address <a class="noindex" href="./checkout/address_details.php">Edit</a></th></tr>

@@ -131,7 +131,7 @@ session_start();
             exit();
         }
 
-        header('Location: '.$uri.'/OnlineFoodStore/templates/account.php');
+        header('Location: '.$uri.'/OnlineFoodStore/templates/thankyou.php');
         exit();
 
 

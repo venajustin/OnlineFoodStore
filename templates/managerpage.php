@@ -117,6 +117,8 @@ if (!$conn ) {
 			<div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
 				<div class="navbar" style="z-index: 150; box-shadow: 0px 0px 7px grey;">
 					<button onclick="showTab('tab1')">Inventory</button>
+					
+					<button onclick = "window.location.href='../templates/pendingorders.php'">Pending Orders</button>
 					<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
 				</div>
 

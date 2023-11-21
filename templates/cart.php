@@ -123,6 +123,7 @@ if (!isset($_SESSION["username"])) {
 				} else {
 					if (isset($_SESSION["cart_message"])) {
 						echo '<h3 style="color: red;"> ' . $_SESSION["cart_message"] . '</h3>';
+						unset($_SESSION["cart_message"]);
 					}
 					if ($itemS) {
 

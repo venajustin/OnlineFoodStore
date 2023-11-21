@@ -105,7 +105,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
 
 
     <div class="center-screen" style="padding-top: 7%;">
-        <div class="card" style="width: max(800px); text-align: center; box-shadow: 0px 0px 7px grey;">
+        <div class="card" style="width: max(800px); text-align: center; box-shadow: 0px 0px 7px grey; z-index: 80; ">
             <br>
             <h1 style="color: #46b35e;">Checkout</h1>
             <br><br><br><br>

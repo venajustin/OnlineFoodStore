@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION["username"]) || !isset($_SESSION["is_manager"]) || $_SESSION["is_manager"] == false) {
+    if (!isset($_SESSION["username"]) || !isset($_SESSION["is_employee"]) || $_SESSION["is_employee"] == false) {
         header('Location: '.$uri.'/OnlineFoodStore/templates/login.php');
         exit();
     }

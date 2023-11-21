@@ -37,7 +37,8 @@
             }
 
             // select user (must create user database beforehand)
-            $sql = "SELECT password, user_id, is_employee FROM users WHERE username = '$username'";
+            $sql = "SELECT password, user_id, is_employee 
+                    FROM users WHERE username = '$username'";
 
             $results = mysqli_query($conn, $sql);
 

@@ -7,6 +7,14 @@ unset($_SESSION["login_error"]);
 
 $_SESSION["return_to"] = "templates/cart.php";
 
+function test_data($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
+$oid = test_data($_POST["order_id"]);
 
 ?>
 
@@ -86,11 +94,13 @@ if (!isset($_SESSION["username"])) {
 
 
 	<!--List Containing Items from Shopping Cart-->
-	<div style=" left: 3%; top: 120px; position: absolute; margin-bottom: 3%; padding-bottom: 30px; margin-bottom: 3%; background-color: white;">
-		<div class="card" style="width: max(1000px); text-align: center; background-color: maroon; box-shadow: 0px 0px 7px grey; z-index: 80;">
+	<div
+		style=" left: 3%; top: 120px; position: absolute; margin-bottom: 3%; padding-bottom: 30px; margin-bottom: 3%; background-color: white;">
+		<div class="card"
+			style="width: max(1000px); text-align: center; background-color: maroon; box-shadow: 0px 0px 7px grey; z-index: 80;">
 			<br>
 
-			<h1 style="color: #46b35e;">Shopping Cart</h1>
+			<h1 style="color: #46b35e;">Order Details</h1>
 			<br>
 
 			<ul class="cart" style="background-color:skyblue" id="cart">
@@ -98,77 +108,62 @@ if (!isset($_SESSION["username"])) {
 				// create connection 
 				$conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
-				$sql6 = "SELECT value FROM global_variables WHERE name = 'sales_tax'";
-				$salesTax_results = mysqli_query($conn, $sql6);
+				$sql = "SELECT u_id, total_weight, total_price, completed
+						FROM order_history
+						WHERE order_id = $oid";
+				$order_details = mysqli_query($conn, $sql);
+
+				$orderRow = $order_details->fetch_assoc();
+
+				
 
 				$uid = $_SESSION["user_id"];
+
+
+				if ($orderRow["u_id"] != $uid) {
+					header("Location: ../" . "templates/home.php");
+					exit();
+				}
+
+				$total_weight = $orderRow["total_weight"];
+				$total_price = $orderRow["total_price"];
+				$order_status = ($orderRow["completed"] == 1) ? "Shipped!" : "pending...";
+
+				$order_details->free();
+
 				// check connection 
-				$sql = "SELECT item_id, item_name, quantity, inv_count, item_description, item_weight, item_price
+				$sql = "SELECT item_id, item_name, quantity, item_description, item_weight
 						FROM items
-						INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
-						AND shopping_cart.u_id = $uid";
+						INNER JOIN order_information 
+						ON order_information.o_id = $oid
+						AND items.item_id = order_information.i_id";
 				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
 				$itemS = mysqli_query($conn, $sql);
 
-				$sub_total = 0;
-				$total_weight = 0;
 				$num_items = mysqli_num_rows($itemS);
 				$total_item_quantity = 0;
-				$total = 0;
 
 				if (!$conn) {
 					die("Connection failed: " . mysqli_connect_error());
 				} else {
 					if (isset($_SESSION["cart_message"])) {
-						echo '<div style="background-color: white; padding-top: 5px;"><h3 style="color: red;"> ' . $_SESSION["cart_message"] . '</h3></div>';
+						echo '<h3 style="color: red;"> ' . $_SESSION["cart_message"] . '</h3>';
 						unset($_SESSION["cart_message"]);
 					}
 					if ($itemS) {
 
-						if ($num_items == 0) {
 
-							echo "
-									
-										
-										<div style=' background-color: white; padding-top: 5px;'>
-											<h3>Cart is Empty!</h3>
-											<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-										
-									
-								
-							";
-
-							
-						} else {
-							echo "
-
-							<div style=' background-color: white; padding-top: 5px;'>
-								<form action='../routes/cart_action.php' method='post' >
-									
-									<input style='color: red; height: 25px' type='submit' name='remove_all' value='Remove all from Cart'>
-									
-								</form>
-
-								
-							</div>
-
-							";
-
-
-						}
+						
 						/* fetch associative array */
 
 						while ($row = $itemS->fetch_assoc()) {
+						
 							$i_id = $row["item_id"];
 							$i_name = $row["item_name"];
 							$i_description = $row["item_description"];
 							$i_weight = $row["item_weight"];
-							$i_price = $row["item_price"];
 							$i_quantity = $row["quantity"];
-							$i_stock = $row["inv_count"];
 
-							$sub_total += $i_price * $i_quantity;
-							$total_weight += $i_weight * (float) $i_quantity;
 							$total_item_quantity += $i_quantity;
 
 							echo "
@@ -178,9 +173,6 @@ if (!isset($_SESSION["username"])) {
 												<img style= 'position: absolute; height:150px; left: 2%; width: 150px; background-color: white; border: solid grey 1px;'src=\"./food/$i_id.png\">
 												<div style='padding-left: 130px; padding-top: 5px;'>
 													<h3>$i_name  x $i_quantity </h3>";
-													if ($i_stock < $i_quantity) {
-														echo "<h5 style='color:red;'> Total in Stock: " . $i_stock . "</h4>";
-													}
 
 							echo "
 												</div>
@@ -190,18 +182,6 @@ if (!isset($_SESSION["username"])) {
 												</div>
 											</button>
 										</form>
-										<div class='edit-quantity-buttons' style='width:180px; margin:auto;'>
-
-											<form action='../routes/cart_action.php' method='post' >
-												<input type='hidden' name='item_to_edit' value=$i_id>
-												<input type='submit' style='float:right; height: 25px' name='add' value='&nbsp&nbsp+&nbsp&nbsp'>
-												<input style='width:50px; height: 25px; border: 0.5px solid black; text-align: center; border-radius: 3px' type='number' min='1' name='quantity' value=1>
-												<input type='submit' style='float:left; margin-right:10px; height: 25px' name='remove_item' value='remove all'>
-												<input type='submit' style='float:left; height: 25px' name='subtract' value='&nbsp&nbsp-&nbsp&nbsp'>
-												
-												
-											</form>
-										</div>
 									</div>
 							";
 							echo "";
@@ -221,12 +201,24 @@ if (!isset($_SESSION["username"])) {
 		<div class="card"
 			style="margin-left: 40px; width: max(300px); position: fixed; right: 3%; top: 120px; text-align: center; box-shadow: 0px 0px 7px grey">
 			<br>
-			<h1 style="color: #46b35e;">Cart Summary</h1>
+			<h1 style="color: #46b35e;">Order Summary</h1>
 			<br><br><br>
 
 			<div
 				style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
-
+				<h3>Order Number: </h3>
+				<?php
+				echo $oid;
+				?>
+				<h3>Order Status: </h3>
+				<?php
+				echo $order_status;
+				?>
+				<br>
+				<br>
+			</div>
+			<br>
+			<div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
 				<h3>Number of Items: </h3>
 				<?php
 				echo number_format($total_item_quantity, 0);
@@ -236,58 +228,15 @@ if (!isset($_SESSION["username"])) {
 				<?php
 				echo number_format($total_weight, 2) . " lbs";
 				?>
-				<br>
+
+				<br><br>
 			</div>
 			<br>
-			<div style="background-color: none; height; fit-content; border-bottom: solid grey 1px">
-				<h3>Subtotal: </h3>
-				<?php
-				echo "$" . number_format($sub_total, 2);
-				?>
-				<br><br>
-				<h3>Delivery Fee: </h3>
-				<?php
-				if ($total_weight < 20) {
-					echo "$0.00";
-				} else {
-					echo "$5.00";
-					$total += 5;
-				}
-
-				?>
-				<br><br>
-				<h3>Sales Tax: </h3>
-				<?php
-
-				if (!$salesTax_results) {
-					echo "No information set";
-				} else {
-					$tax = mysqli_fetch_assoc($salesTax_results);
-					if (!$tax) {
-						echo "No information set";
-					}
-				}
-				$stax = $sub_total * $tax["value"];
-				echo "$" . number_format((float) $stax, 2);
-				$total += $stax;
-
-
-				?>
-				<br><br>
-			</div>
-			<h3>Total: </h3>
+			<h3>Total Cost: </h3>
 			<?php
-			$total += $sub_total;
-			echo "$" . number_format((float) $total, 2);
+			
+			echo "$" . number_format((float) $total_price, 2);
 			?>
-
-			<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
-				<a href='checkout/review.php'>
-					<button
-						style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 200px; border-radius:3px ;position: relative; '>
-						Checkout</button>
-				</a>
-			</div>
 		</div>
 
 	</div>

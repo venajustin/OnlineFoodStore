@@ -178,7 +178,6 @@ require "../../credentials.php";
                         
                 </div>
                 <br>
-                <br>
 
                     <div style="flex-grow: 5">
                         <table>

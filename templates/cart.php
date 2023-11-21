@@ -122,7 +122,7 @@ if (!isset($_SESSION["username"])) {
 					die("Connection failed: " . mysqli_connect_error());
 				} else {
 					if (isset($_SESSION["cart_message"])) {
-						echo '<h3 style="color: red;"> ' . $_SESSION["cart_message"] . '</h3>';
+						echo '<div style="background-color: white; padding-top: 5px;"><h3 style="color: red;"> ' . $_SESSION["cart_message"] . '</h3></div>';
 						unset($_SESSION["cart_message"]);
 					}
 					if ($itemS) {
@@ -135,10 +135,12 @@ if (!isset($_SESSION["username"])) {
 										<div style=' background-color: white; padding-top: 5px;'>
 											<h3>Cart is Empty!</h3>
 											<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-										</div>
+										
 									
 								
 							";
+
+							
 						} else {
 							echo "
 

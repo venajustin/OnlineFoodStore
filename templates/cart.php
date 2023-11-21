@@ -145,7 +145,7 @@ if (!isset($_SESSION["username"])) {
 							<div style=' background-color: white; padding-top: 5px;'>
 								<form action='../routes/cart_action.php' method='post' >
 									
-									<input style='color: red' type='submit' name='remove_all' value='Remove all from Cart'>
+									<input style='color: red; height: 25px' type='submit' name='remove_all' value='Remove all from Cart'>
 									
 								</form>
 
@@ -194,10 +194,10 @@ if (!isset($_SESSION["username"])) {
 
 											<form action='../routes/cart_action.php' method='post' >
 												<input type='hidden' name='item_to_edit' value=$i_id>
-												<input type='submit' style='float:right;' name='add' value='&nbsp&nbsp+&nbsp&nbsp'>
-												<input style='width:50px;' type='number' min='1' name='quantity' value=1>
-												<input type='submit' style='float:left; margin-right:10px;' name='remove_item' value='remove all'>
-												<input type='submit' style='float:left;' name='subtract' value='&nbsp&nbsp-&nbsp&nbsp'>
+												<input type='submit' style='float:right; height: 25px' name='add' value='&nbsp&nbsp+&nbsp&nbsp'>
+												<input style='width:50px; height: 25px; border: 0.5px solid black; text-align: center; border-radius: 3px' type='number' min='1' name='quantity' value=1>
+												<input type='submit' style='float:left; margin-right:10px; height: 25px' name='remove_item' value='remove all'>
+												<input type='submit' style='float:left; height: 25px' name='subtract' value='&nbsp&nbsp-&nbsp&nbsp'>
 												
 												
 											</form>

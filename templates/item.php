@@ -110,7 +110,7 @@ function test_data($data) {
                         <br>
                         <form action='../routes/cart_action.php' method='post' >
                         <input type='hidden' name='item_to_edit' value=$iid>
-                        Quantity: <input type='number' name='quantity' min='1' value=1>
+                        Quantity: <input type='number' name='quantity' min='1' value=1 style='font-size: 20px; border: 0.5px solid black; width: 100px; border-radius: 3px; text-align: center'>
                         <input type='submit' name='add' value='Add to Cart' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
 							
                         

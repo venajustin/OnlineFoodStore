@@ -157,8 +157,14 @@ require "../../credentials.php";
                         ?>
                         <br>
                         <b>Change Password</b>
+                        <?php
+                        if (isset($_SESSION["change_pwd_err"])){
+                            echo "<h4 style='color:red;'>" . $_SESSION["change_pwd_err"] . "</h4>";
+                            unset($_SESSION["change_pwd_err"]);
+                        }
+                        ?>
                         <br>
-                        <form name="myForm" method="post" action="../routes/process_login.php">
+                        <form name="myForm" method="post" action="../routes/change_password.php">
                             Current Password:
                             <br>
                             <input type="password" id="pwd" name="password" style="border: 0.5px solid black; height: 16pt" required>
@@ -171,9 +177,9 @@ require "../../credentials.php";
                             <br>
                             Confirm New Password:
                             <br>
-                            <input type="password" id="pwd" name="newPassword" style="border: 0.5px solid black; height: 16pt">
+                            <input type="password" id="pwd" name="newPassword2" style="border: 0.5px solid black; height: 16pt">
                             <br>
-                            <button type="button">Submit</button>
+                            <button type="submit">Submit</button>
                         </form>
                         
                 </div>

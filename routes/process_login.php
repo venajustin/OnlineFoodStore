@@ -37,7 +37,7 @@
             }
 
             // select user (must create user database beforehand)
-            $sql = "SELECT password, user_id, is_employee 
+            $sql = "SELECT password, user_id, username, is_employee 
                     FROM users WHERE username = '$username'";
 
             $results = mysqli_query($conn, $sql);
@@ -48,7 +48,7 @@
 				if ($row) {
 					
 					if ($row["password"] === $password) { 
-                        $_SESSION["username"] = $username;
+                        $_SESSION["username"] = $row["username"];
 
                         $_SESSION["user_id"] = $row["user_id"];
 

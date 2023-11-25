@@ -26,23 +26,33 @@
         
     }
 
+    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_POST["newName"] == "") {
+            $_SESSION["manager_status"] = "You must provide a name, database not changed";
+            header("Location: ../templates/managerpage.php");
+            exit();
+        }
+
         echo "test";
-        $item_id = $_POST["item_id"];
-        $userNumber = $_POST["userNumber"];
-        $newPrice = $_POST["userPrice"];
-        $newWeight = $_POST["userWeight"];
-        $newKeyWords = $_POST["newKeywords"];
-        $newDescription = $_POST["newDescription"];
-        $newName = $_POST["newName"];
+        $item_id = test_input($_POST["item_id"]);
+        $userNumber = test_input($_POST["userNumber"]);
+        $newPrice = test_input($_POST["userPrice"]);
+        $newWeight = test_input($_POST["userWeight"]);
+        $newKeyWords = test_input($_POST["newKeywords"]);
+        $newDescription = test_input($_POST["newDescription"]);
+        $newName = test_input($_POST["newName"]);
     
         $sql = "UPDATE items SET item_description = '$newDescription', item_keywords = '$newKeyWords', item_weight = $newWeight, inv_count = $userNumber, item_name = '$newName',item_price = $newPrice WHERE item_id = $item_id";
         $results = mysqli_query($conn, $sql);
     
         if ($conn->query($sql) === TRUE) {
             echo "Stock updated successfully";
+            $_SESSION["manager_status"] = "Stock updated successfully";
         } else {
             echo "Error updating stock: " . $conn->error;
+            $_SESSION["manager_status"] =  "Error updating stock: " . $conn->error;
         }
     }
     

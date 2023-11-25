@@ -33,7 +33,7 @@ session_start();
     } else {
 
 
-        $sql = "SELECT item_id, item_name, quantity, inv_count, item_price, item_weight
+        $sql = "SELECT item_id, item_name, quantity, inv_count, item_price, item_weight, times_bought
                 FROM items
                 INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
                 AND shopping_cart.u_id = $uid";
@@ -86,6 +86,7 @@ session_start();
             $i_price = $row["item_price"];
             $i_quantity = $row["quantity"];
             $i_stock = $row["inv_count"];
+            $i_times_bought = $row["times_bought"];
 
             $sub_total += $i_price * $i_quantity;
             $total_weight += $i_weight * (float) $i_quantity;
@@ -99,7 +100,7 @@ session_start();
                             WHERE u_id = $uid AND i_id = $i_id";
                     mysqli_query($conn, $sql);
                     $sql = "UPDATE items
-                            SET inv_count = $i_stock - $i_quantity
+                            SET inv_count = $i_stock - $i_quantity times_bought = $i_times_bought + $i_quantity
                             WHERE item_id = $i_id";
                     mysqli_query($conn, $sql);
                 }

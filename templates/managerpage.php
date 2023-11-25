@@ -112,6 +112,15 @@ if (!$conn ) {
 						echo "Login / Register";
 					}
 				?></a>
+			<?php
+					if (isset($_SESSION["is_employee"]) && $_SESSION["is_employee"]) {
+						echo(
+						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../templates/managerpage.php'>" .
+							"Managment" .
+						"</a>"
+						);
+					}
+				?>
         </div>
 		
 			<div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
@@ -119,7 +128,8 @@ if (!$conn ) {
 					<button onclick="showTab('tab1')">Inventory</button>
 					<button onclick = "window.location.href='../templates/additem.php'">Add New Item</button>
 					<button onclick = "window.location.href='../templates/pendingorders.php'">Pending Orders</button>
-					<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
+					<?php //<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
+					?>
 				</div>
 
 				<div class="container" style = "z-index: 20;">

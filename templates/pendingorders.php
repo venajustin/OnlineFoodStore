@@ -125,9 +125,10 @@ if (!$conn ) {
 				<div class="navbar" style="z-index: 150; box-shadow: 0px 0px 7px grey;">
 					
                     <button onclick = "window.location.href='../templates/managerpage.php'">Inventory</button>
-					
+					<button onclick = "window.location.href='../templates/additem.php'">Add New Item</button>
 					<button>Pending Orders</button>
-                    <button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
+                    <?php //<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button> 
+                    ?>
 				</div>
 
 				<div class="container" style = "z-index: 20;">

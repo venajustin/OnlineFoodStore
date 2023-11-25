@@ -133,6 +133,15 @@ require "../../credentials.php";
                 echo "Login / Register";
             }
         ?></a>
+        <?php
+					if (isset($_SESSION["is_employee"]) && $_SESSION["is_employee"]) {
+						echo(
+						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../templates/managerpage.php'>" .
+							"Managment" .
+						"</a>"
+						);
+					}
+				?>
     </div>
 
     <div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">

@@ -91,6 +91,15 @@ if (!isset($_SESSION["username"])) {
 			}
 			?>
 		</a>
+		<?php
+					if (isset($_SESSION["is_employee"]) && $_SESSION["is_employee"]) {
+						echo(
+						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../templates/managerpage.php'>" .
+							"Managment" .
+						"</a>"
+						);
+					}
+				?>
 	</div>
 
 
@@ -209,11 +218,14 @@ if (!isset($_SESSION["username"])) {
 
 			<div
 				style="background-color: none; white; height: fit-content; border-bottom: solid grey 1px; position: relative">
-				<h3>Order Number: </h3>
+				
 				<?php
-				echo $oid;
+				echo "<h4>Order Number: $oid</h4>";
 				?>
-				<h3>Order Status: </h3>
+				<?php
+				echo "<h4>User ID: $users_id</h4>";
+				?>
+				<h4>Order Status: </h4>
 				<?php
 				echo $order_status;
 				?>
@@ -244,6 +256,14 @@ if (!isset($_SESSION["username"])) {
 					FROM address_information 
 					WHERE user_id = $users_id";
 			$address_results = mysqli_query($conn, $sql1);
+			
+
+			if ( mysqli_num_rows($address_results) == 0) {
+				echo "
+				<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
+				<h3>No address details provided</h3>
+				</div>";
+			} else {
 			$row = $address_results->fetch_assoc();
 			
 			$uaddr_line1 = $row['address_line1'] ? $row['address_line1'] : "empty";
@@ -255,30 +275,33 @@ if (!isset($_SESSION["username"])) {
 
 
 			echo "
-			<div style='background-color: none; height; fit-content; border-bottom: solid grey 1px'>
+			<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
+				
 				<h3>Delivery Address: </h3>
-				$users_id
-				$uaddr_line1
-				$uaddr_line2
-				$uaddr_city
-				$uaddr_sprovince
-				$uaddr_zip
-				$uaddr_country
-				<br><br>
+				$uaddr_line1 <br> ";
+			if ($uaddr_line2 != "empty") {
+				echo $uaddr_line2 . "<br>";
+			}
+			echo "
+				$uaddr_city,&nbsp$uaddr_sprovince&nbsp&nbsp$uaddr_zip &nbsp&nbsp$uaddr_country 
+				
+				<br>
 			</div>
 			";
+			}
 
 			echo "
 			<div style='position: relative; border-top: 1px solid grey; padding-top: 2%;'>
 				<form action='../routes/complete_order.php' method='post' >
 					
 					<button
-						style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 100px; width: 200px; border-radius:3px ;position: relative; '
+						style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 75px; width: 280px; border-radius:3px ;position: relative; '
 						name='order_id' value=$oid>
 						Complete Order</button>
 				</form>
 			</div>
 			";
+			
 			?>
 		</div>
 		

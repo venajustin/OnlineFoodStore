@@ -44,8 +44,8 @@ session_start();
             <img style = "z-index: 1000; height: 10vh" src="../icons/food-dark.png">
         </a>
     </div>
-<div class = "center-screen">
-  <div class = "card" style="text-align: center; position: absolute; left: 50%; margin-left: -250px; top: 20%">
+<div class = "center-screen"  >
+  <div   class = "card" style="text-align: center; position: absolute; left: 50%; margin-left: -250px; top: 20%">
     <h1 style= "text-align: center; margin-top: 10px;">
         Login
       </h1>

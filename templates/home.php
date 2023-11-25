@@ -54,6 +54,15 @@ unset($_SESSION["return_to"]);
 						echo "Login / Register";
 					}
 				?></a>
+				<?php
+					if (isset($_SESSION["is_employee"]) && $_SESSION["is_employee"]) {
+						echo(
+						"<a style = 'float: right; padding-top: 10px; padding-right: 20px;' class='cart' href='../templates/managerpage.php'>" .
+							"Managment" .
+						"</a>"
+						);
+					}
+				?>
 
 				
         </div>

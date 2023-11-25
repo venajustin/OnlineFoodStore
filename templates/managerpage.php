@@ -117,7 +117,7 @@ if (!$conn ) {
 			<div style="margin: 4%; margin-top: 100px; margin-bottom: 3%; box-shadow: 0px 0px 7px grey;">
 				<div class="navbar" style="z-index: 150; box-shadow: 0px 0px 7px grey;">
 					<button onclick="showTab('tab1')">Inventory</button>
-					
+					<button onclick = "window.location.href='../templates/additem.php'">Add New Item</button>
 					<button onclick = "window.location.href='../templates/pendingorders.php'">Pending Orders</button>
 					<button onclick = "window.location.href='../routes/account_link.php'">User Settings</button>
 				</div>
@@ -140,8 +140,9 @@ if (!$conn ) {
 									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
 									echo "<form action='../templates/itempreview.php' method='post'>";
 									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
-										
+
 									echo"</form>";
+
 									echo '</div>';
 								}
 							} else {

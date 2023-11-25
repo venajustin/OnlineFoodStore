@@ -114,6 +114,12 @@ unset($_SESSION["login_error"]);
                         
                                    
                         </form>
+                        <form action='../routes/remove_item.php' method='post' >
+                        <input type='hidden' name='item_id' value=$item_id>
+                        <input type = 'submit' name='remove' value='Delete' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark); height: 60px; width: 340px; border-radius: 3px; position: relative;''>
+
+                        </form>
+
                         </div>
   
                     ";

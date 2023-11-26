@@ -29,7 +29,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($_POST["newName"] == "") {
-            $_SESSION["manager_status"] = "You must provide a name, database not changed";
+            $_SESSION["manager_status"] = "You must provide a name, no item added.";
             header("Location: ../templates/managerpage.php");
             exit();
         }
@@ -71,6 +71,14 @@
         $sql = "INSERT INTO items (item_name, item_description, item_weight, item_price, times_bought, item_keywords, inv_count) 
                 VALUES ('$newName', '$newDescription', $newWeight, $newPrice, 0, '$newKeyWords', $userNumber)";
         $results = mysqli_query($conn, $sql);
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Stock updated successfully";
+            $_SESSION["manager_status"] = "$newName added to database";
+        } else {
+            echo "Error updating stock: " . $conn->error;
+            $_SESSION["manager_status"] =  "Error updating stock: " . $conn->error;
+        }
     
     }
     

@@ -30,7 +30,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($_POST["newName"] == "") {
-            $_SESSION["manager_status"] = "You must provide a name, database not changed";
+            $_SESSION["manager_status"] = "You must provide a name, database unmodified.";
             header("Location: ../templates/managerpage.php");
             exit();
         }
@@ -49,7 +49,7 @@
     
         if ($conn->query($sql) === TRUE) {
             echo "Stock updated successfully";
-            $_SESSION["manager_status"] = "Stock updated successfully";
+            $_SESSION["manager_status"] = "$newName updated in database.";
         } else {
             echo "Error updating stock: " . $conn->error;
             $_SESSION["manager_status"] =  "Error updating stock: " . $conn->error;

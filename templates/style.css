@@ -6,12 +6,16 @@
 	--primary: #1a936f;
 }
 
-
-
 html {
+	overflow-x: hidden;
 	font-family: "Lucida Sans", sans-serif;
 	background-color: white;
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 
 * {
 	box-sizing: border-box;
@@ -20,16 +24,22 @@ html {
 
 	
 }
-a{
+
+
+a {
 	color: #46b35e; 
 	text-decoration: none;
+	z-index:1000;
 }
+
 a:hover{
 	color: var(--dark);
 	text-decoration: underline;
 }
 
-
+a.noindex {
+	z-index: unset;
+}
 
 .row::after {
 	content: "";
@@ -42,7 +52,6 @@ a:hover{
   width:100%;
 
 }
-
 
 
 @media only screen and (min-width: 500px) {
@@ -78,26 +87,16 @@ a:hover{
 }
 
 
-
-img {
-
-	width: auto;
-	height: 100%;
-
-}
-
 .header a img{
 	height: 100%;
 	width: auto;
 }
-
 
 .whitebox {
 	background-color: white;
 	margin: 5px;
 	padding: 10px;
 }
-
 
 
 .header {
@@ -108,12 +107,11 @@ img {
   background-color: var(--dark);
   top: 0;
   width: 100%;
+  box-shadow: 0px 0px 10px grey;
+  z-index: 100;
 }
-	
-
 
 .header a {
-
   height: 100px;
   color: black;
   text-align: center;
@@ -125,7 +123,6 @@ img {
   border-radius: 4px;
   float: left;
 }
-
 
 .header a:hover {
   color: var(--primary);
@@ -148,8 +145,7 @@ img {
 }
 
 
-
-.header .search-container button {
+.search-container button {
 	margin: 0px;
 	float: left;
 	width: 50px;
@@ -158,15 +154,12 @@ img {
 	border-left: none;
 	cursor: pointer;
 	border: none;
-	
 	height: 40px;
-	
 	background: none;
 	color: var(--light-primary);
 }
 
-.header .search-container button:hover {
-	
+.search-container button:hover {
 	color: var(--primary);
 }
 
@@ -195,21 +188,118 @@ img {
 	height: 100%;
 }
 
+.itemTile {
+	transition: box-shadow .2s;
+	width: 180px;
+	height: 240px;
+	background-color: white;
+	border: 1px solid grey;
+	border-radius: 5%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.itemTile img {
+	width: 100px;
+	height: auto;
+	margin: auto;
+}
+
+.itemTile:hover {
+	/* box-shadow: 0px 0px 10px var(--light-secondary); */
+	transform: scale(1.0314);
+}
+
+.account_text:hover span {
+	display:none;
+}
+
+.account_text:hover:before {
+	content: "Account Settings";
+}
+
 .card {
 	background: linear-gradient(180deg, #1c3144 20%, white 20%);
-	width: max(450px); 
+	width: max(500px);
 	height: auto; 
 	margin: auto;  
 	padding-top: 2px;
 	padding-bottom: 20px;
-	border-radius: 25px;
+	border-radius: 15px;
 	top: 0%;
+	z-index: 100;
 }
+
 .background {
 	width: 100%;
 	height: 100%;
 	background-color: blue;
 }
+
+.cartTile {
+	height: 160px;
+	width: 900px;
+	border: none;
+	background-color: white;
+	border-bottom: 1px solid grey;
+	padding-left:1%;
+}
+
+.searchTile {
+	height: 160px;
+	width: 100%;
+	border: none;
+	background-color: white;
+	border-bottom: 1px solid grey;
+	padding-left:1%;
+}
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 25px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+.prev {
+	left: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+	background-color: rgba(0,0,0,0.8);
+}
+
+.mySlides {
+	display: none;
+}
+
+#cart li {
+	list-style-type: none;
+}
+
+#checkoutColumn li {
+	list-style-type: none;
+}
+
 .inputField {
 	width: 400px;
 	height: 50px;
@@ -224,23 +314,25 @@ img {
 	text-align: center;
 	max-height: 10vh; 
 }
+
 .center-screen {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: left;
+	align-items: left;
 	text-align: center;
 	min-height: 90vh;
-  }
-  #submitButton {
+}
+
+#submitButton {
 	background-color: var(--dark); 
 	color: #46b35e; 
 	border-radius: 5px;
-  }
-  #submitButton:hover{
-	background-color: rgb(34, 61, 85);
-  }
-  
+}
 
+#submitButton:hover{
+	background-color: rgb(34, 61, 85);
+}
+  
 
 @media screen and (max-width: 500px) {
   	.header a, .header {
@@ -252,12 +344,20 @@ img {
 		padding: 14px;
 	}	
 }
+
+
 .card p{
 	animation-duration: 3s;
 	animation-delay: 0s;
 	animation-name: slidein;
 	animation-iteration-count: infinite;
 }
+
+.panelOne {
+	animation: panelSlide 24s  ease-in-out infinite;
+}
+
+
 @keyframes slidein {
 	from {
 	  margin-left: 100%;
@@ -268,8 +368,124 @@ img {
 	  margin-left: 0%;
 	  width: 100%;
 	}
-  }
- 
+}
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.anim{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+	z-index: 1;
+}
+
+.anim li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    bottom: -150px;
+	z-index: 1;
+    
+}
+
+.anim li:nth-child(1){
+    left: 120%;
+	bottom: 16%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 10s;
+    animation-delay: 0s;
+	animation: rightLeft 10s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+
+.anim li:nth-child(2){
+    left: 0%;
+	bottom: 12%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 12s;
+    animation-delay: 6s;
+	animation: leftRight 12s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+
+.anim li:nth-child(3){
+    left: 0%;
+	bottom: 12%;
+    width: 0px;
+    height: 0px;
+	animation-duration: 12s;
+    animation-delay: 8s;
+	animation: leftRight 12s 8s ease-out infinite;
+	background-color: none;
+	border-radius: 48%;
+	z-index: 2;
+}
+
+
+@keyframes rightLeft {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;        
+    }
+    100%{
+        transform: translatex(-2000px) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes leftRight {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;        
+    }
+    100%{
+        transform: translatex(2000px) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes panelSlide {
+	0%{
+	}
+	16.6%{
+		transform: translateX(0);
+	}
+	33.3%{
+		transform: translateX(-100%);
+	}
+	50%{
+		transform: translateX(-100%);
+	}
+	66.6%{
+		transform: translateX(-200%);
+	}
+	83.3%{
+		transform: translateX(-200%);
+	}
+	100%{
+		transform: translateX(-300%);
+	}
+
+}
+
+
+
 
 
 

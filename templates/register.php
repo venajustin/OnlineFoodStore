@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <script type="text/javascript">
@@ -21,14 +25,32 @@
         }
     </style> 
     <head>
+        <link rel="shortcut icon" href="icons/grocery.ico"/>
         <meta charset="utf-8">
         <title>Create an Account</title>
     </head>
     
+    <div class="area">
+        <ul class="anim">
+            <li>
+                <img src="icons/leftTruck.png" style="scale: 17%; position: absolute; bottom: -380px; left: -500px">
+            </li>
+            <li>
+                <img src="icons/truck.png" style="scale: 17.3%; position: absolute; bottom: -380px; left: -500px">
+            </li>
+            <li>
+                <img src="icons/truck.png" style="scale: 17.3%; position: absolute; bottom: -380px; left: -500px">
+            </li>
+            
+        </ul>
+        <div style="z-index: 0;position: absolute; bottom: 8%; width: 100%; height: 70px; background-color: #403f3c"></div>
+        <div style="z-index: 0;position: absolute; bottom: 8%; width: 100%; height: 35px; background-color: #403f3c; border-top: dashed yellow 3px;"></div>
+    </div >
+
     <body>
         
 		<div class= "top-screen">
-			<a style = "margin: auto;" color: blue;" href="./home.html" class="logo">
+			<a style = "margin: auto; color: blue;" href="./home.php" class="logo">
 				<img style = "height: 10vh" src="../icons/food-dark.png">
 			</a>
 		</div>
@@ -38,7 +60,13 @@
                   Create an Account
                 </h1>
              
-      
+                <h3 style="color: red;"> <?php
+                if (isset($_SESSION["signup_error"])) {
+                    echo $_SESSION["signup_error"] . " please try again.";
+                } 
+
+                ?></h3> <br>
+
               <form method="post" action="../routes/process_register.php" name="myForm">
                 <input class= "inputField" style="text-indent: 10px" placeholder="Create Username" type="text" name="username" required>
                 
@@ -59,7 +87,7 @@
                 </div>
                 <br>
                 <div id="area" style="display: none;">
-                    <input class= "inputField" style="text-indent: 10px" placeholder="Enter Masterkey" type="text" name="Masterkey">
+                    <input class= "inputField" style="text-indent: 10px" placeholder="Enter Masterkey" type="password" name="Masterkey">
                     <br><br>
                 </div>
                 <div style="text-align: center">
@@ -67,7 +95,7 @@
                     <br>
                     <br>
                     Already have an account? 
-                    <a href="login.html">Login here!</a>
+                    <a href="login.php">Login here!</a>
             </form>
           </div>
           </div>

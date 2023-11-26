@@ -43,7 +43,7 @@
         $newKeyWords = test_input($_POST["newKeywords"]);
         $newDescription = test_input($_POST["newDescription"]);
         $newName = test_input($_POST["newName"]);
-        $newImage = $_POST["newImage"];
+        $newImage = test_input($_POST["newImage"]);
     
         $sql = "UPDATE items 
                 SET item_description = '$newDescription', 

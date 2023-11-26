@@ -136,7 +136,7 @@ if (!$conn ) {
 
 			if (isset($_SESSION["manager_status"])) {
 			echo "
-				<div style='position:absolute; margin: 4%; margin-top: 50px; box-shadow: 0px 0px 7px grey; padding-top: 0px;'>
+				<div style=' margin: 4%; margin-top: 100px; box-shadow: 0px 0px 7px grey; padding-top: 0px;'>
 					<h2 style='color: red;'>";
 					
 			echo $_SESSION["manager_status"];

@@ -10,10 +10,19 @@ unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
 unset($_SESSION["return_to"]);
 
+function test_data($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+
+
 require "../../credentials.php";
 $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
-$search = $_POST["search"];
+$search = test_data($_POST["search"]);
 
 if (!$conn ) { 
 	die ("Connection failed: " . mysqli_connect_error());

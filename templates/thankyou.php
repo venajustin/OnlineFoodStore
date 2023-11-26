@@ -31,7 +31,7 @@
 
 <div class="thank-you-message" id="thankYouMessage">
     <h1>Thank you for your order!</h1>
-    <h3>Order status can be viewed from account page</h3>
+    <h5>Order status can be viewed from account page</h5>
 </div>
 
 <script>

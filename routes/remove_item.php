@@ -28,7 +28,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "test";
-        $item_id = $_POST["item_id"];
+        $item_id = test_input($_POST["item_id"]);
         
     
         $sql = "DELETE FROM items WHERE item_id = $item_id";

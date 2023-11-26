@@ -24,7 +24,7 @@
 
     if (isset($_POST["item_to_edit"])) {
     
-        $i_id = $_POST["item_to_edit"];
+        $i_id = test_data($_POST["item_to_edit"]);
      
 
         $sql = "SELECT i_id, quantity FROM shopping_cart WHERE u_id = $uid AND i_id = $i_id";
@@ -35,7 +35,7 @@
         if (isset($_POST["subtract"])) {
             $quantity = 1;
             if (isset($_POST["quantity"])) {
-                $quantity = $_POST["quantity"];
+                $quantity = test_data( $_POST["quantity"]);
             }
             if ($results->num_rows > 0) {
                 $i_quantity = $row["quantity"];
@@ -56,7 +56,7 @@
         if (isset($_POST["add"])) {
             $quantity = 1;
             if (isset($_POST["quantity"])) {
-                $quantity = $_POST["quantity"];
+                $quantity = test_data($_POST["quantity"]);
             }
             if ($results->num_rows > 0) {
                 $i_quantity = $row["quantity"];

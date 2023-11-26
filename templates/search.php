@@ -7,6 +7,14 @@ unset($_SESSION["login_error"]);
 
 $_SESSION["return_to"] = "templates/search.php";
 
+
+function test_data($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +85,7 @@ $_SESSION["return_to"] = "templates/search.php";
 
                         // check connection 
                         if (isset($_POST["search"])) {
-                            $search = $_POST["search"];
+                            $search = test_data($_POST["search"]);
                         } else {
                             $search = "";
                         }

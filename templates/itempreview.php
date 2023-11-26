@@ -5,6 +5,13 @@ require "../../credentials.php";
 unset($_SESSION["signup_error"]);
 unset($_SESSION["login_error"]);
 
+function test_data($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +76,7 @@ unset($_SESSION["login_error"]);
         $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
         // check connection 
-        $itemid = $_POST["itemid"];
+        $itemid = test_data($_POST["itemid"]);
         $itemidq = "SELECT * FROM items WHERE item_id=$itemid";
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemidS = mysqli_query($conn,$itemidq);

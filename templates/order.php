@@ -14,7 +14,20 @@ function test_data($data) {
 	return $data;
 }
 
-$oid = test_data($_POST["order_id"]);
+
+$oid = null;
+if (isset($_POST["order_id"])) {
+    $_SESSION["order_selected"] = test_data($_POST["order_id"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+} 
+if (isset($_SESSION["order_selected"])) {
+    $oid = $_SESSION["order_selected"];
+} else {
+    header("Location: ../" . $_SESSION["return_to"]);
+    exit();
+}
+
 
 ?>
 

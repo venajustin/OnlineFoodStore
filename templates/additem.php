@@ -41,7 +41,7 @@ unset($_SESSION["login_error"]);
 
         <br><br><br><br><br><br>
         <div class="searchResult" style="padding-top: 3%; width: 80%; height: 80%; background-color: white; position: absolute; top: 88px; margin-left: 10%; min-width:1000px">
-             <img style= 'position: absolute; left: 20px; height:500px; width: 500px; background-color: white; border: solid black 1px;'src=\"./food/$itemid.png\">
+             <img style= 'position: absolute; left: 20px; height:500px; width: 500px; background-color: white; border: solid black 1px;'src="../icons/null_image.webp">
              <h2>
              <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
                 <form action='../routes/register_item.php' method='post' >
@@ -55,6 +55,11 @@ unset($_SESSION["login_error"]);
 
                 <textarea name = 'newKeywords' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'></textarea>
 
+                <h4>Image Address</h4>
+                <h6>Insert a public address to an image hosted on the web.</h6>
+
+                <textarea name = 'newImage' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'></textarea>
+
                 <h4>Price</h4>
                 <input type = 'number' name = 'userPrice' min = '0.01' step = '0.01' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
                 <h4>Weight Lbs</h4>
@@ -62,6 +67,7 @@ unset($_SESSION["login_error"]);
                 <br>
 
                 <h4>Stock Quantity</h4>
+                <h6>Set to 0 to hide item from search.</h6>
                 <input type = 'number' name = 'userNumber' min = '1' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>
 
                 <input type='submit' name='update' value='Add Item' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 

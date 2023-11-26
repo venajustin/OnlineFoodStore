@@ -31,14 +31,16 @@
         $item_id = test_input($_POST["item_id"]);
         
     
-        $sql = "DELETE FROM items WHERE item_id = $item_id";
-        $results = mysqli_query($conn, $sql);
-        echo "remove done";
-        if ($conn->query($sql) === TRUE) {
-            echo "Stock updated successfully";
+        $sql = "UPDATE items
+                    SET inv_count = 0
+                    WHERE item_id = $item_id";
+        if(mysqli_query($conn, $sql)) {
+            $_SESSION["manager_status"] = "All inventory removed. Item hidden from search page.";
         } else {
-            echo "Error updating stock: " . $conn->error;
+            $_SESSION["manager_status"] = "Error updating inventory";
         }
+
+        
     }
     
     header("Location: ../templates/managerpage.php");

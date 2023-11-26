@@ -112,7 +112,7 @@ if (!isset($_SESSION["username"])) {
 
 				$uid = $_SESSION["user_id"];
 				// check connection 
-				$sql = "SELECT item_id, item_name, quantity, inv_count, item_description, item_weight, item_price
+				$sql = "SELECT item_id, item_name, quantity, inv_count, item_description, item_weight, item_price, image_address
 						FROM items
 						INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
 						AND shopping_cart.u_id = $uid";
@@ -175,6 +175,11 @@ if (!isset($_SESSION["username"])) {
 							$i_price = $row["item_price"];
 							$i_quantity = $row["quantity"];
 							$i_stock = $row["inv_count"];
+							if ($row["image_address"] == NULL) {
+								$i_img = '../icons/null_image.webp';
+							} else {
+								$i_img = $row["image_address"];
+						   }
 
 							$sub_total += $i_price * $i_quantity;
 							$total_weight += $i_weight * (float) $i_quantity;
@@ -184,7 +189,7 @@ if (!isset($_SESSION["username"])) {
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
 										<form action='../templates/item.php' method='post'>
 											<button style='background-color: white; border:none; width: 100%;text-align:left; padding-left: 40px; font-size:20px;' name='itemid' value =$i_id>
-												<img style= 'position: absolute; height:150px; left: 2%; width: 150px; background-color: white; border: solid grey 1px;'src=\"./food/$i_id.png\">
+												<img style= 'position: absolute; height:150px; left: 2%; width: 150px; background-color: white; border: solid grey 1px;'src=\"$i_img\">
 												<div style='padding-left: 130px; padding-top: 5px;'>
 													<h3>$i_name  x $i_quantity </h3>";
 													if ($i_stock < $i_quantity) {

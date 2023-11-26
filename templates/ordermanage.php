@@ -18,7 +18,19 @@ function test_data($data) {
 	return $data;
 }
 
-$oid = test_data($_POST["order_id"]);
+$oid = null;
+if (isset($_POST["order_id"])) {
+    $_SESSION["order_selected"] = test_data($_POST["order_id"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+} 
+if (isset($_SESSION["order_selected"])) {
+    $oid = $_SESSION["order_selected"];
+} else {
+    header("Location: ../" . $_SESSION["return_to"]);
+    exit();
+}
+
 
 ?>
 
@@ -145,7 +157,7 @@ if (!isset($_SESSION["username"])) {
 				$order_details->free();
 
 				// check connection 
-				$sql = "SELECT item_id, item_name, quantity, item_description, item_weight
+				$sql = "SELECT item_id, item_name, quantity, item_description, item_weight, image_address
 						FROM items
 						INNER JOIN order_information 
 						ON order_information.o_id = $oid
@@ -176,13 +188,19 @@ if (!isset($_SESSION["username"])) {
 							$i_weight = $row["item_weight"];
 							$i_quantity = $row["quantity"];
 
+							if ($row["image_address"] == NULL) {
+								$i_img = '../icons/null_image.webp';
+							} else {
+								$i_img = $row["image_address"];
+						  	}
+
 							$total_item_quantity += $i_quantity;
 
 							echo "
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
 										<form action='../templates/item.php' method='post'>
 											<button style='background-color: white; border:none; width: 100%;text-align:left; padding-left: 40px; font-size:20px;' name='itemid' value =$i_id>
-												<img style= 'position: absolute; height:150px; left: 2%; width: 150px; background-color: white; border: solid grey 1px;'src=\"./food/$i_id.png\">
+												<img style= 'position: absolute; height:150px; left: 2%; width: 150px; background-color: white; border: solid grey 1px;'src=\"$i_img\">
 												<div style='padding-left: 130px; padding-top: 5px;'>
 													<h3>$i_name  x $i_quantity </h3>";
 

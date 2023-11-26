@@ -59,6 +59,22 @@ session_start();
         $stax = $sub_total * $tax["value"];
 
 
+        $sql = "SELECT address_line1, city, state_province, zip_code, country
+                FROM address_information
+                WHERE user_id='$uid'";
+        $results = mysqli_query($conn, $sql);
+
+        
+        
+        if (!mysqli_fetch_assoc($results)) {
+            $_SESSION["cart_message"] = "Your address information is not set, we cannot deliver to you.";
+            header('Location: '.$uri.'/OnlineFoodStore/templates/cart.php');
+            exit();
+        }
+        
+
+
+
         
         $cartSize = $itemS->num_rows;
         if ($cartSize == 0) {
@@ -93,6 +109,8 @@ session_start();
             
             if ($i_stock >= $i_quantity) {
                 $itemsOrdered++;
+                $new_stock = $i_stock - $i_quantity;
+                $new_num_purchased = $i_times_bought + $i_quantity;
                 $sql =  "INSERT INTO order_information
                         VALUES ($oid, $i_id, $i_quantity)";
                 if (mysqli_query($conn, $sql)) {
@@ -100,7 +118,7 @@ session_start();
                             WHERE u_id = $uid AND i_id = $i_id";
                     mysqli_query($conn, $sql);
                     $sql = "UPDATE items
-                            SET inv_count = $i_stock - $i_quantity times_bought = $i_times_bought + $i_quantity
+                            SET inv_count = $new_stock, times_bought = $new_num_purchased
                             WHERE item_id = $i_id";
                     mysqli_query($conn, $sql);
                 }

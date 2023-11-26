@@ -149,19 +149,19 @@ require "../../credentials.php";
                 <button onclick="showTab('tab1')">Account Settings</button>
                 <button onclick = "window.location.href='../templates/orderhistory.php'">Order History</button>
                 <?php
-                if ($_SESSION["is_employee"]) {
-                    echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
-                }
+                //if ($_SESSION["is_employee"]) {
+                 //   echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
+                //}
                 ?>
         </div>
         <div class="content">
-            <div class="active" id="tab1"> Account Info 
+            <div class="active" id="tab1"> <h2> Account Info </h2>
                 <div style="flex-grow: 5">
                         <?php
                         
                             $userData = mysqli_fetch_assoc($account_results);
                         
-                                echo "Username: " . $_SESSION["username"] . "<br>";
+                                echo "<b>Username: </b>" . $_SESSION["username"] . "<br>";
 
 
                         ?>

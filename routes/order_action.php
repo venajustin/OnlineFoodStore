@@ -59,6 +59,22 @@ session_start();
         $stax = $sub_total * $tax["value"];
 
 
+        $sql = "SELECT address_line1, city, state_province, zip_code, country
+                FROM address_information
+                WHERE user_id='$uid'";
+        $results = mysqli_query($conn, $sql);
+
+        
+        
+        if (!mysqli_fetch_assoc($results)) {
+            $_SESSION["cart_message"] = "Your address information is not set, we cannot deliver to you.";
+            header('Location: '.$uri.'/OnlineFoodStore/templates/cart.php');
+            exit();
+        }
+        
+
+
+
         
         $cartSize = $itemS->num_rows;
         if ($cartSize == 0) {

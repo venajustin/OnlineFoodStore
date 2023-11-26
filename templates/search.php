@@ -72,7 +72,7 @@ if (isset($_SESSION["search_term"])) {
 				?>
             	<a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
 					if (isset($_SESSION["username"])) {
-						echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+						echo "<div class='account_text'><span><u>" . $_SESSION["username"] . "</u></span></div>";
 					} else {
 						echo "Login / Register";
 					}

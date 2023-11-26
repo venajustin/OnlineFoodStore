@@ -98,7 +98,7 @@ unset($_SESSION["login_error"]);
                         <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
                         <form action='../routes/update_item.php' method='post' >
                         <h4>Name</h4>
-                        <input type = 'text' name = 'newName' value = $field2name style = 'width: 100%; boxing-size: border-box; font-size: 26px; padding: 10px; margin-bottom: 10px required'>
+                        <input type = 'text' name = 'newName' value = '$field2name' style = 'width: 100%; boxing-size: border-box; font-size: 26px; padding: 10px; margin-bottom: 10px required'>
                         <br>
                         <h4>Description</h4>
                         <textarea  name = 'newDescription' style = 'width: 100%; boxing-size: border-box; font-size: 18px; padding: 10px; margin-bottom: 10px'>$i_description</textarea>

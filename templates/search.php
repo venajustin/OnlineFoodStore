@@ -15,6 +15,19 @@ function test_data($data) {
     return $data;
 }
 
+if (isset($_POST["search"])) {
+    $_SESSION["search_term"] = test_data($_POST["search"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+} 
+if (isset($_SESSION["search_term"])) {
+    $search = $_SESSION["search_term"];
+} else {
+    $search = "";
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -84,11 +97,7 @@ function test_data($data) {
                         $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
                         // check connection 
-                        if (isset($_POST["search"])) {
-                            $search = test_data($_POST["search"]);
-                        } else {
-                            $search = "";
-                        }
+                        
                         $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
                         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
                         $itemS = mysqli_query($conn,$searchq);

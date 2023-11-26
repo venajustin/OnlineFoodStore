@@ -100,40 +100,40 @@ unset($_SESSION["return_to"]);
 				</form>
 		</div>
 			
-		<div style="width: 80%; height: 15%; background-color: none; position: absolute; top: 395px; margin-left: 10%; border: none">
+		<div style="width: 80%; height: 15%; background-color: none; position: absolute; top: 420px; margin-left: 10%; border: none">
 				<div style="text-align: center; padding-top: 4.5%">
 					<h2 style="color:var(--dark)">Select a Category</h2>
 				</div>
 		</div>
 	
 
-		<div class="slideshow-container" style="width: 80%; height: 35%; background-color: var(--dark); position: absolute; top: 500px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
+		<div class="slideshow-container" style="width: 80%; height: 35%; background-color: none; position: absolute; top: 520px; margin-left: 10%; display: flex; justify-content: space-between; padding-left: 5%; padding-right: 5%; padding-top: 1.5%; border-radius: 10px; overflow: hidden;">
 			<?php
 				echo 
 				"
 				<form action='../templates/search.php' method='post'>
-					<button type='submit' class='itemTile' name='search' value='Produce'>
+					<button type='submit' class='itemTile' name='search' value='Produce' style='box-shadow: 0px 0px 7px grey'>
 						<h2>Produce</h2>
 						<img src='food/1.png' style='width: 100%; max-width: 125px'>
 					</button>
 				</form>
 				
 				<form action='../templates/search.php' method='post'>
-					<button type='submit' class='itemTile' name='search' value='Dairy'>
+					<button type='submit' class='itemTile' name='search' value='Dairy' style='box-shadow: 0px 0px 7px grey'>
 						<h2>Dairy</h2>
 						<img src='food/milk.png' style='width: 100%; max-width: 125px;'>										
 					</button>
 				</form>
 
 				<form action='../templates/search.php' method='post'>
-					<button type='submit' class='itemTile' name='search' value='Grain'>
+					<button type='submit' class='itemTile' name='search' value='Grain' style='box-shadow: 0px 0px 7px grey'>
 						<h2>Grains and Bread</h2>
 						<img src='food/rice.png' style='width: 100%; max-width: 125px;'>										
 					</button>
 				</form>
 
 				<form action='../templates/search.php' method='post'>
-					<button type='submit' class='itemTile' name='search' value='Protein'>
+					<button type='submit' class='itemTile' name='search' value='Protein' style='box-shadow: 0px 0px 7px grey'>
 						<h2>Protein</h2>
 						<img src='food/chicken.png' style='width: 100%; max-width: 125px;'>										
 					</button>
@@ -155,7 +155,9 @@ unset($_SESSION["return_to"]);
 			</div>
 		</div>
 		
-		<div class="panelTwo" style="width: 50%; height: 40%; background-color: white; position: absolute; top: 900px; margin-left: 10%; border: none">
+		<div style="width: 80%; height: 40%; background-color: none; position: absolute; top: 900px; margin-left: 10%; border: none; box-shadow: 0px 0px 7px grey"></div>
+
+		<div class="panelTwo" style="width: 50%; height: 40%; background-color: none; position: absolute; top: 900px; margin-left: 10%; border: none;">
 			<div style="height: 100%; overflow: hidden;">
        			<div style="padding: 5%; overflow-y: auto; height: 100%;">
 					<p style="font-family: 'Gill Sans', sans-serif; font-size: 110%;">
@@ -165,7 +167,7 @@ unset($_SESSION["return_to"]);
     		</div>
 		</div>
 
-		<div style="width: 30%; height: 40%; background-color: maroon; position: absolute; top: 900px; margin-left: 60%; border: none">
+		<div style="width: 30%; height: 40%; background-color: maroon; position: absolute; top: 900px; margin-left: 60%; border: none;">
 			<img src="./pictures/about_us_pic.jpeg" style="width: 100%; height: 100%">
 		</div>
 

@@ -98,7 +98,14 @@ if (isset($_SESSION["search_term"])) {
 
                         // check connection 
                         
-                        $searchq = "SELECT * FROM items WHERE item_description LIKE '%$search%'OR item_name LIKE '%$search%'OR item_keywords LIKE '%$search%'";
+                        $searchq = "SELECT * FROM items 
+                                    WHERE 
+                                        (
+                                        item_description LIKE '%$search%'
+                                        OR item_name LIKE '%$search%'
+                                        OR item_keywords LIKE '%$search%'
+                                        )
+                                        AND inv_count <> 0";
                         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
                         $itemS = mysqli_query($conn,$searchq);
                         $count = 0;

@@ -31,16 +31,15 @@
         $item_id = test_input($_POST["item_id"]);
         
     
-        $sql = "DELETE FROM items WHERE item_id = $item_id";
-        try {
-            $results = mysqli_query($conn, $sql);
-        } catch (Exception $e) {
-            $_SESSION["manager_status"] = "Stock removed, Item has been purchased and cannot be permanently removed.";
-            $sql = "UPDATE items
+        $sql = "UPDATE items
                     SET inv_count = 0
                     WHERE item_id = $item_id";
-            mysqli_query($conn, $sql);
+        if(mysqli_query($conn, $sql)) {
+            $_SESSION["manager_status"] = "All inventory removed. Item hidden from search page.";
+        } else {
+            $_SESSION["manager_status"] = "Error updating inventory";
         }
+
         
     }
     

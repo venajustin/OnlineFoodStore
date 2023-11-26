@@ -12,6 +12,20 @@ function test_data($data) {
     return $data;
 }
 
+$itemid = null;
+if (isset($_POST["itemid"])) {
+    $_SESSION["item_selected"] = test_data($_POST["itemid"]);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+} 
+if (isset($_SESSION["item_selected"])) {
+    $itemid = $_SESSION["item_selected"];
+} else {
+    header("Location: ../" . $_SESSION["return_to"]);
+    exit();
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +90,7 @@ function test_data($data) {
         $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbname);
 
         // check connection 
-        $itemid = test_data($_POST["itemid"]);
+        
         $itemidq = "SELECT * FROM items WHERE item_id=$itemid";
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemidS = mysqli_query($conn,$itemidq);

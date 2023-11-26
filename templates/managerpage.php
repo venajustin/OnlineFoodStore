@@ -181,11 +181,23 @@ if (!$conn ) {
 									if ($row["image_address"] == NULL) {
 										echo " | NO IMAGE SET";
 									}
+									echo '<div style="display:flex; justify-content: space-between; align-items: center;">';
+
+
+									echo "<form action='../routes/add_featured.php' method='post'>";
+									$featured_button_color = 'var(--dark)';
+									$featured_button_text = "Add to Featured";
+									if ($row["is_featured"]) {
+										$featured_button_color = 'var(--primary)';
+										$featured_button_text = "Remove from Featured";
+									}
+									echo "<button style=' margin-right: 10px; width: 150px; height: 20px;border: solid 1px black; background-color: $featured_button_color; color: white;'name='itemid' value =$i_id>$featured_button_text</button>";
+									echo "</form>";
+									
 									echo "<form action='../templates/itempreview.php' method='post'>";
 									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
-
 									echo"</form>";
-
+									echo '</div>';
 									echo '</div>';
 								}
 							} else {

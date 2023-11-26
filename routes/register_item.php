@@ -66,6 +66,17 @@
         }
        
         
+        $sql = "SELECT item_name, item_id
+                FROM items
+                WHERE item_name = '$newName'";
+        $results = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($results) > 0) {
+            $row = $results->fetch_assoc();
+            $i_id = $row["item_id"];
+            $_SESSION["manager_status"] = "<form action='../templates/itempreview.php' method='post'>$newName already exists, please <button name='itemid' style='all:unset; color:blue; text-decoration: underline;' value =$i_id>edit this item</button> instead.<form> ";
+            header("Location: ../templates/managerpage.php");
+            exit();
+        }
         
     
         $sql = "INSERT INTO items (item_name, item_description, item_weight, item_price, times_bought, item_keywords, inv_count) 

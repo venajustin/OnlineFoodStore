@@ -149,9 +149,9 @@ require "../../credentials.php";
                 <button onclick="showTab('tab1')">Account Settings</button>
                 <button onclick = "window.location.href='../templates/orderhistory.php'">Order History</button>
                 <?php
-                if ($_SESSION["is_employee"]) {
-                    echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
-                }
+                //if ($_SESSION["is_employee"]) {
+                 //   echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
+                //}
                 ?>
         </div>
         <div class="content">

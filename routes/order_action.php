@@ -93,6 +93,8 @@ session_start();
             
             if ($i_stock >= $i_quantity) {
                 $itemsOrdered++;
+                $new_stock = $i_stock - $i_quantity;
+                $new_num_purchased = $i_times_bought + $i_quantity;
                 $sql =  "INSERT INTO order_information
                         VALUES ($oid, $i_id, $i_quantity)";
                 if (mysqli_query($conn, $sql)) {
@@ -100,7 +102,7 @@ session_start();
                             WHERE u_id = $uid AND i_id = $i_id";
                     mysqli_query($conn, $sql);
                     $sql = "UPDATE items
-                            SET inv_count = $i_stock - $i_quantity times_bought = $i_times_bought + $i_quantity
+                            SET inv_count = $new_stock, times_bought = $new_num_purchased
                             WHERE item_id = $i_id";
                     mysqli_query($conn, $sql);
                 }

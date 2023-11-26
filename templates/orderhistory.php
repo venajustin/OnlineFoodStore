@@ -151,9 +151,9 @@ require "../../credentials.php";
                 <button onclick = "window.location.href='../templates/account.php'">Account Settings</button>
                 <button>Order History</button>
                 <?php
-                if ($_SESSION["is_employee"]) {
-                    echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
-                }
+                //if ($_SESSION["is_employee"]) {
+                //    echo ('<button onclick="window.location.href=\'managerpage.php\'">Manager Page</button>');
+                //}
                 ?>
                 
 					

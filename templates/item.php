@@ -125,7 +125,8 @@ if (isset($_SESSION["item_selected"])) {
                 $i_description = $row["item_description"];
                 $i_weight = $row["item_weight"];
                 $i_price = $row["item_price"];
-                
+                $i_stock = $row["inv_count"];
+
                 echo "
 
                     <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
@@ -135,7 +136,7 @@ if (isset($_SESSION["item_selected"])) {
                     <h4>$i_description</h4>
                     <h6>$$i_price</h6>
                     <h6>$i_weight lbs</h6>
-                    <br>
+                    <h6>$i_stock in stock</h6>
                     <br>
                     <br>
                     <br>

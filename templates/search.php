@@ -126,6 +126,7 @@ if (isset($_SESSION["search_term"])) {
                                     $i_description = $row["item_description"];
                                     $i_weight = $row["item_weight"];
                                     $i_price = $row["item_price"];
+                                    $i_in_stock = $row["inv_count"];
                                     if ($row["image_address"] == NULL) {
                                         $i_img = '../icons/null_image.webp';
                                     } else {
@@ -142,6 +143,7 @@ if (isset($_SESSION["search_term"])) {
                                                     <h4>$i_description</h4>
                                                     <h6>$$i_price</h6>
                                                     <h6>$i_weight lbs</h6>
+                                                    <h6>$i_in_stock in stock</h6>
                                                 </div>
                                                 
                                             </div>

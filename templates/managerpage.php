@@ -173,6 +173,9 @@ if (!$conn ) {
 									$i_id = $row["item_id"];
 										echo '<div style="border-bottom: solid gray 1px; padding-top: 7px; padding-bottom: 5px; margin: 10px; display: flex; justify-content: space-between; align-items: center; z-index: 80">';
 									echo "ID: " . $row["item_id"] . " - Name: " . $row["item_name"] . " - Price: " . $row["item_price"] . " - Stock: " . $row["inv_count"];
+									if ($row["image_address"] == NULL) {
+										echo " - NO IMAGE SET";
+									}
 									echo "<form action='../templates/itempreview.php' method='post'>";
 									echo "<button style='width: 50px; height: 20px;border: solid 1px black; background-color: var(--dark); color: white;'name='itemid' value =$i_id>Edit</button>";
 

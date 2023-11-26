@@ -32,13 +32,16 @@
         
     
         $sql = "DELETE FROM items WHERE item_id = $item_id";
-        $results = mysqli_query($conn, $sql);
-        echo "remove done";
-        if ($conn->query($sql) === TRUE) {
-            echo "Stock updated successfully";
-        } else {
-            echo "Error updating stock: " . $conn->error;
+        try {
+            $results = mysqli_query($conn, $sql);
+        } catch (Exception $e) {
+            $_SESSION["manager_status"] = "Stock removed, Item has been purchased and cannot be permanently removed.";
+            $sql = "UPDATE items
+                    SET inv_count = 0
+                    WHERE item_id = $item_id";
+            mysqli_query($conn, $sql);
         }
+        
     }
     
     header("Location: ../templates/managerpage.php");

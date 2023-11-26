@@ -85,53 +85,61 @@ function test_data($data) {
         $itemidq = "SELECT * FROM items WHERE item_id=$itemid";
         //$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
         $itemidS = mysqli_query($conn,$itemidq);
-
-        echo "<img style= 'position: absolute; left: 20px; height:500px; width: 500px; background-color: white; border: solid black 1px;'src=\"./food/$itemid.png\">";
         
+       
 
         if (!$conn ) { 
             die ("Connection failed: " . mysqli_connect_error());
         } 
         else {
             if ($itemidS) {
+                $row = $itemidS->fetch_assoc();
+               if ($row["image_address"] == NULL) {
+                    $i_img = '../icons/null_image.webp';
+                } else {
+                    $i_img = $row["image_address"];
+               }
+                echo "<img style= 'position: absolute; left: 20px; height:500px; width: 500px; background-color: white; border: solid black 1px;'src=\"$i_img\">";
+        
 
                 /* fetch associative array */
                 echo "<br>";
                 echo "<br>";
-                while ($row = $itemidS->fetch_assoc()) {
-                    $iid = $row["item_id"];
-                    $field2name = $row["item_name"];
-                    $i_description = $row["item_description"];
-                    $i_weight = $row["item_weight"];
-                    $i_price = $row["item_price"];
-                    echo "
+                
+                $iid = $row["item_id"];
+                $field2name = $row["item_name"];
+                $i_description = $row["item_description"];
+                $i_weight = $row["item_weight"];
+                $i_price = $row["item_price"];
+                
+                echo "
 
-                        <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
-                        <h3>$field2name</h3>
-                        <br>
-                        <h4>$i_description</h4>
-                        <h6>$$i_price</h6>
-                        <h6>$i_weight lbs</h6>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <form action='../routes/cart_action.php' method='post' >
-                        <input type='hidden' name='item_to_edit' value=$iid>
-                        Quantity: <input type='number' name='quantity' min='1' value=1 style='font-size: 20px; border: 0.5px solid black; width: 100px; border-radius: 3px; text-align: center'>
-                        <input type='submit' name='add' value='Add to Cart' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
-							
+                    <div style='position: absolute; left: 550px; background-color: white; height:300px; width: 40%; padding-top: 5px;'>
+                    <h3>$field2name</h3>
+                    <br>
+                    <h4>$i_description</h4>
+                    <h6>$$i_price</h6>
+                    <h6>$i_weight lbs</h6>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <form action='../routes/cart_action.php' method='post' >
+                    <input type='hidden' name='item_to_edit' value=$iid>
+                    Quantity: <input type='number' name='quantity' min='1' value=1 style='font-size: 20px; border: 0.5px solid black; width: 100px; border-radius: 3px; text-align: center'>
+                    <input type='submit' name='add' value='Add to Cart' style='border: 1px solid white; font-size: 30px; color: white; background-color: var(--dark);height: 60px; width: 340px; border-radius:3px ;position: relative;'> 
                         
-                                   
-                        </form>
-                        </div>
-  
-                    ";
                     
-                    echo "";
+                                
+                    </form>
+                    </div>
+
+                ";
+                
+                echo "";
                     
-                }
+                
             
                 /* free result set */
                 $itemidS->free();

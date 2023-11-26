@@ -64,6 +64,11 @@
         } else {
             $newName = test_input($_POST["newName"]);
         }
+        if ($_POST["newImage"] == "") {
+            $newimg = NULL;
+        } else {
+            $newimg = $_POST["newImage"];
+        }
        
         
         $sql = "SELECT item_name, item_id
@@ -79,8 +84,8 @@
         }
         
     
-        $sql = "INSERT INTO items (item_name, item_description, item_weight, item_price, times_bought, item_keywords, inv_count) 
-                VALUES ('$newName', '$newDescription', $newWeight, $newPrice, 0, '$newKeyWords', $userNumber)";
+        $sql = "INSERT INTO items (item_name, item_description, item_weight, item_price, times_bought, item_keywords, inv_count, image_address) 
+                VALUES ('$newName', '$newDescription', $newWeight, $newPrice, 0, '$newKeyWords', $userNumber, '$newimg')";
         
 
         if ($conn->query($sql) === TRUE) {

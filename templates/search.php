@@ -110,7 +110,11 @@ function test_data($data) {
                                     $i_description = $row["item_description"];
                                     $i_weight = $row["item_weight"];
                                     $i_price = $row["item_price"];
-                                    $i_img = $row["image_address"];
+                                    if ($row["image_address"] == NULL) {
+                                        $i_img = '../icons/null_image.webp';
+                                    } else {
+                                        $i_img = $row["image_address"];
+                                   }
                                     $count += 1;
                                     echo "
                                     <form action='../templates/item.php' method='post'>

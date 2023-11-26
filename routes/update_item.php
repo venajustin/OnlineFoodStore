@@ -43,8 +43,17 @@
         $newKeyWords = test_input($_POST["newKeywords"]);
         $newDescription = test_input($_POST["newDescription"]);
         $newName = test_input($_POST["newName"]);
+        $newImage = $_POST["newImage"];
     
-        $sql = "UPDATE items SET item_description = '$newDescription', item_keywords = '$newKeyWords', item_weight = $newWeight, inv_count = $userNumber, item_name = '$newName',item_price = $newPrice WHERE item_id = $item_id";
+        $sql = "UPDATE items 
+                SET item_description = '$newDescription', 
+                    item_keywords = '$newKeyWords', 
+                    item_weight = '$newWeight', 
+                    inv_count = '$userNumber', 
+                    item_name = '$newName',
+                    item_price = '$newPrice',
+                    image_address = '$newImage'
+                WHERE item_id = $item_id";
         $results = mysqli_query($conn, $sql);
     
         if ($conn->query($sql) === TRUE) {

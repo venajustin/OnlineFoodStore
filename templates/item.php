@@ -14,11 +14,11 @@ function test_data($data) {
 
 $itemid = null;
 if (isset($_GET["itemid"])) {
-    $itemid = $_GET["itemid"];
+    $itemid = test_data($_GET["itemid"]);
     $_SESSION["item_selected"] = $itemid;
 } else if (isset($_POST["itemid"])) {
     $_SESSION["item_selected"] = test_data($_POST["itemid"]);
-    header("Location: " . $_SERVER['PHP_SELF']);
+    header("Location: " . $_SERVER['PHP_SELF'] . "?itemid=" . $_SESSION["item_selected"]);
     exit();
 } 
 if (isset($_SESSION["item_selected"])) {

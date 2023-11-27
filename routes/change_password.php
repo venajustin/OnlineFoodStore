@@ -14,7 +14,10 @@
         return $data;
     }
 	
-   
+   if (!isset($_SESSION["username"]) ) {
+        header("Location: "  . "../templates/home.php");
+        exit();
+   }
         
     require "../../credentials.php";
 

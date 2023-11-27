@@ -114,8 +114,10 @@ if (!isset($_SESSION["username"])) {
 				// check connection 
 				$sql = "SELECT item_id, item_name, quantity, inv_count, item_description, item_weight, item_price, image_address
 						FROM items
-						INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
+						INNER JOIN shopping_cart 
+						ON items.item_id = shopping_cart.i_id
 						AND shopping_cart.u_id = $uid";
+
 				//$searchq = "SELECT * FROM items WHERE MATCH(item_keywords) AGAINST('$search' IN BOOLEAN MODE)";
 				$itemS = mysqli_query($conn, $sql);
 
@@ -186,6 +188,7 @@ if (!isset($_SESSION["username"])) {
 							$total_item_quantity += $i_quantity;
 
 							echo "
+							
 									<div class = 'searchTile' style='background-color: white; padding-top: 5px;'>
 										<form action='../templates/item.php' method='post'>
 											<button style='background-color: white; border:none; width: 100%;text-align:left; padding-left: 40px; font-size:20px;' name='itemid' value =$i_id>

@@ -12,9 +12,11 @@ function test_data($data) {
     return $data;
 }
 
-
 $itemid = null;
-if (isset($_POST["itemid"])) {
+if (isset($_GET["itemid"])) {
+    $itemid = $_GET["itemid"];
+    $_SESSION["item_selected"] = $itemid;
+} else if (isset($_POST["itemid"])) {
     $_SESSION["item_selected"] = test_data($_POST["itemid"]);
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
@@ -150,7 +152,7 @@ if (isset($_SESSION["item_selected"])) {
                                 
                     </form>
                 ";
-                if($_SESSION["is_employee"]) {
+                if(isset($_SESSION["is_employee"]) && $_SESSION["is_employee"]) {
                     echo "<a href='./itempreview.php'>Edit this listing </a>";
                       
                  }

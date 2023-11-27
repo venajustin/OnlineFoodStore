@@ -16,8 +16,8 @@ function test_data($data) {
 
 function db_error() {
        
-    $_SESSION["cart_message"] = "Could not place order, database error.";
-    header('Location: '.$uri.'/OnlineFoodStore/templates/cart.php');
+    $_SESSION["manager_message"] = "Could not make change, database error.";
+    header('Location: '. '../templates/managerpage.php');
     exit();
     
 }

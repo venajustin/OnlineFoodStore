@@ -17,7 +17,7 @@ session_start();
     function db_error() {
        
         $_SESSION["cart_message"] = "Could not place order, database error.";
-        header('Location: '.$uri.'/OnlineFoodStore/templates/cart.php');
+        header('Location: '.'../templates/cart.php');
         exit();
         
     }
@@ -33,7 +33,7 @@ session_start();
     } else {
 
 
-        $sql = "SELECT item_id, item_name, quantity, inv_count, item_price, item_weight, times_bought
+        $sql = "SELECT item_id, item_name, shopping_cart.quantity, inv_count, item_price, item_weight, times_bought
                 FROM items
                 INNER JOIN shopping_cart ON items.item_id = shopping_cart.i_id
                 AND shopping_cart.u_id = $uid";

@@ -237,26 +237,7 @@ if (!$conn) {
 					</div>
 				</div>
 
-				<script>
-					function showTab(tabId) {
-						const contentDivs = document.querySelectorAll(".content > div");
-
-
-
-						// Hide all content divs
-						contentDivs.forEach(div => {
-							div.classList.remove("active");
-						});
-
-						// Show the selected tab
-						const selectedTab = document.getElementById(tabId);
-						if (selectedTab) {
-							selectedTab.classList.add("active");
-						}
-
-
-					}
-				</script>
+				
 			</div>
 
 		</div>

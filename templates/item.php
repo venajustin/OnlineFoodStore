@@ -12,11 +12,13 @@ function test_data($data) {
     return $data;
 }
 
-
 $itemid = null;
-if (isset($_POST["itemid"])) {
+if (isset($_GET["itemid"])) {
+    $itemid = test_data($_GET["itemid"]);
+    $_SESSION["item_selected"] = $itemid;
+} else if (isset($_POST["itemid"])) {
     $_SESSION["item_selected"] = test_data($_POST["itemid"]);
-    header("Location: " . $_SERVER['PHP_SELF']);
+    header("Location: " . $_SERVER['PHP_SELF'] . "?itemid=" . $_SESSION["item_selected"]);
     exit();
 } 
 if (isset($_SESSION["item_selected"])) {
@@ -70,7 +72,7 @@ if (isset($_SESSION["item_selected"])) {
 				?>
             	<a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
 					if (isset($_SESSION["username"])) {
-						echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+						echo "<div class='account_text'><span><u>" . $_SESSION["username"] . "</u></span></div>";
 					} else {
 						echo "Login / Register";
 					}
@@ -150,7 +152,7 @@ if (isset($_SESSION["item_selected"])) {
                                 
                     </form>
                 ";
-                if($_SESSION["is_employee"]) {
+                if(isset($_SESSION["is_employee"]) && $_SESSION["is_employee"]) {
                     echo "<a href='./itempreview.php'>Edit this listing </a>";
                       
                  }

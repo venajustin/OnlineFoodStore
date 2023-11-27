@@ -95,7 +95,7 @@ $salesTax_results = mysqli_query($conn, $sql6);
             href="../../routes/account_link.php">
             <?php
             if (isset($_SESSION["username"])) {
-                echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+                echo "<div class='account_text'><span><u>" . $_SESSION["username"] . "</u></span></div>";
             } else {
                 echo "Login / Register";
             }

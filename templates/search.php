@@ -15,9 +15,12 @@ function test_data($data) {
     return $data;
 }
 
-if (isset($_POST["search"])) {
+if (isset($_GET["search_term"])) {
+    $search = test_data($_GET["search_term"]);
+    $_SESSION["search_term"] = $_GET["search_term"];
+} else if (isset($_POST["search"])) {
     $_SESSION["search_term"] = test_data($_POST["search"]);
-    header("Location: " . $_SERVER['PHP_SELF']);
+    header("Location: " . $_SERVER['PHP_SELF'] . "?search_term=" . $_SESSION["search_term"]);
     exit();
 } 
 if (isset($_SESSION["search_term"])) {
@@ -72,7 +75,7 @@ if (isset($_SESSION["search_term"])) {
 				?>
             	<a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
 					if (isset($_SESSION["username"])) {
-						echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+						echo "<div class='account_text'><span><u>" . $_SESSION["username"] . "</u></span></div>";
 					} else {
 						echo "Login / Register";
 					}
@@ -163,7 +166,7 @@ if (isset($_SESSION["search_term"])) {
                                 /* free result set */
                                 $itemS->free();
                             }
-                            exit();
+                           
                         
                             } 
 

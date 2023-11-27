@@ -128,7 +128,7 @@ require "../../credentials.php";
         ?>
         <a style = "float: right; padding-top: 10px; padding-right:25px;"  class="cart" href="../routes/account_link.php"><?php
             if (isset($_SESSION["username"])) {
-                echo "<div class='account_text'><span>Welcome <u>" . $_SESSION["username"] . "</u>!</span></div>";
+                echo "<div class='account_text'><span><u>" . $_SESSION["username"] . "</u></span></div>";
             } else {
                 echo "Login / Register";
             }
@@ -248,20 +248,7 @@ require "../../credentials.php";
 
             </div>
 
-        <script>
-            function showTab(tabId) {
-                const contentDivs = document.querySelectorAll(".content > div");
-
-                contentDivs.forEach(div => {
-                    div.classList.remove("active");
-                });
-
-                const selectedTab = document.getElementById(tabId);
-                if (selectedTab) {
-                    selectedTab.classList.add("active");
-                }
-            }
-        </script>
+        
     </div>
 </body>
 

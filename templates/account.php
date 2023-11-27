@@ -248,20 +248,7 @@ require "../../credentials.php";
 
             </div>
 
-        <script>
-            function showTab(tabId) {
-                const contentDivs = document.querySelectorAll(".content > div");
-
-                contentDivs.forEach(div => {
-                    div.classList.remove("active");
-                });
-
-                const selectedTab = document.getElementById(tabId);
-                if (selectedTab) {
-                    selectedTab.classList.add("active");
-                }
-            }
-        </script>
+        
     </div>
 </body>
 

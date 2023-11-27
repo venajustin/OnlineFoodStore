@@ -129,12 +129,48 @@ if (!$conn) {
 					echo "<h2>$name $$price</h2>";
 
 
-					echo '</div>';
+					echo '</a></div>';
 				}
 				?>
 			</div>
 
 		</div>
+
+				
+
+			<div id="item-container-label-box" style="height: auto;">
+				<h1>Categories</h1>
+				<div id="featured-container">
+					<form action='../templates/search.php' method='post'>
+						<button type='submit' class='itemTile' name='search' value='Produce' style='box-shadow: 0px 0px 7px grey'>
+							<h2>Produce</h2>
+							<img src='food/1.png' style='width: 100%; max-width: 125px'>
+						</button>
+					</form>
+					
+					<form action='../templates/search.php' method='post'>
+						<button type='submit' class='itemTile' name='search' value='Dairy' style='box-shadow: 0px 0px 7px grey'>
+							<h2>Dairy</h2>
+							<img src='food/milk.png' style='width: 100%; max-width: 125px;'>										
+						</button>
+					</form>
+					<form action='../templates/search.php' method='post'>
+						<button type='submit' class='itemTile' name='search' value='Grain' style='box-shadow: 0px 0px 7px grey'>
+							<h2>Grains and Bread</h2>
+							<img src='food/rice.png' style='width: 100%; max-width: 125px;'>										
+						</button>
+					</form>
+					<form action='../templates/search.php' method='post'>
+						<button type='submit' class='itemTile' name='search' value='Protein' style='box-shadow: 0px 0px 7px grey'>
+							<h2>Protein</h2>
+							<img src='food/chicken.png' style='width: 100%; max-width: 125px;'>										
+						</button>
+					</form>
+				</div>
+			
+			</div>
+
+
 		<div id="item-container-label-box">
 			<h1>Most Popular</h1>
 			<div id="item-container">
@@ -195,20 +231,20 @@ if (!$conn) {
 
 
 		<div
-			style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1700px; margin-left: 45%; border: none">
+			style="width: 100%; height: 20%; background-color: none; position: absolute; top: 3800px; margin-left: 45%; border: none">
 			<img src="../icons/city.png"
 				style="width: 15%; margin-left: 40%; margin-right: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
 		</div>
 
 		<div
-			style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1800px; left: 50%; transform: translateX(-50%); border: none;">
+			style="width: 100%; height: 20%; background-color: none; position: absolute; top: 3900px; left: 50%; transform: translateX(-50%); border: none;">
 			<a href="home.php" class="logo">
 				<img src="../icons/food-dark.png" style="width: 5%; display: block; margin: 0 auto;">
 			</a>
 		</div>
 
 		<div
-			style="width: 100%; height: 20%; background-color: none; position: absolute; top: 1700px; margin-right: 50%; border: none">
+			style="width: 100%; height: 20%; background-color: none; position: absolute; top: 3800px; margin-right: 50%; border: none">
 			<img src="../icons/city.png"
 				style="transform: scaleX(-1); width: 15%; margin-right: 40%; margin-left: auto; display: block; scale: 500%; position: absolute; bottom: 0px">
 		</div>

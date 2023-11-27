@@ -35,6 +35,7 @@ html, body {
 	color: #1c3144;
 }
 
+
 #item-container-label-box {
 	margin:auto;
 	text-align: center;
@@ -48,8 +49,8 @@ html, body {
 
 #item-container-label-box h1 {
 
-	color: #88d498;
-	text-shadow: 1px 1px #1c3144;
+	color: #1c3144;
+	
 	
 }
 
@@ -60,6 +61,25 @@ html, body {
 	overflow-y: auto; 
 	border-radius: 15px;
 	
+}
+
+#featured-container { 
+	display: flex;
+	height: auto; 
+	border-radius: 15px;
+	margin: 15px;
+	margin-left: 40px;
+	margin-right: 40px;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	
+}
+
+#featured-container form {
+	flex-basis: 25%;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
 }
 
 .item {
@@ -97,10 +117,16 @@ html, body {
 	.item {
 		width:48%;
 	}
+	#featured-container form {
+		flex-basis: 50%;
+	}
 }
 @media only screen and (max-width: 750px) {
 	.item {
 		width:98%;
+	}
+	#featured-container form {
+		flex-basis: 100%;
 	}
 }
 

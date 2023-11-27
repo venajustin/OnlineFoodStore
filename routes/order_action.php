@@ -72,8 +72,17 @@ session_start();
             exit();
         }
         
+        $sCard = "SELECT card_type, RIGHT(card_number,4), card_expiry, card_cvv, billing_address 
+        FROM payment_information 
+        WHERE user_id = '$uid'";
+        $cardResults = mysqli_query($conn, $sCard);
 
 
+        if (!mysqli_fetch_assoc($cardResults)) {
+            $_SESSION["cart_message"] = "Your card information is not set, we cannot deliver to you.";
+            header('Location: '.$uri.'/OnlineFoodStore/templates/cart.php');
+            exit();
+        }
 
         
         $cartSize = $itemS->num_rows;

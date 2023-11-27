@@ -160,9 +160,9 @@ if (!$conn) {
 				?>
 			</div>
 
-			<div class="container" style="z-index: 20;">
-				<div class="content">
-					<div class="active" id="tab1">
+			<div class="container" style="z-index: 20; height:auto;">
+				<div class="content" style="height:auto;">
+					<div class="active" id="tab1" style="height:auto;">
 						<?php
 						$allItems = "SELECT * FROM items";
 						$itemS = mysqli_query($conn, $allItems);

@@ -113,10 +113,12 @@ session_start();
             $i_stock = $row["inv_count"];
             $i_times_bought = $row["times_bought"];
 
-            $sub_total += $i_price * $i_quantity;
-            $total_weight += $i_weight * (float) $i_quantity;
+            
             
             if ($i_stock >= $i_quantity) {
+                $sub_total += $i_price * $i_quantity;
+                $total_weight += $i_weight * (float) $i_quantity;
+
                 $itemsOrdered++;
                 $new_stock = $i_stock - $i_quantity;
                 $new_num_purchased = $i_times_bought + $i_quantity;

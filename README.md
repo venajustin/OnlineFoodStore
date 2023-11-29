@@ -1,8 +1,9 @@
 # CMPE 131 Original Food Store Project
-## CMPE 131 - Software Engineering 1 @ SJSU
-### Prof. Butt
-### Fall Semester 2023
-### Group 6
+
+ CMPE 131 - Software Engineering 1 @ SJSU  
+ Prof. Butt                               
+ Fall Semester 2023                       
+ Group 6                                   
 
 ---
 

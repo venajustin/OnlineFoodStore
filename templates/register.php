@@ -12,6 +12,42 @@ session_start();
                 document.getElementById('area').style.display = 'none';
          }
         }
+
+        // SHA-256 hashing function
+        function sha256(plain) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(plain);
+            return window.crypto.subtle.digest('SHA-256', data).then(buffer => {
+                let hashArray = Array.from(new Uint8Array(buffer));
+                let hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+                return hashHex;
+            });
+        }
+
+        function hashPasswordAndSubmit() {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("pwd").value;
+            const cpassword = document.getElementById("pwd2").value;
+
+            // Hash the password using SHA-256
+            sha256(password).then(hashedPassword => {
+                // Set the hashed password back into the password field
+                document.getElementById("pwd").value = hashedPassword;
+
+                // Now, you can submit the form with the hashed password
+                document.forms[0].submit();
+            });
+
+            sha256(cpassword).then(chashedPassword => {
+                // Set the hashed password back into the password field
+                document.getElementById("pwd2").value = chashedPassword;
+
+                // Now, you can submit the form with the hashed password
+                document.forms[0].submit();
+            });
+        }
     </script>
     <link rel="stylesheet" href="style.css">
    <style>
@@ -67,8 +103,8 @@ session_start();
 
                 ?></h3> <br>
 
-              <form method="post" action="../routes/process_register.php" name="myForm">
-                <input class= "inputField" style="text-indent: 10px" placeholder="Create Username" type="text" name="username" required>
+              <form method="post" action="../routes/process_register.php" name="myForm" onsubmit="hashPasswordAndSubmit();">
+                <input class= "inputField" style="text-indent: 10px" placeholder="Create Username" type="text" id="username" name="username" required>
                 
                 <br><br>
 

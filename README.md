@@ -10,9 +10,9 @@
 ## Hosting Local Copy
 This project was developed using the xampp Apache distribution, but it should run on any php environment. An sql server will need to be hosted to store the database.
 
-If you are hosting on xampp, it is reccomended that you clone this repo into the *htdocs* folder as a subfolder. The `index.php` file can be copied into *htdocs* to make the website the default page when going to http://localhost (on windows machines).
+If you are hosting on xampp, it is reccomended that you clone this repo into the *htdocs* folder as a subfolder. The [index.php](./index.php) file can be copied into *htdocs* to make the website the default page when going to http://localhost (on windows machines).
 
-In order to access a database you will need to put a `credentials.php` file in the *htdocs* folder as well. Set the variables to the login information for your mysql server.
+In order to access a database you will need to put a file `credentials.php` in the *htdocs* folder as well. Set the variables to the login information for your mysql server.
 ```php credentials.php
 <?php
 $hostname = 'yourserver.serverhoster.com';

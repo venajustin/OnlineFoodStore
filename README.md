@@ -1,4 +1,4 @@
-# CMPE 131 Original Food Store Project
+# CMPE 131 Online Food Store Project
 
  CMPE 131 - Software Engineering 1 @ SJSU  
  Prof. Butt                               

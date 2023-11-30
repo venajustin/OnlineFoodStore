@@ -8,7 +8,7 @@
 ---
 
 ## Hosting Local Copy
-This project was developed using the xampp Apache distribution, but it should run on any php environment. An sql server will need to be hosted to store the database.
+This project was developed using the [XAMPP](https://www.apachefriends.org/) Apache distribution, but it should run on any php environment. An sql server will need to be hosted to store the database. After following the below instructions to setup on XAMPP, navigate to `https://localhost` on your browser to view the webpage.
 
 If you are hosting on xampp, it is reccomended that you clone this repo into `xampp/htdocs`. Using git, run the following in your command line after navigating to the `htdocs` folder. On windows machines this can be found by defualt in `C:\xampp\htdocs`:
 ```

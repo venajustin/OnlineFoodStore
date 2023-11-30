@@ -32,7 +32,7 @@ CREATE TABLE `address_information` (
   `country` char(2) NOT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `address_information_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -50,7 +50,7 @@ CREATE TABLE `featured` (
   `end_data` date DEFAULT NULL,
   KEY `item_id` (`item_id`),
   CONSTRAINT `featured_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -65,7 +65,7 @@ CREATE TABLE `global_variables` (
   `name` varchar(30) NOT NULL,
   `value` varchar(30) NOT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `inventory` (
   `total_value` decimal(6,2) NOT NULL,
   KEY `item_id` (`item_id`),
   CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -118,7 +118,7 @@ CREATE TABLE `items` (
   `is_featured` tinyint DEFAULT '0',
   PRIMARY KEY (`item_id`),
   UNIQUE KEY `item_name` (`item_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `order_history` (
   `total_price` decimal(5,2) NOT NULL DEFAULT '0.00',
   `completed` tinyint DEFAULT '0',
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `order_information` (
   `quantity` int NOT NULL,
   KEY `i_id` (`i_id`),
   CONSTRAINT `order_information_ibfk_2` FOREIGN KEY (`i_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -171,7 +171,7 @@ CREATE TABLE `payment_information` (
   `billing_address` varchar(75) NOT NULL,
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `payment_information_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +189,7 @@ CREATE TABLE `shopping_cart` (
   KEY `item_id` (`i_id`),
   CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `shopping_cart_ibfk_2` FOREIGN KEY (`i_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -208,7 +208,7 @@ CREATE TABLE `users` (
   `is_employee` tinyint NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

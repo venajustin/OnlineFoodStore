@@ -33,3 +33,15 @@ $dbname = 'onlinefoodstore';
 [database/tableinfo.sql](./database/tableinfo.sql) contains sql queries to generate all of the required tables for the OnlineFoodStore site to run. 
 If using [XAMPP](https://www.apachefriends.org/) to host your server, Start up the Apache and Mysql services. Click on the Admin button for MySQL. Create a new database called `onlinefoodstore`. In that database, under the SQL tab, paste the entirety of the [tableinfo.sql](./database/tableinfo.sql) file into the box and press GO. This should generate all of the needed tables in your database.
 
+## Using the Site
+
+We have a [video tutorial](https://www.youtube.com/watch?v=8XTxQWse3sw) demonstrating all of the features of the site and how to use it. 
+### [OFS Tutorial Video](https://www.youtube.com/watch?v=8XTxQWse3sw)
+[![Video Thumbnail](https://img.youtube.com/vi/8XTxQWse3sw/0.jpg)](https://www.youtube.com/watch?v=8XTxQWse3sw)
+
+The _New Employee Key_ is by default set to `group6`. This can be changed by running the following sql on the database. Replace `new_employee_key` with the new passkey.
+```sql
+UPDATE global_variables
+SET value="new_employee_key"
+WHERE name="masterkey";
+```

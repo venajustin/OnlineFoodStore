@@ -31,7 +31,7 @@ $dbname = 'onlinefoodstore';
 
 ### Database Setup
 [database/tableinfo.sql](./database/tableinfo.sql) contains sql queries to generate all of the required tables for the OnlineFoodStore site to run. 
-If using [XAMPP](https://www.apachefriends.org/) to host your server, Start up the Apache and Mysql services. Click on the Admin button for MySQL. Create a new database called `onlinefoodstore`. In that database, under the SQL tab, paste the entirety of the [tableinfo.sql](./database/tableinfo.sql) file into the box and press GO. This should generate all of the needed tables in your database.
+If using [XAMPP](https://www.apachefriends.org/) to host your server, Start up the Apache and Mysql services. Click on the Admin button for MySQL. Create a new database called `onlinefoodstore`. In that database, under the SQL tab, paste the entirety of the [tableinfo.sql](./database/tableinfo.sql) file into the box and press GO. This should generate all of the needed tables in your database. The [populateitems.sql](./database/populateitems.sql) file contains an sql query to add a set of example items to the database. You can run this sql to add a set of example items for testing purposes.
 
 ---
 
